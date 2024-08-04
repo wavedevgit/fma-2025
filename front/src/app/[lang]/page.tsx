@@ -1,0 +1,80 @@
+import HeroSection from "@/components/home/hero-section";
+import { ImageSlider } from "@/components/home/image-slider";
+import TimeAndLocation from "@/components/home/time-and-location";
+import { getSlideshowImages } from "@/lib/utils";
+import CtaButton from "@/components/home/cta-button";
+import Informations from "@/components/home/informations";
+import InstagramReels from "@/components/home/instagram-reels";
+import { useTranslation } from "../i18n";
+import AboutSection from "@/components/home/about-section";
+import ScrollDown from "@/components/shared/icons/scroll-down";
+import { MeteorCard } from "@/components/home/meteor-card";
+import { Button } from "@/components/shared";
+
+export default async function Home({
+  params
+}:{
+  params: { lang: string },
+}) {
+  const { t } = await useTranslation(params?.lang, 'home')
+
+  return (
+    <>
+      <div className="w-full max-w-3xl px-5 xl:px-0 space-y-2 mb-24">
+        <HeroSection heroTitle={t('hero-title')} heroSubtitle={t('hero-subtitle')}/>
+        <TimeAndLocation />
+        <CtaButton />
+      </div>
+
+      {/* <div 
+        className="h-[26rem] relative animate-fade-up opacity-0 overflow-hidden flex flex-col justify-center"
+        style={{ animationDelay: "0.45s", animationFillMode: "forwards" }}
+      >
+        <ImageSlider
+          images={getSlideshowImages()}
+          direction="left"
+          speed="slow"
+        />
+      </div> */}
+      
+      <div className="w-full max-w-sm md:max-w-7xl px-5 xl:px-0 space-y-20 ">
+        {/* Informations */}
+        <div className="space-y-6">
+          <h1
+            className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-5xl md:leading-[4rem]"
+            style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+          >
+            De quoi s&apos;agit-il ?
+          </h1>
+
+          <Informations />
+        </div>
+
+        <div className="space-y-6">
+          <h1
+            className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-5xl md:leading-[4rem]"
+            style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+          >
+            Qui sommes-nous ?
+          </h1>
+
+          <AboutSection />
+        </div>
+
+        {/* Social Media Videos */}
+        {/* <div className="space-y-6">
+          <h1
+            className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-5xl md:leading-[4rem]"
+            style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+          >
+            We talk about it
+          </h1>
+
+          <div className="w-full bg-transparent flex flex-col items-center rounded-md space-y-12">
+            <InstagramReels />
+          </div>
+        </div> */}
+      </div>
+    </>
+  );
+}
