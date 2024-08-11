@@ -18,7 +18,7 @@ const CtaButton = () => {
     const token = getToken();
     
     if (token) {
-      router.push('profile/application');
+      router.push('application');
     } else {
       setShowAuthModal(true);
     }
