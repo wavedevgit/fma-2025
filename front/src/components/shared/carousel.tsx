@@ -237,7 +237,6 @@ const CarouselPrevious = React.forwardRef<
         <div>21h</div>
         <div>21h30</div>
         <div>22h</div>
-        <div>22h30</div>
       </div>
 
       <Button

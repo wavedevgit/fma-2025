@@ -26,9 +26,9 @@ export default function Home() {
         Dashboard
       </div>
       <div className="flex flex-col items-center pr-[15rem]">
-        <div>
+        <div className="">
           <Image
-            src="/summer-camp.png"
+            src="/mmc.png"
             alt="M&M logo"
             width='400'
             height='200'

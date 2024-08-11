@@ -54,7 +54,7 @@ const FilesTable = ({
         </TableRow>
 
         <TableRow key='school-certificate'>
-          <TableCell>School Certificate</TableCell>
+          <TableCell>Certificate of Schooling</TableCell>
           <TableCell><FileCard href={application?.schoolCertificateUrl} /></TableCell>
           <TableCell><FileStatus slug='schoolCertificate' application={application} /></TableCell>
         </TableRow>
@@ -69,12 +69,6 @@ const FilesTable = ({
           <TableCell>Handwritten signed regulation</TableCell>
           <TableCell><FileCard href={application?.regulationsUrl} /></TableCell>
           <TableCell><FileStatus slug='regulations' application={application} /></TableCell>
-        </TableRow>
-
-        <TableRow key='regulations'>
-          <TableCell>Handwritten signed parental authorization</TableCell>
-          <TableCell><FileCard href={application?.parentalAuthorizationUrl} /></TableCell>
-          <TableCell><FileStatus slug='parentalAuthorization' application={application} /></TableCell>
         </TableRow>
       </TableBody>
     </Table>

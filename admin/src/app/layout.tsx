@@ -7,7 +7,7 @@ import { DataLoader } from '@/components/layout/data-loader';
 import { Toaster } from '@/components/shared/toaster';
 
 export const metadata: Metadata = {
-  title: "SummerCamp 2024 Admin",
+  title: "MMC 2024 Admin",
 };
 
 export default function RootLayout({

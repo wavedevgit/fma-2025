@@ -14,7 +14,7 @@ const ScheduleCarousel = () => {
       <Carousel>
         <CarouselContent>
           {schedule.map((daySchedule, index) =>
-            <CarouselItem className="basis-1/2 lg:basis-[11%]" key={index}> <Day dayLabel={dayLabels[index]} daySchedule={daySchedule} /> </CarouselItem>
+            <CarouselItem className="basis-1/2 lg:basis-[20%]" key={index}> <Day dayLabel={dayLabels[index]} daySchedule={daySchedule} /> </CarouselItem>
           )}
         </CarouselContent>
         <CarouselPrevious />

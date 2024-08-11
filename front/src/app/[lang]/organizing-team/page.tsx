@@ -1,6 +1,9 @@
 import { Linkedin } from '@/components/shared/icons';
 import {
-  organizingTeam,
+  organizingCommittee,
+  staff,
+  webDevelopment,
+  um6p,
 } from './data';
 import Link from 'next/link';
 
@@ -43,14 +46,87 @@ export default function OrganizingTeamPage() {
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-5xl md:leading-[4rem]"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
-          <span className='mb-8 bg-gradient-to-br from-sky-500 to-[#272162] inline-block text-transparent bg-clip-text'>Equipe organisatrice</span>
+          <span className='mb-8 bg-gradient-to-br from-sky-500 to-[#272162] inline-block text-transparent bg-clip-text'>Organizing Team</span>
+        </h1>
+
+        <h1
+          className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"
+          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+        >
+          <span className='bg-gradient-to-br from-sky-800 to-[#272162] inline-block text-transparent bg-clip-text'>Math&Maroc</span> <span className='font-extralight'>{" | "}</span>
+          <span className='bg-gradient-to-br from-black to-stone-500 inline-block text-transparent bg-clip-text'>Organizing Committee</span>
         </h1>
 
         <div 
           className="flex justify-around flex-wrap gap-6 bg-gray-200 shadow-lg p-8 rounded-lg animate-fade-up opacity-0"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
-          {organizingTeam.map(person =>
+          {organizingCommittee.map(person =>
+            <Card
+              key={person.name.toLowerCase().replace(' ', '_')}
+              name={person.name}
+              imageSrc={person.imageSrc} 
+              linkedinSrc={person.linkedinSrc}
+            />
+          )}
+        </div>
+
+        <h1
+          className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"
+          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+        >
+          <span className='bg-gradient-to-br from-sky-800 to-[#272162] inline-block text-transparent bg-clip-text'>Math&Maroc</span> <span className='font-extralight'>{" | "}</span>
+          <span className='bg-gradient-to-br from-black to-stone-500 inline-block text-transparent bg-clip-text'>Staff</span>
+        </h1>
+        
+        <div 
+          className="flex justify-around flex-wrap gap-6 bg-gray-200 shadow-lg p-8 rounded-lg animate-fade-up opacity-0"
+          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+        >
+          {staff.map(person =>
+            <Card
+              key={person.name.toLowerCase().replace(' ', '_')}
+              name={person.name}
+              imageSrc={person.imageSrc} 
+              linkedinSrc={person.linkedinSrc}
+            />
+          )}
+        </div>
+
+        <h1
+          className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"
+          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+        >
+          <span className='bg-gradient-to-br from-sky-800 to-[#272162] inline-block text-transparent bg-clip-text'>Math&Maroc</span> <span className='font-extralight'>{" | "}</span>
+          <span className='bg-gradient-to-br from-black to-stone-500 inline-block text-transparent bg-clip-text'>Website Development</span> 
+        </h1>
+
+        <div 
+          className="flex justify-around flex-wrap gap-6 bg-gray-200 shadow-lg p-8 rounded-lg animate-fade-up opacity-0"
+          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+        >
+          {webDevelopment.map(person =>
+            <Card
+              key={person.name.toLowerCase().replace(' ', '_')}
+              name={person.name}
+              imageSrc={person.imageSrc} 
+              linkedinSrc={person.linkedinSrc}
+            />
+          )}
+        </div>
+
+        <h1
+          className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"
+          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+        >
+          <span className='bg-gradient-to-br from-sky-800 to-[#272162] inline-block text-transparent bg-clip-text'>UM6P</span>
+        </h1>
+
+        <div 
+          className="flex justify-around flex-wrap gap-6 bg-gray-200 shadow-lg p-8 rounded-lg animate-fade-up opacity-0"
+          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+        >
+          {um6p.map(person =>
             <Card
               key={person.name.toLowerCase().replace(' ', '_')}
               name={person.name}

@@ -1,14 +1,10 @@
 const getBgColor = (key?: string) => {
   switch(key) {
-    case 'maths':
+    case 'contest':
       return 'bg-red-400';
-    case 'programming':
+    case 'talks':
       return 'bg-orange-400';
-    case 'project':
-      return 'bg-purple-400';
-    case 'workshop':
-      return 'bg-blue-400';
-    case 'fun':
+    case 'various':
       return 'bg-green-400';
     case 'eating':
       return 'bg-purple-200';
@@ -25,134 +21,64 @@ type Activity = {
   bgColor?: string,
 }
 
-export type DaySchedule = Activity[];
+export type DaySchedule = (Activity|Activity[])[];
 
 export const dayLabels = [
-  'Samedi 20 juillet',
-  'Dimanche 21 juillet',
-  'Lundi 22 juillet',
-  'Mardi 23 juillet',
-  'Mercredi 24 juillet',
-  'Jeudi 25 juillet',
-  'Vendredi 26 juillet',
-  'Samedi 27 juillet',
-  'Dimanche 28 juillet',
+  'Sunday July 28th',
+  'Monday July 29th',
+  'Tuesday July 30th',
+  'Wednesday July 31st',
+  'Thursday August 1st',
 ]
 
 export const schedule: DaySchedule[] = [
   [
-    { rowspan: 14, label: '', bgColor: getBgColor() },
-    { rowspan: 8, label: 'Check-in des élèves', bgColor: getBgColor('other') },
-    { rowspan: 4, label: `Session d'ouverture`, bgColor: getBgColor('other') },
-    { rowspan: 2, label: 'Diner', bgColor: getBgColor('eating') },
-    { rowspan: 3, label: 'Get2Know', bgColor: getBgColor('fun') },
-    { rowspan: 1, label: 'Go to bed', bgColor: getBgColor('other') },
+    { rowspan: 12, label: '', bgColor: getBgColor() },
+    { rowspan: 10, label: 'Check-in', bgColor: getBgColor('other') },
+    { rowspan: 4, label: `Opening ceremony (with virtual address from Pr. Guerraoui)`, bgColor: getBgColor('contest') },
+    { rowspan: 5, label: 'Dinner', bgColor: getBgColor('eating') },
   ],
   [
-    { rowspan: 1, label: 'Wake up', bgColor: getBgColor('other') },
-    { rowspan: 2, label: 'Petit-déjeuner', bgColor: getBgColor('eating') },
-    { rowspan: 3, label: 'Logique et raisonnement', bgColor: getBgColor('maths') },
-    { rowspan: 3, label: 'Introduction', bgColor: getBgColor('programming') },
-    { rowspan: 3, label: 'Jeux Mathématiques', bgColor: getBgColor('maths') },
-    { rowspan: 2, label: 'Déjeuner', bgColor: getBgColor('eating') },
-    { rowspan: 6, label: 'Projet Robotique', bgColor: getBgColor('project') },
-    { rowspan: 1, label: 'Temps Libre', bgColor: getBgColor('other') },
-    { rowspan: 5, label: 'Sport', bgColor: getBgColor('fun') },
-    { rowspan: 1, label: 'Temps Libre', bgColor: getBgColor('other') },
-    { rowspan: 2, label: 'Diner', bgColor: getBgColor('eating') },
-    { rowspan: 2, label: 'Fun', bgColor: getBgColor('fun') },
-    { rowspan: 1, label: 'Go to bed', bgColor: getBgColor('other') },
+    { rowspan: 3, label: 'Breakfast', bgColor: getBgColor('eating') },
+    { rowspan: 8, label: 'Contest Day 1', bgColor: getBgColor('contest') },
+    { rowspan: 4, label: 'Lunch', bgColor: getBgColor('eating') },
+    [
+      { rowspan: 3, label: 'UM6P tour', bgColor: getBgColor('various') },
+      { rowspan: 3, label: 'Orientation Q&A', bgColor: getBgColor('talks') },
+    ],
+    [
+      { rowspan: 3, label: 'Orientation Q&A', bgColor: getBgColor('talks') },
+      { rowspan: 3, label: 'UM6P tour', bgColor: getBgColor('various') },
+    ],
+    { rowspan: 2, label: 'Contest 1 correction', bgColor: getBgColor('various') },
+    { rowspan: 2, label: 'Free time', bgColor: getBgColor('other') },
+    { rowspan: 6, label: 'Dinner', bgColor: getBgColor('eating') },
   ],
   [
-    { rowspan: 1, label: 'Wake up', bgColor: getBgColor('other') },
-    { rowspan: 2, label: 'Petit-déjeuner', bgColor: getBgColor('eating') },
-    { rowspan: 3, label: 'Ensembles et applications', bgColor: getBgColor('maths') },
-    { rowspan: 3, label: 'Operations', bgColor: getBgColor('programming') },
-    { rowspan: 3, label: 'Arithmétique 1', bgColor: getBgColor('maths') },
-    { rowspan: 2, label: 'Déjeuner', bgColor: getBgColor('eating') },
-    { rowspan: 3, label: 'Arithmétique Exos', bgColor: getBgColor('maths') },
-    { rowspan: 1, label: 'Temps Libre', bgColor: getBgColor('other') },
-    { rowspan: 8, label: 'Projet Robotique', bgColor: getBgColor('project') },
-    { rowspan: 1, label: 'Temps Libre', bgColor: getBgColor('other') },
-    { rowspan: 2, label: 'Diner', bgColor: getBgColor('eating') },
-    { rowspan: 2, label: 'Karaoke', bgColor: getBgColor('fun') },
-    { rowspan: 1, label: 'Go to bed', bgColor: getBgColor('other') },
+    { rowspan: 3, label: 'Breakfast', bgColor: getBgColor('eating') },
+    { rowspan: 8, label: 'Contest Day 2', bgColor: getBgColor('contest') },
+    { rowspan: 4, label: 'Lunch', bgColor: getBgColor('eating') },
+    { rowspan: 3, label: 'Talk 1 - Salim Tayou', bgColor: getBgColor('talks') },
+    { rowspan: 1, label: 'Break', bgColor: getBgColor('other') },
+    { rowspan: 3, label: 'Talk 2 - Rida Laraki', bgColor: getBgColor('talks') },
+    { rowspan: 3, label: 'Game "Question pour un majorant"', bgColor: getBgColor('various') },
+    { rowspan: 6, label: 'Dinner', bgColor: getBgColor('eating') },
   ],
   [
-    { rowspan: 1, label: 'Wake up', bgColor: getBgColor('other') },
-    { rowspan: 2, label: 'Petit-déjeuner', bgColor: getBgColor('eating') },
-    { rowspan: 3, label: 'Fonctions', bgColor: getBgColor('maths') },
-    { rowspan: 3, label: 'Loops & conditions', bgColor: getBgColor('programming') },
-    { rowspan: 3, label: 'Combinatoire', bgColor: getBgColor('maths') },
-    { rowspan: 2, label: 'Déjeuner', bgColor: getBgColor('eating') },
-    { rowspan: 12, label: 'Workshop Leadership & Soft Skills', bgColor: getBgColor('workshop') },
-    { rowspan: 1, label: 'Temps Libre', bgColor: getBgColor('other') },
-    { rowspan: 2, label: 'Diner', bgColor: getBgColor('eating') },
-    { rowspan: 2, label: 'Film', bgColor: getBgColor('fun') },
-    { rowspan: 1, label: 'Go to bed', bgColor: getBgColor('other') },
+    { rowspan: 3, label: 'Breakfast', bgColor: getBgColor('eating') },
+    { rowspan: 6, label: 'Sport tournament & Activities', bgColor: getBgColor('various') },
+    { rowspan: 2, label: 'Contest 2 correction', bgColor: getBgColor('various') },
+
+    { rowspan: 4, label: 'Lunch', bgColor: getBgColor('eating') },
+    { rowspan: 3, label: 'Panel', bgColor: getBgColor('talks') },
+    { rowspan: 2, label: 'Break', bgColor: getBgColor('other') },
+    { rowspan: 3, label: 'Talk 3 - Omar El Housni', bgColor: getBgColor('talks') },
+    { rowspan: 8, label: 'Dinner & collective activities', bgColor: getBgColor('eating') },
   ],
   [
-    { rowspan: 1, label: 'Wake up', bgColor: getBgColor('other') },
-    { rowspan: 2, label: 'Petit-déjeuner', bgColor: getBgColor('eating') },
-    { rowspan: 3, label: 'Géométrie', bgColor: getBgColor('maths') },
-    { rowspan: 3, label: 'Functions & recursivity', bgColor: getBgColor('programming') },
-    { rowspan: 3, label: 'Combinatoire Exos', bgColor: getBgColor('maths') },
-    { rowspan: 2, label: 'Déjeuner', bgColor: getBgColor('eating') },
-    { rowspan: 3, label: 'Conférence: A quoi servent les maths?', bgColor: getBgColor('workshop') },
-    { rowspan: 3, label: 'Arithmétique 2', bgColor: getBgColor('maths') },
-    { rowspan: 1, label: 'Temps Libre', bgColor: getBgColor('other') },
-    { rowspan: 5, label: 'Musée des mathématiques', bgColor: getBgColor('fun') },
-    { rowspan: 2, label: 'Diner', bgColor: getBgColor('eating') },
-    { rowspan: 3, label: 'Inclusion in school', bgColor: getBgColor('workshop') },
-    { rowspan: 1, label: 'Go to bed', bgColor: getBgColor('other') },
-  ],
-  [
-    { rowspan: 1, label: 'Wake up', bgColor: getBgColor('other') },
-    { rowspan: 2, label: 'Petit-déjeuner', bgColor: getBgColor('eating') },
-    { rowspan: 3, label: 'Introduction aux infinis', bgColor: getBgColor('maths') },
-    { rowspan: 3, label: 'Applications', bgColor: getBgColor('programming') },
-    { rowspan: 3, label: 'Séance Olympiade 1', bgColor: getBgColor('maths') },
-    { rowspan: 2, label: 'Déjeuner', bgColor: getBgColor('eating') },
-    { rowspan: 3, label: 'Binary Search', bgColor: getBgColor('programming') },
-    { rowspan: 1, label: 'Temps Libre', bgColor: getBgColor('other') },
-    { rowspan: 8, label: 'Projet Robotique', bgColor: getBgColor('project') },
-    { rowspan: 1, label: 'Temps Libre', bgColor: getBgColor('other') },
-    { rowspan: 2, label: 'Diner', bgColor: getBgColor('eating') },
-    { rowspan: 2, label: 'Just Dance', bgColor: getBgColor('fun') },
-    { rowspan: 1, label: 'Go to bed', bgColor: getBgColor('other') },
-  ],
-  [
-    { rowspan: 1, label: 'Wake up', bgColor: getBgColor('other') },
-    { rowspan: 2, label: 'Petit-déjeuner', bgColor: getBgColor('eating') },
-    { rowspan: 9, label: 'Visite du Port Tanger Med', bgColor: getBgColor('fun') },
-    { rowspan: 3, label: 'Déjeuner + Jumua', bgColor: getBgColor('eating') },
-    { rowspan: 9, label: 'Sortie', bgColor: getBgColor('fun') },
-    { rowspan: 3, label: 'Temps Libre', bgColor: getBgColor('other') },
-    { rowspan: 2, label: 'Diner', bgColor: getBgColor('eating') },
-    { rowspan: 2, label: 'Fun', bgColor: getBgColor('fun') },
-    { rowspan: 1, label: 'Go to bed', bgColor: getBgColor('other') },
-  ],
-  [
-    { rowspan: 1, label: 'Wake up', bgColor: getBgColor('other') },
-    { rowspan: 2, label: 'Petit-déjeuner', bgColor: getBgColor('eating') },
-    { rowspan: 3, label: 'Algèbre', bgColor: getBgColor('maths') },
-    { rowspan: 3, label: 'Competitive programming', bgColor: getBgColor('programming') },
-    { rowspan: 3, label: 'Séance Olympiade 2', bgColor: getBgColor('maths') },
-    { rowspan: 2, label: 'Déjeuner', bgColor: getBgColor('eating') },
-    { rowspan: 4, label: 'Tables rondes Orientation', bgColor: getBgColor('workshop') },
-    { rowspan: 4, label: 'Atelier Premiers Secours', bgColor: getBgColor('workshop') },
-    { rowspan: 2, label: 'Escape room', bgColor: getBgColor('fun') },
-    { rowspan: 2, label: 'Board games', bgColor: getBgColor('fun') },
-    { rowspan: 1, label: 'Temps Libre', bgColor: getBgColor('other') },
-    { rowspan: 2, label: 'Diner', bgColor: getBgColor('eating') },
-    { rowspan: 2, label: 'Fun', bgColor: getBgColor('fun') },
-    { rowspan: 1, label: 'Go to bed', bgColor: getBgColor('other') },
-  ],
-  [
-    { rowspan: 1, label: 'Wake up', bgColor: getBgColor('other') },
-    { rowspan: 2, label: 'Petit-déjeuner', bgColor: getBgColor('eating') },
-    { rowspan: 4, label: 'Séance de clotûre', bgColor: getBgColor('other') },
+    { rowspan: 3, label: 'Breakfast', bgColor: getBgColor('eating') },
+    { rowspan: 4, label: 'Closing ceremony', bgColor: getBgColor('contest') },
     { rowspan: 3, label: 'Check-out', bgColor: getBgColor('other') },
-    { rowspan: 22, label: '', bgColor: getBgColor() },
-  ],
+    { rowspan: 21, label: '', bgColor: getBgColor() },
+  ]
 ]

@@ -23,9 +23,6 @@ export const DataLoader = () => {
       .then((res: any) => {
         if (res?.statusCode === 200) {
           setAdminData(res.user);
-        } else {
-          localStorage.removeItem('access_token');
-          setAdminData(undefined);
         }
       })
   }

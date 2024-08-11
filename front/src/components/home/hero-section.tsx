@@ -5,17 +5,19 @@ import Image from "next/image";
 
 export default function HeroSection({
   heroTitle,
-  heroSubtitle
+  heroSubtitle,
+  heroTitleResults,
 }:{
   heroTitle: string,
   heroSubtitle: string,
+  heroTitleResults: string,
 }) {
   return (
     <div className="w-full bg-transparent flex flex-col items-center justify-center rounded-md">
       {/* Logo */}
       <div className="z-10">
         <Image
-          src="/summer-camp.png"
+          src="/mmc.png"
           alt="M&M logo"
           width='400'
           height='200'
@@ -23,7 +25,7 @@ export default function HeroSection({
       </div>
 
       {/* Sparkles */}
-      <div className="w-[25rem] md:w-[80rem] h-[1rem] relative">
+      <div className="w-[25rem] md:w-[80rem] h-[3rem] relative">
         <div className="absolute inset-x-40 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] md:w-3/4 blur-sm" />
         <div className="absolute inset-x-40 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px md:w-3/4" />
         <div className="absolute inset-x-80 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] md:w-2/4 blur-sm" />
@@ -35,14 +37,14 @@ export default function HeroSection({
             minSize={0.4}
             maxSize={1.4}
             particleDensity={300}
-            className="w-full h-[28rem]"
+            className="w-full h-[30rem]"
             particleColor="#00008B"
           />
         </div>
       </div> 
 
       {/* Content */}
-      <div className="z-10 space-y-2">
+      <div className="z-10 space-y-8">
         <h1
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-6xl md:leading-[4rem]"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}

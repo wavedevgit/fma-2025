@@ -40,16 +40,17 @@ import { RadioGroup, RadioGroupItem } from '@/components/shared/radio-group';
 import Link from "next/link";
 import { toast } from "@/components/hooks/use-toast";
 import { useState } from "react"
-import { postApplication, putApplication } from "@/api/ApplicationApi"
+import { deleteApplication, postApplication, putApplication } from "@/api/ApplicationApi"
 import { LoadingDots } from "@/components/shared/icons"
 import { getSignedURL, uploadFile } from "@/api/MediaApi"
+import { Separator } from "@radix-ui/react-separator"
 
 const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
 const ACCEPTED_FILE_TYPES = ['image/png','image/jpeg','image/jpg', 'image/png','image/webp', 'application/pdf'];
 const zodFileValidation = z.any()
   .refine(files => files?.length == 1, 'File is required.')
-  .refine(files => ACCEPTED_FILE_TYPES.includes(files?.[0]?.type), { message: 'Please choose PNG, JPEG or PDF format files only' })
-  .refine(files => files?.[0]?.size <= MAX_UPLOAD_SIZE, 'File size must be less than 3MB')
+  .refine(files => ACCEPTED_FILE_TYPES.includes(files[0]?.type), { message: 'Please choose PNG, JPEG or PDF format files only' })
+  .refine(files => files[0]?.size <= MAX_UPLOAD_SIZE, 'File size must be less than 3MB')
 const regions = [
   {label: "Tanger-Tétouan-Al Hoceïma", value:"tanger-tetouan-al-houceima"},
   {label: "Oriental", value:"oriental"},
@@ -63,63 +64,75 @@ const regions = [
   {label: "Guelmim-Oued Noun", value:"guelmim-oued-noun"},
   {label: "Laâyoune-Sakia El Hamra", value:"laayoune-sakia-el-hamra"},
   {label: "Dakhla-Oued Eddahab", value:"dakhla-oued-eddahab"},
-]
-
-const relationshipsWithGuardian = [
-  {label: "Père", value:"father"},
-  {label: "Mère", value:"mother"},
-  {label: "Tuteur", value:"guardian"},
+  {label: "Abroad", value:"abroad"},
 ]
 
 const applicationSchema = z.object({
   /* Personal Informations */
   firstName: z.string().min(1).max(50),
   lastName: z.string().min(1).max(50),
-  dateOfBirth: z.date({ required_error: "La date de naissance est obligatoire." }),
-  identityCardNumber: z.string().optional(),
-  studentNumber: z.string().min(1).max(50),
+  dateOfBirth: z.date({ required_error: "A date of birth is required." }),
+  identityCardNumber: z.string().min(1).max(50),
   city: z.string().min(1).max(50),
-  region: z.string().nonempty("Veuillez choisir une option"),
-  phoneNumber: z.string().refine(isValidPhoneNumber, { message: "Numéro de téléphone invalide" }),
-  guardianFullName: z.string().min(1).max(50),
-  guardianPhoneNumber: z.string().refine(isValidPhoneNumber, { message: "Numéro de téléphone invalide" }),
-  relationshipWithGuardian: z.string().min(1).max(50),
-  specialConditions: z.string().optional().refine((val) => {
-    if (val) {
-      return val.split(' ').length <= 100
-    }
-    return true;
-  } , { message: "Maximum 100 mots"}),
+  region: z.string().nonempty("Please select an option"),
+  phoneNumber: z.string().refine(isValidPhoneNumber, { message: "Invalid phone number" }),
+  emergencyContactName: z.string().min(1).max(50),
+  emergencyContactPhoneNumber:z.string().refine(isValidPhoneNumber, { message: "Invalid phone number" }),
 
   /* Education */
-  highschool: z.string().min(1).max(50),
-  semesterAverageGrade: z.string().min(1).max(50),
-  semesterMathAverageGrade: z.string().min(1).max(50),
-  semesterRanking: z.string().min(1).max(50),
-  semesterMathRanking: z.string().min(1).max(50),
-  finalsAverageGrade: z.string().min(1).max(50),
-  finalsMathAverageGrade: z.string().min(1).max(50),
+  lastYearEducationLevel: z.string().nonempty("Please select an option"),
+  educationProgram: z.string().nonempty("Please select an option"),
+  establishment: z.string().min(1).max(50),
+  fieldOfStudy: z.string().min(1).max(50),
+  
+  cpgeGradeTrimesterOne: z.string().optional(),
+  cpgeGradeTrimesterTwo: z.string().optional(),
+  cpgeRankingTrimesterOne: z.string().optional(),
+  cpgeRankingTrimesterTwo: z.string().optional(),
+
+  nonCpgeAverageThreeBestScienceGrades: z.string().optional(),
+  nonCpgeAverageScienceGrades: z.string().optional(),
+  nonCpgeOverallAverage: z.string().optional(),
 
   /* Competition */
-  motivations: z.string().min(1).refine(async text => text.split(' ').length <= 300, { message: "Maximum 300 mots", }),
-  hasPreviouslyParticipated: z.enum(["yes", "no"], { required_error: "Veuillez choisir une option" }),
+  hasPreviouslyParticipated: z.enum(["yes", "no"], { required_error: "Please select an option." }),
   previousCompetitions: z.string().optional(),
+  hasPreviouslyParticipatedInMmc: z.enum(["yes", "no"], { required_error: "Please select an option." }),
+  previousResultsInMmc: z.string().optional(),
+  motivations: z.string().min(1).refine(async text => text.split(' ').length <= 300, { message: "Text can't be more than 300 words", }),
   comments: z.string().optional().refine((val) => {
     if (val) {
       return val.split(' ').length <= 100
     }
     return true;
-  } , { message: "Maximum 100 mots"}),
+  } , { message: "Text can't be more than 100 words"}),
 
   /* Uploads */
   identityCard: zodFileValidation,
-  schoolCertificate: zodFileValidation,
-  grades: zodFileValidation,
+  certificateOfSchooling: zodFileValidation,
   regulations: zodFileValidation,
-  parentalAuthorization: zodFileValidation,
+  grades: zodFileValidation,
 
   /* Terms of agreement */
-  termsAgreement: z.boolean().default(false).refine(value => value === true, { message: "L'acceptation des conditions de l'accord est obligatoire"}),
+  termsAgreement: z.boolean().default(false).refine(value => value === true, { message: "You must accept the Terms of Agreement"}),
+}).refine(data => {
+  if (data.educationProgram === 'cpge') {
+    if (!data.cpgeGradeTrimesterOne 
+      || !data.cpgeGradeTrimesterTwo 
+      || !data.cpgeRankingTrimesterOne 
+      || !data.cpgeRankingTrimesterTwo
+    ) return false
+  } else {
+    if (!data.nonCpgeAverageThreeBestScienceGrades 
+      || !data.nonCpgeAverageScienceGrades 
+      || !data.nonCpgeOverallAverage
+    ) return false
+  }
+
+  return true;
+}, {
+  message: "Grades are required",
+  path: ['cpgeGradeTrimesterOne'],
 })
 
 const RequiredAsterisk = () => <span className="text-red-500"> * </span>;
@@ -144,38 +157,42 @@ const ApplicationForm = ({
   userData: any,
 }) => {
   const [isFormLoading, setIsFormLoading] = useState(false);
+  const [postId, setPostId] = useState(null);
+  const [educationProgram, setEducationProgram] = useState<string>(application ? application?.educationProgram : '');
   const defaultValues = {
     firstName: userData?.firstName || "",
     lastName: userData?.lastName || "",
     dateOfBirth: "",
     identityCardNumber: "",
-    studentNumber: "",
     city: "",
     region: "",
     phoneNumber: "",
-    guardianFullName: "",
-    guardianPhoneNumber: "",
-    relationshipWithGuardian: "",
-    specialConditions: "",
+    emergencyContactName: "",
+    emergencyContactPhoneNumber: "",
   
-    highschool: "",
-    semesterAverageGrade: "",
-    semesterMathAverageGrade: "",
-    semesterRanking: "",
-    semesterMathRanking: "",
-    finalsAverageGrade: "",
-    finalsMathAverageGrade: "",
+    lastYearEducationLevel: "",
+    educationProgram: "",
+    establishment: "",
+    fieldOfStudy: "",
+    cpgeGradeTrimesterOne: "",
+    cpgeGradeTrimesterTwo: "",
+    cpgeRankingTrimesterOne: "",
+    cpgeRankingTrimesterTwo: "",
+    nonCpgeAverageThreeBestScienceGrades: "",
+    nonCpgeAverageScienceGrades: "",
+    nonCpgeOverallAverage: "",
   
-    motivations: "",
-    hasPreviouslyParticipated: "",
+    hasPreviouslyParticipated: undefined,
     previousCompetitions: "",
+    hasPreviouslyParticipatedInMmc: undefined,
+    previousResultsInMmc: "",
+    motivations: "",
     comments: "",
   
     identityCard: undefined,
-    schoolCertificate: undefined,
-    grades: undefined,
+    certificateOfSchooling: undefined,
     regulations: undefined,
-    parentalAuthorization: undefined,
+    grades: undefined,
   
     termsAgreement: false,
   }
@@ -189,11 +206,11 @@ const ApplicationForm = ({
 
   const onSubmit = async (formData: z.infer<typeof applicationSchema>) => {
     setIsFormLoading(true);
-    const { identityCard, schoolCertificate, grades, regulations, parentalAuthorization } = formData;
+    const { identityCard, certificateOfSchooling, regulations, grades } = formData;
     const uploadFolderName = getUploadFolderName(userData.firstName, userData.lastName);
-    const uploadFileNames = ['cnie', 'school_certificate', 'grades', 'regulations', 'parental_authorization']
+    const uploadFileNames = ['cnie', 'school_certificate', 'regulations', 'grades']
       .map(name => `${name}_${generateFileName()}`)
-    const files = [identityCard, schoolCertificate, grades, regulations, parentalAuthorization]
+    const files = [identityCard, certificateOfSchooling, regulations, grades]
       .map((files, index) => new File(
         [files[0]], 
         uploadFileNames[index] + '.' + files[0].name.split('.').pop(),
@@ -201,11 +218,24 @@ const ApplicationForm = ({
       ))
 
     try {
+      // POST or PUT Application content
+      const applicationResponse = application
+        ? await putApplication(application?.id, excludeFileFields(formData)) as any
+        : await postApplication({userId: userData.id, ...formData}) as any
+      ;
+      
+      if (applicationResponse?.statusCode !== 200) {
+        throw new Error('Post of application failed')
+      }
+
+      const applicationId = applicationResponse?.id;
+      setPostId(applicationResponse?.id)
+
       // Upload files
       for (const file of files) {
         const checksum = await computeSHA256(file);
 
-        const signedURLResponse = await getSignedURL(`upload_sc/${uploadFolderName}/${file.name}`, file.type, file.size, checksum) as any;
+        const signedURLResponse = await getSignedURL(`upload/${uploadFolderName}/${file.name}`, file.type, file.size, checksum) as any;
         if (signedURLResponse?.statusCode !== 200) {
           throw new Error('Get of application signed URL failed');
         }
@@ -216,22 +246,15 @@ const ApplicationForm = ({
         }
       }
 
-      // POST or PUT Application
-      const body = {
-        ...formData,
-        userId: userData.id, 
-        cnieUrl: `upload_sc/${uploadFolderName}/${files[0].name}`,
-        schoolCertificateUrl: `upload_sc/${uploadFolderName}/${files[1].name}`,
-        gradesUrl: `upload_sc/${uploadFolderName}/${files[2].name}`,
-        regulationsUrl: `upload_sc/${uploadFolderName}/${files[3].name}`,
-        parentalAuthorizationUrl: `upload_sc/${uploadFolderName}/${files[4].name}`
-      };
-
-      const applicationResponse = application
-        ? await putApplication(application?.id, excludeFileFields(body)) as any
-        : await postApplication(body) as any;
-      if (applicationResponse?.statusCode !== 200) {
-        throw new Error('Post of application failed')
+      // Update Application
+      const putApplicationResponse = await putApplication(applicationId, {
+        cnieUrl: `upload/${uploadFolderName}/${files[0].name}`,
+        schoolCertificateUrl: `upload/${uploadFolderName}/${files[1].name}`,
+        regulationsUrl: `upload/${uploadFolderName}/${files[2].name}`,
+        gradesUrl: `upload/${uploadFolderName}/${files[3].name}`,
+      }) as any
+      if (putApplicationResponse?.affected === 0) {
+        throw new Error('Put of application failed');
       }
 
       toast({
@@ -239,10 +262,12 @@ const ApplicationForm = ({
         description: 'You can access your current application in your profile page',
       });
 
-      setTimeout(() => {
-        window.location.reload();
-      }, 500)
+      window.location.reload();
     } catch(e) {
+      if (postId) {
+        await deleteApplication(postId);
+      }
+
       toast({
         title: 'Application creation failed',
         description: 'There have a been a problem in application creation. Please try later',
@@ -265,14 +290,14 @@ const ApplicationForm = ({
   return (
     <>
       <p>
-        Les champs marqués par &apos;<RequiredAsterisk />&apos; sont obligatoires.
+        Take your time to give us your input on the <span className="font-semibold">4 sections below</span>, and don&apos;t forget to click on the <span className="font-semibold">&apos;Submit Application&apos;</span> button to confirm.
       </p>
 
       <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit, onError)} className="space-y-6">
         <Accordion type="single" collapsible className="w-full space-y-8">
           <AccordionItem value="item-1">
-            <AccordionTrigger className="text-cyan-800 font-semibold text-lg">Informations personnelles</AccordionTrigger>
+            <AccordionTrigger className="text-cyan-800 font-semibold text-lg">Personal Information</AccordionTrigger>
             <AccordionContent className="space-y-6 px-1">
               {/* First Name */}
               <FormField
@@ -280,9 +305,9 @@ const ApplicationForm = ({
                 name="firstName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Prénom <RequiredAsterisk /></FormLabel>
+                    <FormLabel>First Name <RequiredAsterisk /></FormLabel>
                     <FormControl>
-                      <Input disabled placeholder="Entrez votre prénom" {...field} />
+                      <Input disabled placeholder="First Name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -294,9 +319,9 @@ const ApplicationForm = ({
                 name="lastName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Nom <RequiredAsterisk /></FormLabel>
+                    <FormLabel>Last Name <RequiredAsterisk /></FormLabel>
                     <FormControl>
-                      <Input disabled placeholder="Entrez votre nom" {...field} />
+                      <Input disabled placeholder="Last Name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -308,7 +333,7 @@ const ApplicationForm = ({
                 name="dateOfBirth"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Date de naissance <RequiredAsterisk /></FormLabel>
+                    <FormLabel>Date of birth <RequiredAsterisk /></FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -322,7 +347,7 @@ const ApplicationForm = ({
                             {field.value ? (
                               format(field.value, "PPP")
                             ) : (
-                              <span>Choisissez une date</span>
+                              <span>Pick a date</span>
                             )}
                             <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                           </Button>
@@ -342,7 +367,7 @@ const ApplicationForm = ({
                       </PopoverContent>
                     </Popover>
                     <FormDescription>
-                      Votre date de naissance permettra de calculer votre âge.
+                      Your date of birth is used to calculate your age.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -354,23 +379,9 @@ const ApplicationForm = ({
                 name="identityCardNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Numéro CNIE</FormLabel>
+                    <FormLabel>CNIE Number <RequiredAsterisk /></FormLabel>
                     <FormControl>
-                      <Input placeholder="Entrez votre numéro CNIE" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              {/* Student Number */}
-              <FormField
-                control={form.control}
-                name="studentNumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Code Massar ou Code National de l&apos;Etudiant <RequiredAsterisk /></FormLabel>
-                    <FormControl>
-                      <Input placeholder="Entrez votre code" {...field} />
+                      <Input placeholder="CNIE Number" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -382,9 +393,9 @@ const ApplicationForm = ({
                 name="city"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Ville de résidence <RequiredAsterisk /></FormLabel>
+                    <FormLabel>City of residence<RequiredAsterisk /></FormLabel>
                     <FormControl>
-                      <Input placeholder="Entrez votre ville" {...field} />
+                      <Input placeholder="City" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -396,11 +407,11 @@ const ApplicationForm = ({
                 name="region"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Region de résidence<RequiredAsterisk /></FormLabel>
+                    <FormLabel>Region of residence<RequiredAsterisk /></FormLabel>
                     <FormControl>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <SelectTrigger className="w-[280px]">
-                          <SelectValue placeholder="Choisissez votre région" />
+                          <SelectValue placeholder="Select a region" />
                         </SelectTrigger>
                         <SelectContent className="max-h-60">
                           <SelectGroup>
@@ -422,36 +433,7 @@ const ApplicationForm = ({
                 name="phoneNumber"
                 render={({ field }) => (
                   <FormItem className="flex flex-col items-start">
-                    <FormLabel className="text-left">Téléphone de l&apos;élève <RequiredAsterisk /></FormLabel>
-                    <FormControl className="w-full">
-                      <PhoneInput placeholder="Entrez un numéro de téléphone" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              {/* Guardian Full Name */}
-              <FormField
-                control={form.control}
-                name="guardianFullName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Nom et prénom du tuteur de l&apos;élève<RequiredAsterisk /></FormLabel>
-                    <FormControl>
-                      <Input placeholder="Entrez un nom complet" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-    
-              {/* Guardian Phone Number */}
-              <FormField
-                control={form.control}
-                name="guardianPhoneNumber"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col items-start">
-                    <FormLabel className="text-left">Téléphone du tuteur de l&apos;élève <RequiredAsterisk /></FormLabel>
+                    <FormLabel className="text-left">Phone Number <RequiredAsterisk /></FormLabel>
                     <FormControl className="w-full">
                       <PhoneInput placeholder="Enter a phone number" {...field} />
                     </FormControl>
@@ -459,45 +441,29 @@ const ApplicationForm = ({
                   </FormItem>
                 )}
               />
-              {/* Relationship with Guardian */}
+              {/* Emergency Contact */}
               <FormField
                 control={form.control}
-                name="relationshipWithGuardian"
+                name="emergencyContactName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Relation avec votre tuteur<RequiredAsterisk /></FormLabel>
+                    <FormLabel>Emergency Contact Full Name <RequiredAsterisk /></FormLabel>
                     <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <SelectTrigger className="w-[280px]">
-                          <SelectValue placeholder="Choisissez une option" />
-                        </SelectTrigger>
-                        <SelectContent className="max-h-60">
-                          <SelectGroup>
-                            <SelectLabel>Relation avec votre tuteur</SelectLabel>
-                            {relationshipsWithGuardian.map(relationship => 
-                              <SelectItem key={relationship.value} value={relationship.value}>{relationship.label}</SelectItem>
-                            )}
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select> 
+                      <Input placeholder="Enter full name of emergency contact" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              {/* Special conditions */}
+              {/* Emergency Contact Phone Number */}
               <FormField
                 control={form.control}
-                name="specialConditions"
+                name="emergencyContactPhoneNumber"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Avez-vous des problèmes de santé, des allergies, ou toute autre information que nous devons connaître pour vous assurer des conditions adéquates sur place?</FormLabel>
-                    <FormControl>
-                    <Textarea
-                      placeholder="Maximum 100 mots"
-                      className="resize-none"
-                      {...field}
-                    />
+                  <FormItem className="flex flex-col items-start">
+                    <FormLabel className="text-left">Emergency Contact Phone Number <RequiredAsterisk /></FormLabel>
+                    <FormControl className="w-full">
+                      <PhoneInput placeholder="Enter a phone number" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -507,17 +473,92 @@ const ApplicationForm = ({
           </AccordionItem>
 
           <AccordionItem value="item-2">
-            <AccordionTrigger className="text-cyan-800 font-semibold text-lg">Etudes</AccordionTrigger>
+            <AccordionTrigger className="text-cyan-800 font-semibold text-lg">Education</AccordionTrigger>
             <AccordionContent className="space-y-6 px-1">
-              {/* Highschool */}
+              {/* Last year studies level */}
               <FormField
                 control={form.control}
-                name="highschool"
+                name="lastYearEducationLevel"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Collège <RequiredAsterisk /></FormLabel>
+                    <FormLabel>In 2023-2024, I attended higher education (in Morocco or abroad) at: <RequiredAsterisk /></FormLabel>
                     <FormControl>
-                      <Input placeholder="Nom du collège" {...field} />
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <SelectTrigger className="w-[280px]">
+                          <SelectValue placeholder="Select an option" />
+                        </SelectTrigger>
+                        <SelectContent className="max-h-60">
+                          <SelectGroup>
+                            <SelectLabel>Levels</SelectLabel>
+                              <SelectItem key="bac-plus-1" value="bac-plus-1">Bac +1</SelectItem>
+                              <SelectItem key="bac-plus-2" value="bac-plus-2">Bac +2</SelectItem>
+                              <SelectItem key="bac-plus-3" value="bac-plus-3">Bac +3</SelectItem>
+                              <SelectItem key="bac-plus-4" value="bac-plus-4">Bac +4</SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Education Program */}
+              <FormField
+                control={form.control}
+                name="educationProgram"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Education Program <RequiredAsterisk /></FormLabel>
+                    <FormControl>
+                      <Select onValueChange={(v) => {setEducationProgram(v); field.onChange(v)}} defaultValue={field.value}>
+                        <SelectTrigger className="w-[280px]">
+                          <SelectValue placeholder="Select an option" />
+                        </SelectTrigger>
+                        <SelectContent className="max-h-60">
+                          <SelectGroup>
+                            <SelectLabel>Programs</SelectLabel>
+                              <SelectItem key="cpge" value="cpge">Preparatory Classes (CPGE)</SelectItem>
+                              <SelectItem key="university" value="university">University</SelectItem>
+                              <SelectItem key="engineering-school-post-bac" value="engineering-school-post-bac">Engineering School post Bac</SelectItem>
+                              <SelectItem key="engineering-school-post-cpge" value="engineering-school-post-cpge">Engineering School post CPGE</SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Establishement */}
+              <FormField
+                control={form.control}
+                name="establishment"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>University Name <RequiredAsterisk /></FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your establishment" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Field of Study */}
+              <FormField
+                control={form.control}
+                name="fieldOfStudy"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Field of Study <RequiredAsterisk /></FormLabel>
+                    <FormControl>
+                    <Input
+                      placeholder="Enter your field of study"
+                      className="resize-none"
+                      {...field}
+                    />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -525,119 +566,116 @@ const ApplicationForm = ({
               />
 
               {/* Grades */}
-              <FormField
-                control={form.control}
-                name="semesterAverageGrade"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Moyenne Générale | contrôle continu 1er semestre <RequiredAsterisk /></FormLabel>
-                    <FormControl>
-                      <Input placeholder="Entrez votre moyenne générale" type="number" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="semesterMathAverageGrade"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Moyenne en Mathématiques | contrôle continu 1er semestre <RequiredAsterisk /></FormLabel>
-                    <FormControl>
-                      <Input placeholder="Entrez votre moyenne de mathématique" type="number" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="semesterRanking"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Classement Général | contrôle continu 1er semestre <RequiredAsterisk /></FormLabel>
-                    <FormControl>
-                      <Input placeholder="Entrez votre classement général" type="number" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="semesterMathRanking"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Classement en Mathématiques | contrôle continu 1er semestre <RequiredAsterisk /></FormLabel>
-                    <FormControl>
-                      <Input placeholder="Entrer votre classement de mathématique" type="number" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="finalsAverageGrade"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Moyenne Générale | examen unifié 1er semestre <RequiredAsterisk /></FormLabel>
-                    <FormControl>
-                      <Input placeholder="Entrez votre moyenne générale" type="number" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="finalsMathAverageGrade"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Moyenne en Mathématiques | examen unifié 1er semestre <RequiredAsterisk /></FormLabel>
-                    <FormControl>
-                      <Input placeholder="Entrez votre moyenne de mathématique" type="number" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              
+              <div className={`space-y-4 ${(!educationProgram || educationProgram !== 'cpge') ? 'hidden' : ''}`}>
+                <FormField
+                  control={form.control}
+                  name="cpgeGradeTrimesterOne"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Math Grade Trimester 1 (academic year 2023/2024)<RequiredAsterisk /></FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter numerical value" type="number" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="cpgeGradeTrimesterTwo"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Math Grade Trimester 2 (academic year 2023/2024)<RequiredAsterisk /></FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter numerical value" type="number" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="cpgeRankingTrimesterOne"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Math Ranking Trimester 1 (academic year 2023/2024)<RequiredAsterisk /></FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter numerical value" type="number" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="cpgeRankingTrimesterTwo"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Math Ranking Trimester 2 (academic year 2023/2024)<RequiredAsterisk /></FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter numerical value" type="number" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <div className={`space-y-4 ${(!educationProgram || educationProgram === 'cpge') ? 'hidden' : ''}`}>
+                <FormField
+                  control={form.control}
+                  name="nonCpgeAverageThreeBestScienceGrades"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Average Grade of the 3 best scientific subjects (academic year 2023/2024)<RequiredAsterisk /></FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter numerical value" type="number" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="nonCpgeAverageScienceGrades"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Average Grade of all scientific subjects (academic year 2023/2024)<RequiredAsterisk /></FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter numerical value" type="number" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="nonCpgeOverallAverage"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Overall Average Grade (academic year 2023/2024)<RequiredAsterisk /></FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter numerical value" type="number" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
             </AccordionContent>
           </AccordionItem>
 
           <AccordionItem value="item-3">
-            <AccordionTrigger className="text-cyan-800 font-semibold text-lg">Summer Camp</AccordionTrigger>
+            <AccordionTrigger className="text-cyan-800 font-semibold text-lg">Competition</AccordionTrigger>
             <AccordionContent className="space-y-6 px-1">
-              {/* Motivations */}
-              <FormField
-                control={form.control}
-                name="motivations"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Quelles sont vos motivations pour participer au Summer Camp? (réponse dans la langue de votre choix) <RequiredAsterisk /></FormLabel>
-                    <FormControl>
-                    <Textarea
-                      placeholder="Maximum 300 mots"
-                      className="resize-none"
-                      {...field}
-                    />
-                    </FormControl>
-                    <FormDescription>
-                      Remarque: l&apos;utilisation de ChatGPT ou toute autre intelligence artificielle pour répondre à cette question est strictement interdit et entrainera l&apos;élimination systématique.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
               {/* Has Previously Participated */}
               <FormField
                 control={form.control}
                 name="hasPreviouslyParticipated"
                 render={({ field }) => (
                   <FormItem className="space-y-3">
-                    <FormLabel>Avez-vous déjà participé à des compétitions ou tout autre expérience que vous pensez être utile pour votre candidature? <RequiredAsterisk /></FormLabel>
+                    <FormLabel>Have you participated in competitions before (Olympiads, national contests...) ? <RequiredAsterisk /></FormLabel>
                     <FormControl>
                       <RadioGroup
                         onValueChange={field.onChange}
@@ -672,10 +710,81 @@ const ApplicationForm = ({
                 name="previousCompetitions"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Si oui, décrivez votre expérience en détail (texte libre) </FormLabel>
+                    <FormLabel>If yes, please specify which ones and the achieved result.</FormLabel>
                     <FormControl>
                     <Textarea
-                      placeholder="Maximum 100 mots"
+                      placeholder="Tell us about your achievements"
+                      className="resize-none"
+                      {...field}
+                    />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {/* Has Previously Participated in MMC */}
+              <FormField
+                control={form.control}
+                name="hasPreviouslyParticipatedInMmc"
+                render={({ field }) => (
+                  <FormItem className="space-y-3">
+                    <FormLabel>Have you participated in Math&Maroc Competition 2023 ? <RequiredAsterisk /></FormLabel>
+                    <FormControl>
+                      <RadioGroup
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        className="flex flex-col space-y-1"
+                      >
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="yes" />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            Yes
+                          </FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="no" />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            No
+                          </FormLabel>
+                        </FormItem>
+                      </RadioGroup>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {/* Previous Results in MMC */}
+              <FormField
+                control={form.control}
+                name="previousResultsInMmc"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>If yes, please specify your ranking <Link className="text-blue-500" href={"https://mmc.mathmaroc.org/past-edition/results"} target="blank">(2023 results)</Link></FormLabel>
+                    <FormControl>
+                    <Textarea
+                      placeholder="Tell us about your ranking"
+                      className="resize-none"
+                      {...field}
+                    />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {/* Motivations */}
+              <FormField
+                control={form.control}
+                name="motivations"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Tell us about your motivations to participate in the competition ? <RequiredAsterisk /></FormLabel>
+                    <FormControl>
+                    <Textarea
+                      placeholder="Max 300 words"
                       className="resize-none"
                       {...field}
                     />
@@ -690,10 +799,10 @@ const ApplicationForm = ({
                 name="comments"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Remarques / Commentaires </FormLabel>
+                    <FormLabel>Remarks / Comments</FormLabel>
                     <FormControl>
                     <Textarea
-                      placeholder="Avez-vous quelque chose à rajouter?"
+                      placeholder="Anything to add ?"
                       className="resize-none"
                       {...field}
                     />
@@ -711,7 +820,7 @@ const ApplicationForm = ({
         {<span className="text-transparent"> {"You found the Easter Egg!"}</span>}
 
         <div className="text-cyan-800 font-semibold text-lg mt-[7rem]">
-          Documents à télécharger
+          Uploads
         </div>
 
         <FormField
@@ -719,40 +828,62 @@ const ApplicationForm = ({
           name="identityCard"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Justificatif d&apos;identité de l&apos;élève avec photo (carte d&apos;identité, passeport…) <RequiredAsterisk /></FormLabel>
+              <FormLabel>CNIE <RequiredAsterisk /></FormLabel>
               <FormControl>
               <Input
                 {...form.register("identityCard", {
-                  required: "Ce document est obligatoire",
+                  required: "ID File is required",
                 })}
                 id="identityCard"
                 type="file"
               />
               </FormControl>
-              <FormDescription>
-                <span className="text-red-400">Remarque</span>: Le document doit de préference être la CNIE ou le passeport. Sinon, vous pouvez envoyer tout document contenant les informations de l&apos;élève avec sa photo; ou bien son acte de naissance accompagné de sa photo dans le même PDF.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        {/* School Certificate */}
+        {/* Certificate of Schooling */}
         <FormField
           control={form.control}
-          name="schoolCertificate"
+          name="certificateOfSchooling"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Certificat de scolarité pour l&apos;année 2023-2024. <RequiredAsterisk /></FormLabel>
+              <FormLabel>Certificate of Schooling 2023-2024 <RequiredAsterisk /></FormLabel>
               <FormControl>
                 <Input
-                  {...form.register("schoolCertificate", {
-                    required: "Ce document est obligatoire",
+                  {...form.register("certificateOfSchooling", {
+                    required: "Certificate file is required",
                   })}
-                  id="schoolCertificate"
+                  id="certificateOfSchooling"
                   type="file"                      
                 />
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        /> 
+
+        {/* Regulations File */}
+        <FormField
+          control={form.control}
+          name="regulations"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Handwritten signed regulation (<Link className="text-blue-500 underline" href="https://drive.google.com/file/d/1Qj0KONxATeMhIVMr4Llqp_X6boAUxBcV/view?usp=sharing" target="_blank">file</Link>)<RequiredAsterisk /></FormLabel>
+              <FormControl>
+                <Input
+                  {...form.register("regulations", {
+                    required: "Regulations file is required",
+                  })}
+                  id="regulations"
+                  placeholder="id"
+                  type="file"                    
+                />
+              </FormControl>
+              <FormDescription>
+              You need to print it, then fill it and sign it in handwriting, scan it and upload it. However, there is no need to certify this document by the administration (&quot;légalisation&quot;).
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -764,11 +895,11 @@ const ApplicationForm = ({
           name="grades"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Bulletin du 1er trimestre 2023-2024 (avec les notes du contrôle continu et de l&apos;examen unifié) <RequiredAsterisk /></FormLabel>
+              <FormLabel>Official Transcript 2023/2024 <RequiredAsterisk /></FormLabel>
               <FormControl>
                 <Input
                   {...form.register("grades", {
-                    required: "Ce document est obligatoire",
+                    required: "Grades file is required",
                   })}
                   id="grades"
                   placeholder="id"
@@ -776,59 +907,7 @@ const ApplicationForm = ({
                 />
               </FormControl>
               <FormDescription>
-                <span className="text-red-400">Remarque</span>: votre bulletin sera utilisé pour vérifier les notes que vous avez entrez plus haut.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {/* Regulations File */}
-        <FormField
-          control={form.control}
-          name="regulations"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Règlement signé par l&apos;élève et le tuteur légal 
-                (<Link className="text-blue-500 underline" href='https://drive.google.com/file/d/1Ah068enVUm9NnPcvPxtsUq4Db5KeNL2X/view' target="_blank">fichier</Link>)
-                .<RequiredAsterisk /></FormLabel>
-              <FormControl>
-                <Input
-                  {...form.register("regulations", {
-                    required: "Ce document est obligatoire",
-                  })}
-                  id="regulations"
-                  placeholder="id"
-                  type="file"                    
-                />
-              </FormControl>
-              <FormDescription>
-                <span className="text-red-400">Remarque</span>: Il faut l&apos;imprimer, le signer à la main puis le scanner. Il n&apos;y a pas besoin de le légaliser.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {/* Parental Authorization */}
-        <FormField
-          control={form.control}
-          name="parentalAuthorization"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Autorisation parentale signée et légalisée par le tuteur légal (<Link className="text-blue-500 underline" href='https://drive.google.com/file/d/1aSP6Z_boXo8Fz1oef2Fwd6kPx7BGc0UM/view' target="_blank">fichier</Link>)<RequiredAsterisk /></FormLabel>
-              <FormControl>
-                <Input
-                  {...form.register("parentalAuthorization", {
-                    required: "Ce document est obligatoire",
-                  })}
-                  id="parentalAuthorization"
-                  placeholder="id"
-                  type="file"                    
-                />
-              </FormControl>
-              <FormDescription>
-                  <span className="text-red-400">Remarque</span>: il faut l&apos;imprimer, la signer à la main, la légaliser, puis le scanner; <span className="font-bold">la légalisation est obligatoire</span>.
+              Please upload all the transcripts you have for the year 2023/2024 (&quot;relevés de notes&quot;) merged in one PDF file. We will use them to check the grades you entered above.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -849,11 +928,12 @@ const ApplicationForm = ({
                 </FormControl>
                 <div className="space-y-1 leading-none">
                   <FormLabel>
-                    Conditions de l&apos;accord <RequiredAsterisk />
+                    Terms of Agreement <RequiredAsterisk />
                   </FormLabel>
                   <FormDescription>
-                  Je confirme avoir lu entièrement le règlement de Summer Camp et m&apos;engage à le respecter. <br/>
-                  En particulier, je m&apos;engage à être présent sur le campus de du LYMED pendant toute la durée prévue du Summer Camp (sauf dérogation demandée par mail et approuvée explicitement par le comité d&apos;organisation)<br/>
+                  I confirm that I have read the competition regulations in full and commit to abide by them.<br/> 
+                  In particular, I undertake to be present on the UM6P Benguérir campus for the entire duration of the competition (except for any derogation requested by email and explicitly approved by the organizing committee).<br/>
+                  I acknowledge that providing false or incomplete information may result the automatic refusal of my application, the interdiction to compete and/or the withdrawal of prizes.
                   </FormDescription>
                 </div>
               </FormItem>
@@ -867,7 +947,7 @@ const ApplicationForm = ({
           {isFormLoading ? (
             <LoadingDots color="#808080" />
           ) : (
-            <div>Envoyer ma candidature</div>
+            <div>Submit Application</div>
           )}
         </Button>
       </form>

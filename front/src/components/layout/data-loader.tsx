@@ -15,7 +15,6 @@ export const DataLoader = ({ lang }: { lang: string }) => {
     const token = getToken();
     if (token) {
       if (!checkToken(token)) {
-        
         localStorage.removeItem('access_token');
         setUserData(undefined);
       } else {
@@ -23,9 +22,6 @@ export const DataLoader = ({ lang }: { lang: string }) => {
           .then((res: any) => {
             if (res?.statusCode === 200) {
               setUserData(res.user);
-            } else {
-              localStorage.removeItem('access_token');
-              setUserData(undefined);
             }
           })
       }

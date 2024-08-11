@@ -10,8 +10,8 @@ const TimeAndLocation = () => {
       >
         <Calendar />
         <div className="text-sm text-gray-500 font-semibold py-6">
-          du Samedi <span className='text-[#272162]'>20 Juillet</span> au <br/>
-          Dimanche <span className='text-[#272162]'> 28 Juillet</span>
+          Sunday <span className='text-[#272162]'>July 28th</span> to <br/>
+          Thursday <span className='text-[#272162]'> August 1st</span>
         </div>
       </div>
 
@@ -22,8 +22,8 @@ const TimeAndLocation = () => {
         <Book className='h-16'/>
         
         <div className="text-sm text-gray-500 font-semibold py-4">
-          Élèves de <br/>
-          <span className='text-[#272162]'>troisième année collège</span>
+          Top Students from <br/>
+          <span className='text-[#272162]'>Bac+1</span> to <span className='text-[#272162]'>Bac+4</span>
         </div>
       </div>
 
@@ -33,8 +33,8 @@ const TimeAndLocation = () => {
       >
         <Location />
         <div className="text-sm text-gray-500 font-semibold py-6">
-          <span className='text-[#272162] inline'>Lycée Méditerranéen</span> <br/>
-          LYMED, Martil
+          <span className='text-[#272162] inline'>UM6P | College of Computing</span> <br/>
+          Benguerir
         </div>
       </div>
     </div>

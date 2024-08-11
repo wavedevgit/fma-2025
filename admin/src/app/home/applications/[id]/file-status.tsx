@@ -53,7 +53,7 @@ const FileStatus = ({
   slug,
   application,
 }:{
-  slug: 'cnie' | 'schoolCertificate' | 'grades' | 'regulations' | 'parentalAuthorization',
+  slug: 'cnie' | 'schoolCertificate' | 'grades' | 'regulations',
   application: any,
 }) => {
   const [applications, setApplications] = useRecoilState(applicationsState);

@@ -21,7 +21,7 @@ export default function LoginLayout({
 
           <>
             <h3 className="font-display text-2xl font-bold">
-              Se connecter
+              Log in
             </h3>
 
             <div className="w-full space-y-5">

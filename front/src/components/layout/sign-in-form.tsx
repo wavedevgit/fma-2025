@@ -35,10 +35,9 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
 
   const onSubmit = async (formData: any) => {
     const { email, password } = formData;
-    
     setIsFormLoading(true)
     const response = await logIn(email, password) as any;
-    console.log('response', response);
+    console.log(response)
 
     switch(response?.statusCode) {
       case 200:
@@ -93,7 +92,7 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
                   <FormControl>
                     <Input
                       id="password"
-                      placeholder="Mot de passe"
+                      placeholder="Password"
                       type="password"
                       autoCapitalize="none"
                       autoComplete="email"
@@ -111,7 +110,7 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
               {isFormLoading ? (
                 <LoadingDots color="#808080" />
               ) : (
-                <p>Se connecter</p>
+                <p>Sign In</p>
               )}
             </Button>
             

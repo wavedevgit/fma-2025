@@ -106,7 +106,7 @@ export default function LoginPage() {
               {isFormLoading ? (
                 <LoadingDots color="#808080" />
               ) : (
-                <p>Se connecter</p>
+                <p>Sign In</p>
               )}
             </Button>
             

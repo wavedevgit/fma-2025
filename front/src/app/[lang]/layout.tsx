@@ -15,7 +15,7 @@ export async function generateStaticParams() {
 }
 
 export const metadata = {
-  title: "Math&Maroc SummerCamp",
+  title: "Math&Maroc Competition",
   description: "",
 };
 

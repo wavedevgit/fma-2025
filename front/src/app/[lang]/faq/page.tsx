@@ -16,7 +16,7 @@ export default function FAQPage() {
           className="animate-fade-up bg-clip-text text-center font-display text-base font-bold text-black opacity-0"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
-          Avant d&apos;envoyer vos questions par mail, nous vous demandons de bien vouloir consulter cette FAQ. Veuillez noter que nous ne répondrons pas aux courriels concernant des questions déjà traitées dans cette FAQ.
+          Before sending an email with your question, we kindly ask that you review this FAQ. Please note that we will not respond to emails for questions already addressed in this FAQ.
         </p>
       </div>
 
@@ -27,66 +27,79 @@ export default function FAQPage() {
         style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
       >
         <AccordionItem value="item-1">
-          <AccordionTrigger>Qui peut participer?</AccordionTrigger>
+          <AccordionTrigger>Who can apply?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
-          Seuls les élèves inscrits en <span className="font-bold">dernière année de collège</span> pendant l&apos;année scolaire 2023-2024 peuvent participer à cette édition de Summer Camp.
+          Students officially enrolled in a higher education program, from <span className="font-bold">bac+1 to bac+4</span>, during the academic year <span className="font-bold">2023-2024</span>. This includes Moroccans studying in Morocco or abroad, and non-Moroccans studying in Morocco.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-2">
-          <AccordionTrigger> Quelle est la date limite de candidature?</AccordionTrigger>
+          <AccordionTrigger>When is the deadline to apply?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
-          La date limite est le <span className="font-bold">21 juin à 23h59</span>, heure marocaine. Ne tardez pas à soumettre votre candidature. Aucune exception ne sera accordée pour les soumissions tardives, quelles que soient les raisons, qu&apos;il s&apos;agisse d&apos;un oubli, de problèmes de connexion Internet ou de toute autre excuse.
+          The deadline is <span className="font-bold">May 31st at 23:59</span> Moroccan time. Do not wait until the last day to submit your application. No exceptions will be granted for late submissions, regardless of reasons such as forgetting to submit the application or experiencing internet connectivity issues or any other excuse.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-3">
-          <AccordionTrigger>Est-ce que la participation à cet événement est gratuite?</AccordionTrigger>
+          <AccordionTrigger>What is the level of the exams?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
-          La participation à cet événement est gratuite. Elle inclut l&apos;hébergement et les repas à partir du samedi 20 juillet au soir jusqu&apos;au dimanche 28 juillet au matin.<br/>
-          Les participants et leurs parents sont responsables d&apos;organiser leur propre transport aller-retour et d&apos;assurer une arrivée et un départ ponctuels vers/depuis le LYMED. Cependant, les étudiants confrontés à des difficultés financières importantes avérées peuvent soumettre une demande spéciale au comité organisateur par email.
+          All participants will undergo the same set of exercises. The questions will be based on the first-year program only and will not require theoretical knowledge beyond that level. Our goal is to assess mathematical excellence without favoring older students.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-4">
-          <AccordionTrigger>Si j&apos;ai une question, que dois-je faire ?</AccordionTrigger>
+          <AccordionTrigger>How can I prepare?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
-          Écrivez à <span className="text-blue-500">math.maroc.summer.camp@gmail.com</span>. Toute réponse fournie par un autre moyen ou par une autre personne n&apos;est pas considérée comme officielle.
+          We provide a syllabus of required knowledge on our competition’s website. You can also review the set of practice exercises and last year’s exam.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-5">
-          <AccordionTrigger>Si je n&apos;ai pas les bulletins de cette année, que dois-je faire?</AccordionTrigger>
+          <AccordionTrigger>Is participation free?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
-          Tous les documents sont requis et seront vérifiés individuellement par notre équipe. Si vous n&apos;avez pas encore obtenu votre relevé de notes officiel, vous devez profiter de la période d&apos;inscription que nous offrons pour le demander à votre école. Dans ce cas, nous vous recommandons d&apos;attendre d&apos;avoir tous vos documents avant de soumettre votre candidature (évitez cependant d&apos;attendre le dernier jour). Si vous ne l&apos;avez toujours pas reçu le 14 Juin, veuillez nous envoyer un mail à ce moment-là pour expliquer la situation en détail.
+          Participation is free and includes accommodation for the nights of July 28th, 29th, 30th and 31st, as well as meals from July 28th dinner to August 1st breakfast. This doesn’t include transportation to/from UM6P.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-6">
-          <AccordionTrigger>Comment faut-il signer le document du règlement?</AccordionTrigger>
+          <AccordionTrigger>Am I required to come in person?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
-          L&apos;élève et le tuteur légal doivent signer le règlement: il faut imprimer le document, le remplir et le signer à la main, puis le scanner. Cependant, il n&apos;est pas nécessaire de le légaliser.
+          Yes. You must come in person at UM6P and stay during the entire duration of the event.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-7">
-          <AccordionTrigger>Comment faut-il signer le document de l&apos;autorisation parentale?</AccordionTrigger>
+          <AccordionTrigger>What if I have a question, a special request?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
-          Le parent/tuteur légal doit signer le document d&apos;autorisation parentale: il faut imprimer le document, le remplir et le signer à la main, puis le scanner. <span className="font-bold">Ce document doit être légalisé</span>.
+          Write to <span className="text-blue-500">math.maroc.competition@gmail.com</span>. Any response provided through any other method or by any other individual is not considered official.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-8">
-          <AccordionTrigger>Quand est-ce que vous allez répondre à ma candidature?</AccordionTrigger>
+          <AccordionTrigger>What if I don{"’"}t have my official transcripts for this year?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
-          Les résultats seront annoncés quelques semaines après la date limite de dépôt des candidatures. Chaque candidat, qu&apos;il soit sélectionné, mis en liste d&apos;attente ou non sélectionné, recevra une réponse. Nous vous prions de ne pas envoyer de mail à ce sujet.
+          All documents are required and will be checked individually by our team. If you haven{"'"}t obtained your official transcript yet, you should utilize the ample registration period we offer to request it from your university. In that case, we recommend waiting until you have all your documents to submit your application (avoid waiting until the last day). If you still haven{"'"}t received it on May 27th, please email us at that time to explain the situation in detail (but not before).
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-9">
-          <AccordionTrigger>Quand puis-je espérer recevoir une réponse définitive si je suis sur la liste d&apos;attente?</AccordionTrigger>
+          <AccordionTrigger>How should I sign the rules document?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
-          Nous contacterons les candidats sur liste d&apos;attente individuellement et progressivement au fur et à mesure que des places se libèrent. La libération d&apos;une place peut se produire jusqu&apos;à quelques jours avant l&apos;événement, donc nous ne pouvons pas fournir de calendrier précis. Nous vous prions de ne pas envoyer de mails concernant votre position sur la liste d&apos;attente, car nous ne répondrons pas à ceux-ci.
+          You need to print it, then fill it and sign it in handwriting. However, there is no need to certify this document by the administration (&quot;legalisation&quot;).
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="item-10">
+          <AccordionTrigger>When can I expect a response to my application?</AccordionTrigger>
+          <AccordionContent className="text-gray-700">
+          Results will be announced few weeks after the application deadline. Every applicant, whether selected, waitlisted or not selected will receive a response. Please do not send emails on this matter, as we will not be responding to them.
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="item-11">
+          <AccordionTrigger>When can I expect a final response if I&apos;m on the waitlist?</AccordionTrigger>
+          <AccordionContent className="text-gray-700">
+          We will reach out to waitlisted applicants on an individual basis and gradually as spots become available. Clearing a spot could happen up to a few days before the event, therefore we cannot provide any timeline. Please do not send emails about your waitlist position, as we will not be responding to them.
           </AccordionContent>
         </AccordionItem>
       </Accordion>

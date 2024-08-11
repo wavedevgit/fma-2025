@@ -116,14 +116,14 @@ export const columns: ColumnDef<ApplicationRow>[] = [
     },
   },
   {
-    accessorKey: "highschool",
+    accessorKey: "establishment",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Highschool
+          Establishment
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )

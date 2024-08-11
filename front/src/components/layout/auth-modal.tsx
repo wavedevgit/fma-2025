@@ -33,7 +33,7 @@ const AuthModal = ({
     <Modal showModal={showSignInModal} setShowModal={setShowSignInModal}>
       <div className="w-full overflow-hidden shadow-xl md:max-w-md md:rounded-2xl md:border md:border-gray-200">
         <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-16">
-          <a href="https://precedent.dev">
+          <a href="/">
             <Image
               src="/mm_circle.png"
               alt="Logo"
@@ -45,8 +45,8 @@ const AuthModal = ({
 
           <>
             <h3 className="font-display text-2xl font-bold">
-              {formType === 'sign-in' && 'Se connecter'}
-              {formType === 'sign-up' && 'Créer un compte'}
+              {formType === 'sign-in' && 'Log in'}
+              {formType === 'sign-up' && 'Sign up'}
               {formType === 'reset-password' && 'Reset Password'}
             </h3>
             <div className="w-full space-y-5">
@@ -55,7 +55,7 @@ const AuthModal = ({
                   <SignInForm className="w-full"/> 
                   <p className="w-full text-sm text-muted-foreground text-center">
                     <Link href="/" className="underline underline-offset-4 hover:text-primary" onClick={() => setFormType('reset-password')}>
-                      Mot de passe oublié?
+                      Forgot password?
                     </Link>
                   </p>
                 </>
@@ -67,16 +67,16 @@ const AuthModal = ({
               
 
               <p className="w-full text-sm text-muted-foreground">
-                {formType === 'sign-in' && `Vous n'avez pas encore de compte?` }
-                {formType === 'sign-up' && 'Vous avez déjà un compte?' }
+                {formType === 'sign-in' && `Don't have an account?` }
+                {formType === 'sign-up' && 'Already have an account?' }
                 
                 <Button
                   variant="link"
                   onClick={() => onFormToggle((formType === 'sign-in') ? 'sign-up' : 'sign-in')}
                   className="underline underline-offset-4 hover:text-primary text-blue-500"
                 >
-                  {formType === 'sign-in' && 'Créer un compte' }
-                  {formType === 'sign-up' && 'Se connecter' }
+                  {formType === 'sign-in' && 'Sign up' }
+                  {formType === 'sign-up' && 'Log in' }
                 </Button>
               </p>
             </div>

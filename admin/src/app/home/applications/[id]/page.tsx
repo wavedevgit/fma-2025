@@ -47,12 +47,6 @@ const educationProgramLabels = {
   'engineering-school-post-cpge': 'Engineering School post CPGE'
 } as any;
 
-const relationshipsWithGuardian = {
-  'father': 'Père',
-  'mother': 'Mère',
-  'guardian': 'Tuteur',
-} as any;
-
 const Field = ({
   label,
   children,
@@ -114,45 +108,54 @@ export default function ApplicationDetailsPage({ params }: { params: { id: strin
                 <Field label='First name'>{application?.firstName}</Field>
                 <Field label='Last name'>{application?.lastName}</Field>
                 <Field label='Date of birth'>{formatDate(application?.dateOfBirth)}</Field>
-                <Field label='CNIE number'>{application?.identityCardNumber ? application?.identityCardNumber : <span className='text-gray-400'>(empty)</span>}</Field>
-                <Field label='Code Massar or CNE'>{application?.studentNumber}</Field>
+                <Field label='CNIE number'>{application?.identityCardNumber}</Field>
                 <Field label='City of residence'>{application?.city}</Field>
                 <Field label='Region of residence'>{regionLabels[application?.region]}</Field>
                 <Field label='Phone number'>{application?.phoneNumber}</Field>
-                <Field label='Guardian full Name'>{application?.guardianFullName}</Field>
-                <Field label='Guardian phone number'>{application?.guardianPhoneNumber}</Field>
-                <Field label='Relationship with guardian'>{relationshipsWithGuardian[application?.relationshipWithGuardian]}</Field>
+                <Field label='Emergency contact full Name'>{application?.emergencyContactName}</Field>
+                <Field label='Emergency contact phone number'>{application?.emergencyContactPhoneNumber}</Field>
               </div>
             </TabsContent>
             
             {/* EDUCATION */}
             <TabsContent value="education">
               <div className='space-y-6'>
-                <Field label='Highschool'>{application?.highschool}</Field>
+                <Field label='In 2023-2024, I attended higher education (in Morocco or abroad) at'>{educationLevelLabels[application?.lastYearEducationLevel]}</Field>
+                <Field label='Education program'>{educationProgramLabels[application?.educationProgram]}</Field>
+                <Field label='University Name'>{application?.establishment}</Field>
+                <Field label='Field of study'>{application?.fieldOfStudy}</Field>
 
                 <Separator className="my-6" />
 
-                <Field label='Moyenne Générale | contrôle continu 1er semestre'>{application?.semesterAverageGrade}</Field>
-                <Field label='Moyenne en Mathématiques | contrôle continu 1er semestre'>{application?.semesterMathAverageGrade}</Field>
-                <Field label='Classement Général | contrôle continu 1er semestre '>{application?.semesterRanking}</Field>
-                <Field label='Classement en Mathématiques | contrôle continu 1er semestre '>{application?.semesterMathRanking}</Field>
-                <Field label='Moyenne Générale | examen unifié 1er semestre '>{application?.finalsAverageGrade}</Field>
-                <Field label='Moyenne en Mathématiques | examen unifié 1er semestre '>{application?.finalsMathAverageGrade}</Field>
+                {application?.educationProgram === 'cpge'
+                  ? (
+                    <>
+                      <Field label='Math Grade Trimester 1 '>{application?.cpgeGradeTrimesterOne}</Field>
+                      <Field label='Math Grade Trimester 2 '>{application?.cpgeGradeTrimesterTwo}</Field>
+                      <Field label='Math Ranking Trimester 1 '>{application?.cpgeRankingTrimesterOne}</Field>
+                      <Field label='Math Ranking Trimester 2 '>{application?.cpgeRankingTrimesterTwo}</Field>
+                    </>
+                  )
+                  : (
+                    <>
+                      <Field label='Average Grade of the 3 best scientific subjects'>{application?.nonCpgeAverageThreeBestScienceGrades}</Field>
+                      <Field label='Average Grade of all scientific subjects'>{application?.nonCpgeAverageScienceGrades}</Field>
+                      <Field label='Overall Average Grade'>{application?.nonCpgeOverallAverage}</Field>
+                    </>
+                  )
+                }
               </div>
             </TabsContent>
               
             {/* COMPETTION */}
             <TabsContent value="competition">
               <div className='space-y-6'>
-                <Field label='Motivations'>{application?.motivations}</Field>
-                
-                <Separator className="my-6" />
-                
                 <Field label='Have you participated in competitions before (Olympiads, national contests...) ?'>{application?.hasPreviouslyParticipated}</Field>
                 <Field label='If yes, please specify which ones and the achieved result.'>{application?.previousCompetitions ? application?.previousCompetitions : <span className='text-gray-400'>(empty)</span>}</Field>
-                
+                <Field label='Have you participated in Math&Maroc Competition 2023 ?'>{application?.hasPreviouslyParticipatedInMmc}</Field>
+                <Field label='If yes, please specify your ranking'>{application?.previousResultsInMmc ? application?.previousResultsInMmc : <span className='text-gray-400'>(empty)</span>}</Field>
                 <Separator className="my-6" />
-                
+                <Field label='Motivations'>{application?.motivations}</Field>
                 <Field label='Comments'>{application?.comments ? application?.comments : <span className='text-gray-400'>(empty)</span>}</Field>
               </div>
             </TabsContent>

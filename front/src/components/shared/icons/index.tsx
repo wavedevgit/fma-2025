@@ -17,3 +17,4 @@ export { default as Exam } from './exam';
 export { default as Rocket } from './rocket';
 export { default as Solution } from './solution';
 export { default as Compass } from './compass';
+export { default as Diploma } from './diploma';
