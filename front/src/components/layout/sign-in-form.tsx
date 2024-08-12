@@ -4,30 +4,20 @@ import { z } from "zod"
 import { cn } from "@/lib/utils"
 import { LoadingDots } from "@/components/shared/icons"
 import { Input, Button } from "@/components/shared"
-import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { logIn } from "@/api/AuthApi"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/shared/form"
 import { useState } from "react"
-
-const signInSchema = z.object({
-  email: z.string().min(1, {message: 'An email is required'}).email({message: 'Invalid email address'}),
-  password: z.string().min(1, {message: 'A password is required'}),
-})
-
-const defaultValues = {
-  email: "",
-  password: "",
-}
+import { signInDefaultValues, signInSchema } from "@/lib/schemas/signin-schema"
 
 interface SignInFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function SignInForm({ className, ...props }: SignInFormProps) {
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
-    defaultValues: defaultValues,
+    defaultValues: signInDefaultValues,
   })
   const [isFormLoading, setIsFormLoading] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>('')

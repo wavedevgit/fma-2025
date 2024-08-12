@@ -1,9 +1,12 @@
 "use client"
 import { Separator } from "@radix-ui/react-separator";
 import { ApplicationForm } from "./application-form";
+import { useRecoilValue } from "recoil";
+import { userState } from "@/store/userState";
 
 
 export default function ApplicationPage() {
+  const userData = useRecoilValue<any>(userState);
 
   return (
     <div className="z-10 w-full px-5 max-w-screen-xl xl:px-0">
@@ -17,7 +20,7 @@ export default function ApplicationPage() {
         <Separator className="my-6" />
         <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
           <div className="flex-1 w-full">
-            <ApplicationForm />
+            <ApplicationForm userData={userData}/>
           </div>
         </div>
       </div>

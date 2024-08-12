@@ -12,32 +12,14 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormItem, FormMessage } from "../shared/form"
 import { toast } from "@/components/hooks/use-toast"
 import { useRouter } from "next/navigation"
-
-const signUpSchema = z.object({
-  firstName: z.string().min(1, {message: 'This field is required'}),
-  lastName: z.string().min(1, {message: 'This field is required'}),
-  email: z.string().min(1, {message: 'This field is required'}).email({message: 'Invalid email address'}),
-  password: z.string().min(6, {message: 'The password must have at least 6 characters'}),
-  confirmPassword: z.string().min(1, {message: 'This field is required'}),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ['confirmPassword'],
-});
-
-const defaultValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-}
+import { signUpDefaultValues, signUpSchema } from "@/lib/schemas/signup-schema"
 
 interface SignUpFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function SignUpForm({ className, ...props }: SignUpFormProps) {
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
-    defaultValues: defaultValues,
+    defaultValues: signUpDefaultValues,
   })
   const router = useRouter()
   const [isFormLoading, setIsFormLoading] = React.useState<boolean>(false)

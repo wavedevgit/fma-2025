@@ -33,7 +33,6 @@ import {
 } from "@/components/shared/popover"
 import { Calendar } from "@/components/shared"
 import { CalendarIcon } from "@radix-ui/react-icons"
-import { isValidPhoneNumber } from "react-phone-number-input";
 import { PhoneInput } from "@/components/shared/phone-input";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent} from "@/components/shared/accordion";
 import { RadioGroup, RadioGroupItem } from '@/components/shared/radio-group';
@@ -43,97 +42,7 @@ import { useState } from "react"
 import { deleteApplication, postApplication, putApplication } from "@/api/ApplicationApi"
 import { LoadingDots } from "@/components/shared/icons"
 import { getSignedURL, uploadFile } from "@/api/MediaApi"
-import { Separator } from "@radix-ui/react-separator"
-
-const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
-const ACCEPTED_FILE_TYPES = ['image/png','image/jpeg','image/jpg', 'image/png','image/webp', 'application/pdf'];
-const zodFileValidation = z.any()
-  .refine(files => files?.length == 1, 'File is required.')
-  .refine(files => ACCEPTED_FILE_TYPES.includes(files[0]?.type), { message: 'Please choose PNG, JPEG or PDF format files only' })
-  .refine(files => files[0]?.size <= MAX_UPLOAD_SIZE, 'File size must be less than 3MB')
-const regions = [
-  {label: "Tanger-Tétouan-Al Hoceïma", value:"tanger-tetouan-al-houceima"},
-  {label: "Oriental", value:"oriental"},
-  {label: "Fès-Meknès", value:"fes-meknes"},
-  {label: "Rabat-Salé-Kénitra", value:"rabat-sale-kenitra"},
-  {label: "Béni Mellal-Khénifra", value:"beni-mellal-khenifra"},
-  {label: "Casablanca-Settat", value:"casablanca-settat"},
-  {label: "Marrakech-Safi", value:"marrakech-safi"},
-  {label: "Drâa-Tafilalet", value:"draa-tafilalet"},
-  {label: "Souss-Massa", value:"souss-massa"},
-  {label: "Guelmim-Oued Noun", value:"guelmim-oued-noun"},
-  {label: "Laâyoune-Sakia El Hamra", value:"laayoune-sakia-el-hamra"},
-  {label: "Dakhla-Oued Eddahab", value:"dakhla-oued-eddahab"},
-  {label: "Abroad", value:"abroad"},
-]
-
-const applicationSchema = z.object({
-  /* Personal Informations */
-  firstName: z.string().min(1).max(50),
-  lastName: z.string().min(1).max(50),
-  dateOfBirth: z.date({ required_error: "A date of birth is required." }),
-  identityCardNumber: z.string().min(1).max(50),
-  city: z.string().min(1).max(50),
-  region: z.string().nonempty("Please select an option"),
-  phoneNumber: z.string().refine(isValidPhoneNumber, { message: "Invalid phone number" }),
-  emergencyContactName: z.string().min(1).max(50),
-  emergencyContactPhoneNumber:z.string().refine(isValidPhoneNumber, { message: "Invalid phone number" }),
-
-  /* Education */
-  lastYearEducationLevel: z.string().nonempty("Please select an option"),
-  educationProgram: z.string().nonempty("Please select an option"),
-  establishment: z.string().min(1).max(50),
-  fieldOfStudy: z.string().min(1).max(50),
-  
-  cpgeGradeTrimesterOne: z.string().optional(),
-  cpgeGradeTrimesterTwo: z.string().optional(),
-  cpgeRankingTrimesterOne: z.string().optional(),
-  cpgeRankingTrimesterTwo: z.string().optional(),
-
-  nonCpgeAverageThreeBestScienceGrades: z.string().optional(),
-  nonCpgeAverageScienceGrades: z.string().optional(),
-  nonCpgeOverallAverage: z.string().optional(),
-
-  /* Competition */
-  hasPreviouslyParticipated: z.enum(["yes", "no"], { required_error: "Please select an option." }),
-  previousCompetitions: z.string().optional(),
-  hasPreviouslyParticipatedInMmc: z.enum(["yes", "no"], { required_error: "Please select an option." }),
-  previousResultsInMmc: z.string().optional(),
-  motivations: z.string().min(1).refine(async text => text.split(' ').length <= 300, { message: "Text can't be more than 300 words", }),
-  comments: z.string().optional().refine((val) => {
-    if (val) {
-      return val.split(' ').length <= 100
-    }
-    return true;
-  } , { message: "Text can't be more than 100 words"}),
-
-  /* Uploads */
-  identityCard: zodFileValidation,
-  certificateOfSchooling: zodFileValidation,
-  regulations: zodFileValidation,
-  grades: zodFileValidation,
-
-  /* Terms of agreement */
-  termsAgreement: z.boolean().default(false).refine(value => value === true, { message: "You must accept the Terms of Agreement"}),
-}).refine(data => {
-  if (data.educationProgram === 'cpge') {
-    if (!data.cpgeGradeTrimesterOne 
-      || !data.cpgeGradeTrimesterTwo 
-      || !data.cpgeRankingTrimesterOne 
-      || !data.cpgeRankingTrimesterTwo
-    ) return false
-  } else {
-    if (!data.nonCpgeAverageThreeBestScienceGrades 
-      || !data.nonCpgeAverageScienceGrades 
-      || !data.nonCpgeOverallAverage
-    ) return false
-  }
-
-  return true;
-}, {
-  message: "Grades are required",
-  path: ['cpgeGradeTrimesterOne'],
-})
+import { applicationSchema, getApplicationDefaultValues } from "@/lib/schemas/application-schema"
 
 const RequiredAsterisk = () => <span className="text-red-500"> * </span>;
 
@@ -159,48 +68,12 @@ const ApplicationForm = ({
   const [isFormLoading, setIsFormLoading] = useState(false);
   const [postId, setPostId] = useState(null);
   const [educationProgram, setEducationProgram] = useState<string>(application ? application?.educationProgram : '');
-  const defaultValues = {
-    firstName: userData?.firstName || "",
-    lastName: userData?.lastName || "",
-    dateOfBirth: "",
-    identityCardNumber: "",
-    city: "",
-    region: "",
-    phoneNumber: "",
-    emergencyContactName: "",
-    emergencyContactPhoneNumber: "",
-  
-    lastYearEducationLevel: "",
-    educationProgram: "",
-    establishment: "",
-    fieldOfStudy: "",
-    cpgeGradeTrimesterOne: "",
-    cpgeGradeTrimesterTwo: "",
-    cpgeRankingTrimesterOne: "",
-    cpgeRankingTrimesterTwo: "",
-    nonCpgeAverageThreeBestScienceGrades: "",
-    nonCpgeAverageScienceGrades: "",
-    nonCpgeOverallAverage: "",
-  
-    hasPreviouslyParticipated: undefined,
-    previousCompetitions: "",
-    hasPreviouslyParticipatedInMmc: undefined,
-    previousResultsInMmc: "",
-    motivations: "",
-    comments: "",
-  
-    identityCard: undefined,
-    certificateOfSchooling: undefined,
-    regulations: undefined,
-    grades: undefined,
-  
-    termsAgreement: false,
-  }
+
   const form = useForm<z.infer<typeof applicationSchema>>({
     resolver: zodResolver(applicationSchema),
     defaultValues: application 
       ? {...sanitizeApplication(application), firstName: userData?.firstName, lastName: userData?.lastName} 
-      : defaultValues,
+      : getApplicationDefaultValues(userData),
     mode: "onChange",
   })
 

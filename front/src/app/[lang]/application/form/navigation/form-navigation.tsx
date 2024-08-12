@@ -1,11 +1,14 @@
 import { Dispatch, SetStateAction } from "react"
 import { steps } from "../header/steps"
+import { Button } from "@/components/shared"
 
 export const FormNavigation = ({
+  variant = "arrows",
   currentStep,
   setPreviousStep,
-  setCurrentStep
+  setCurrentStep,
 }:{
+  variant?: 'arrows' | 'button',
   currentStep: number,
   setPreviousStep: Dispatch<SetStateAction<number>>,
   setCurrentStep: Dispatch<SetStateAction<number>>,
@@ -22,6 +25,7 @@ export const FormNavigation = ({
       }
       setPreviousStep(currentStep)
       setCurrentStep(step => step + 1)
+      window.scrollTo({ top: 0, behavior: "smooth" })
     }
   }
 
@@ -29,10 +33,11 @@ export const FormNavigation = ({
     if (currentStep > 0) {
       setPreviousStep(currentStep)
       setCurrentStep(step => step - 1)
+      window.scrollTo({ top: 0, behavior: "smooth" })
     }
   }
 
-  return (
+  const arrowsTemplate =  (
     <div className='mt-8 pt-5'>
       <div className='flex justify-between'>
         <button
@@ -80,4 +85,14 @@ export const FormNavigation = ({
       </div>
     </div>
   )
+
+  const buttonTemplate = (
+    <div className='mt-12 pt-5 flex flex-row space-x-8 justify-center'>
+      <Button className="w-[8rem] bg-gray-700" onClick={prev} disabled={currentStep === 0}>Previous Step</Button>
+      <Button className="w-[8rem] bg-[#0284C7]" onClick={next} disabled={currentStep === steps.length - 1}>Next Step</Button>
+    </div>
+  )
+
+  if (variant == 'arrows') return arrowsTemplate
+  else return buttonTemplate
 }

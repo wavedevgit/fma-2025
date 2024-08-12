@@ -82,3 +82,13 @@ export const delay = (ms: number) => {
 }
 
 export const isBoolean = (value: any) => (typeof value === "boolean") || (value instanceof Boolean)
+
+export const sanitizeApplication = (application: any) => {
+  const newObject = {} as any;
+  Object.keys(application).forEach((key) => {
+    newObject[key] = (key === 'dateOfBirth')
+      ? new Date(application[key])
+      : application[key]===null ? "" : application[key]
+  });
+  return newObject;
+}
