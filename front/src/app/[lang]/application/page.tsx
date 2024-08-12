@@ -1,6 +1,7 @@
 "use client"
+
 import { Separator } from "@radix-ui/react-separator";
-import { ApplicationForm } from "./application-form";
+import { ApplicationForm } from "./form/application-form";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/store/userState";
 

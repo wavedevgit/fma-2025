@@ -21,10 +21,5 @@ export const steps: Step[] = [
     name: 'Uploads',
     fields: ['country', 'state', 'city', 'street', 'zip']
   },
-  {
-    id: 'Step 5',
-    name: 'Team',
-    fields: ['country', 'state', 'city', 'street', 'zip']
-  },
-  { id: 'Step 6', name: 'Complete' }
+  { id: 'Step 5', name: 'Validation' }
 ];

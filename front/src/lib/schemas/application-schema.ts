@@ -17,29 +17,30 @@ export const applicationSchema: ZodSchema = z.object({
   city: z.string().min(1).max(50),
   region: z.string().nonempty("Please select an option"),
   phoneNumber: z.string().refine(isValidPhoneNumber, { message: "Invalid phone number" }),
-  emergencyContactName: z.string().min(1).max(50),
-  emergencyContactPhoneNumber:z.string().refine(isValidPhoneNumber, { message: "Invalid phone number" }),
+  guardianFullName: z.string().min(1).max(50),
+  guardianPhoneNumber: z.string().refine(isValidPhoneNumber, { message: "Numéro de téléphone invalide" }),
+  relationshipWithGuardian: z.string().min(1).max(50),
+  specialConditions: z.string().optional().refine((val) => {
+    if (val) {
+      return val.split(' ').length <= 100
+    }
+    return true;
+  } , { message: "Maximum 100 mots"}),
 
   /* Education */
-  lastYearEducationLevel: z.string().nonempty("Please select an option"),
-  educationProgram: z.string().nonempty("Please select an option"),
-  establishment: z.string().min(1).max(50),
+  educationLevel: z.string().nonempty("Please select an option"),
+  educationField: z.string().nonempty("Please select an option"),
+  highschool: z.string().min(1).max(50),
   fieldOfStudy: z.string().min(1).max(50),
-  
-  cpgeGradeTrimesterOne: z.string().optional(),
-  cpgeGradeTrimesterTwo: z.string().optional(),
-  cpgeRankingTrimesterOne: z.string().optional(),
-  cpgeRankingTrimesterTwo: z.string().optional(),
-
-  nonCpgeAverageThreeBestScienceGrades: z.string().optional(),
-  nonCpgeAverageScienceGrades: z.string().optional(),
-  nonCpgeOverallAverage: z.string().optional(),
+  averageGrade: z.string().min(1).max(50),
+  mathAverageGrade: z.string().min(1).max(50),
+  ranking: z.string().min(1).max(50),
+  mathRanking: z.string().min(1).max(50),
 
   /* Competition */
   hasPreviouslyParticipated: z.enum(["yes", "no"], { required_error: "Please select an option." }),
   previousCompetitions: z.string().optional(),
-  hasPreviouslyParticipatedInMmc: z.enum(["yes", "no"], { required_error: "Please select an option." }),
-  previousResultsInMmc: z.string().optional(),
+  hasPreviouslyParticipatedInMtym: z.enum(["yes", "no", "not-selected"], { required_error: "Please select an option." }),
   motivations: z.string().min(1).refine(async text => text.split(' ').length <= 300, { message: "Text can't be more than 300 words", }),
   comments: z.string().optional().refine((val) => {
     if (val) {
@@ -49,31 +50,14 @@ export const applicationSchema: ZodSchema = z.object({
   } , { message: "Text can't be more than 100 words"}),
 
   /* Uploads */
-  identityCard: zodFileValidation,
-  certificateOfSchooling: zodFileValidation,
-  regulations: zodFileValidation,
+  cnie: zodFileValidation,
+  schoolCertificate: zodFileValidation,
   grades: zodFileValidation,
+  regulations: zodFileValidation,
+  parentalAuthorization: zodFileValidation,
 
   /* Terms of agreement */
   termsAgreement: z.boolean().default(false).refine(value => value === true, { message: "You must accept the Terms of Agreement"}),
-}).refine(data => {
-  if (data.educationProgram === 'cpge') {
-    if (!data.cpgeGradeTrimesterOne 
-      || !data.cpgeGradeTrimesterTwo 
-      || !data.cpgeRankingTrimesterOne 
-      || !data.cpgeRankingTrimesterTwo
-    ) return false
-  } else {
-    if (!data.nonCpgeAverageThreeBestScienceGrades 
-      || !data.nonCpgeAverageScienceGrades 
-      || !data.nonCpgeOverallAverage
-    ) return false
-  }
-
-  return true;
-}, {
-  message: "Grades are required",
-  path: ['cpgeGradeTrimesterOne'],
 })
 
 export const getApplicationDefaultValues = (userData: any) => ({
@@ -99,17 +83,18 @@ export const getApplicationDefaultValues = (userData: any) => ({
   nonCpgeAverageScienceGrades: "",
   nonCpgeOverallAverage: "",
 
-  hasPreviouslyParticipated: undefined,
+  hasPreviouslyParticipated: "",
   previousCompetitions: "",
-  hasPreviouslyParticipatedInMmc: undefined,
+  hasPreviouslyParticipatedInMmc: "",
   previousResultsInMmc: "",
   motivations: "",
   comments: "",
 
-  identityCard: undefined,
-  certificateOfSchooling: undefined,
-  regulations: undefined,
+  cnie: undefined,
+  schoolCertificate: undefined,
   grades: undefined,
+  regulations: undefined,
+  parentalAuthorization: undefined,
 
   termsAgreement: false,
 })

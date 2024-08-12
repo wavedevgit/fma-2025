@@ -44,6 +44,23 @@ import { LoadingDots } from "@/components/shared/icons"
 import { getSignedURL, uploadFile } from "@/api/MediaApi"
 import { applicationSchema, getApplicationDefaultValues } from "@/lib/schemas/application-schema"
 
+const regions = [
+  {label: "Tanger-Tétouan-Al Hoceïma", value:"tanger-tetouan-al-houceima"},
+  {label: "Oriental", value:"oriental"},
+  {label: "Fès-Meknès", value:"fes-meknes"},
+  {label: "Rabat-Salé-Kénitra", value:"rabat-sale-kenitra"},
+  {label: "Béni Mellal-Khénifra", value:"beni-mellal-khenifra"},
+  {label: "Casablanca-Settat", value:"casablanca-settat"},
+  {label: "Marrakech-Safi", value:"marrakech-safi"},
+  {label: "Drâa-Tafilalet", value:"draa-tafilalet"},
+  {label: "Souss-Massa", value:"souss-massa"},
+  {label: "Guelmim-Oued Noun", value:"guelmim-oued-noun"},
+  {label: "Laâyoune-Sakia El Hamra", value:"laayoune-sakia-el-hamra"},
+  {label: "Dakhla-Oued Eddahab", value:"dakhla-oued-eddahab"},
+  {label: "Abroad", value:"abroad"},
+]
+
+
 const RequiredAsterisk = () => <span className="text-red-500"> * </span>;
 
 const handleNullValues = (value: any) => value===null ? "" : value;
