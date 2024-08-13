@@ -7,8 +7,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/shared/form"
-import { Input, Separator, Textarea } from "@/components/shared"
-import { RadioGroup, RadioGroupItem } from '@/components/shared/radio-group';
+import { Input, Separator } from "@/components/shared"
 import {
   Select,
   SelectGroup,
@@ -49,7 +48,7 @@ const educationFields = [
 
 const RequiredAsterisk = () => <span className="text-red-500"> * </span>;
 
-export const Step2 = ({
+export const EducationStep = ({
   form,
   delta,
 }:{
@@ -63,7 +62,7 @@ export const Step2 = ({
       transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
       <h2 className='text-base font-semibold leading-7 text-[#0284C7]'>
-        Studies
+        Education
       </h2>
       <p className='mt-1 text-sm leading-6 text-gray-600'>
         Provide informations about your studies

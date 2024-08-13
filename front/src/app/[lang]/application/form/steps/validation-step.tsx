@@ -8,12 +8,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/shared/form"
-import { Button, Checkbox, Separator } from '@/components/shared'
-import { LoadingDots } from '@/components/shared/icons';
+import { Checkbox, Separator } from '@/components/shared'
 
 const RequiredAsterisk = () => <span className="text-red-500"> * </span>;
 
-export const Step5 = ({
+export const ValidationStep = ({
   form,
   delta,
 }:{
@@ -63,14 +62,6 @@ export const Step5 = ({
           )}
         />
       </div>
-      
-      <div className='mt-20 text-center'>
-        {/* Submit Button */}
-        <Button type="submit">
-          <div>Submit Application</div>
-        </Button>
-      </div>
-      
     </motion.div>
   )
 }

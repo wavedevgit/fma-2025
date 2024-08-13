@@ -5,8 +5,8 @@ const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
 const ACCEPTED_FILE_TYPES = ['image/png','image/jpeg','image/jpg', 'image/png','image/webp', 'application/pdf'];
 const zodFileValidation = z.any()
   .refine(files => files?.length == 1, 'File is required.')
-  .refine(files => ACCEPTED_FILE_TYPES.includes(files[0]?.type), { message: 'Please choose PNG, JPEG or PDF format files only' })
-  .refine(files => files[0]?.size <= MAX_UPLOAD_SIZE, 'File size must be less than 3MB')
+  .refine(files => files ? ACCEPTED_FILE_TYPES.includes(files[0]?.type) : true, { message: 'Please choose PNG, JPEG or PDF format files only' })
+  .refine(files => files ? files[0]?.size <= MAX_UPLOAD_SIZE : true, 'File size must be less than 3MB')
 
 export const applicationSchema: ZodSchema = z.object({
   /* Personal Informations */
@@ -31,11 +31,10 @@ export const applicationSchema: ZodSchema = z.object({
   educationLevel: z.string().nonempty("Please select an option"),
   educationField: z.string().nonempty("Please select an option"),
   highschool: z.string().min(1).max(50),
-  fieldOfStudy: z.string().min(1).max(50),
-  averageGrade: z.string().min(1).max(50),
-  mathAverageGrade: z.string().min(1).max(50),
-  ranking: z.string().min(1).max(50),
-  mathRanking: z.string().min(1).max(50),
+  // averageGrade: z.string().min(1).max(50),
+  // mathAverageGrade: z.string().min(1).max(50),
+  // ranking: z.string().min(1).max(50),
+  // mathRanking: z.string().min(1).max(50),
 
   /* Competition */
   hasPreviouslyParticipated: z.enum(["yes", "no"], { required_error: "Please select an option." }),

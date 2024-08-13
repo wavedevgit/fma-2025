@@ -1,28 +1,27 @@
 import { Dispatch, SetStateAction } from "react"
-import { steps } from "../header/steps"
+import { steps } from "../steps"
 import { Button } from "@/components/shared"
+import { UseFormReturn } from "react-hook-form"
 
 export const FormNavigation = ({
   variant = "arrows",
+  form,
   currentStep,
   setPreviousStep,
   setCurrentStep,
 }:{
   variant?: 'arrows' | 'button',
+  form: UseFormReturn,
   currentStep: number,
   setPreviousStep: Dispatch<SetStateAction<number>>,
   setCurrentStep: Dispatch<SetStateAction<number>>,
 }) => {
   const next = async () => {
-    // const fields = steps[currentStep].fields
-    // const output = await trigger(fields as FieldName[], { shouldFocus: true })
-
-    // if (!output) return
+    const fields = steps[currentStep].fields
+    const output = await form.trigger(fields, { shouldFocus: true })
+    if (!output) return
 
     if (currentStep < steps.length - 1) {
-      if (currentStep === steps.length - 2) {
-        // await handleSubmit(processForm)()
-      }
       setPreviousStep(currentStep)
       setCurrentStep(step => step + 1)
       window.scrollTo({ top: 0, behavior: "smooth" })

@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { UseFormReturn } from 'react-hook-form'
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -54,7 +53,7 @@ const relationshipsWithGuardian = [
 
 const RequiredAsterisk = () => <span className="text-red-500"> * </span>;
 
-export const Step1 = ({
+export const PersonalInformationStep = ({
   form,
   delta,
 }:{

@@ -12,7 +12,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/shared/radio-group';
 
 const RequiredAsterisk = () => <span className="text-red-500"> * </span>;
 
-export const Step3 = ({
+export const CompetitionStep = ({
   form,
   delta,
 }:{
@@ -91,7 +91,7 @@ export const Step3 = ({
         {/* Has Previously Participated in MMC */}
         <FormField
           control={form.control}
-          name="hasPreviouslyParticipatedInMmc"
+          name="hasPreviouslyParticipatedInMtym"
           render={({ field }) => (
             <FormItem className="space-y-3">
               <FormLabel>Have you participated in MTYM in Mai 2024 ? <RequiredAsterisk /></FormLabel>
@@ -115,6 +115,14 @@ export const Step3 = ({
                     </FormControl>
                     <FormLabel className="font-normal">
                       No
+                    </FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="not-selected" />
+                    </FormControl>
+                    <FormLabel className="font-normal">
+                      I applied but i wasn't selected
                     </FormLabel>
                   </FormItem>
                 </RadioGroup>
