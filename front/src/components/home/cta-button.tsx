@@ -30,7 +30,7 @@ const CtaButton = () => {
 
   const beforeDeadlineTemplate = (
     <div 
-      className="text-center animate-fade-up opacity-0 space-y-4"
+      className="text-center animate-fade-up opacity-0 space-y-4 space-x-8"
       style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
     >
       <AuthModal />
@@ -43,6 +43,17 @@ const CtaButton = () => {
           Submit Application
         </div>
       </button>
+
+      <button 
+        className="p-[3px] relative"
+        onClick={() => router.push('team')}
+      >
+        <div className="absolute inset-0 bg-[#272162] rounded-lg" />
+        <div className="px-8 py-2 bg-white rounded-[6px] relative group transition duration-200 text-gray-900 hover:bg-transparent hover:text-white">
+          Join a Team
+        </div>
+      </button>
+
       <p>
         <span className='font-semibold text-[#272162]'>Deadline for application:</span> <span className='font-bold'>May 31st 2024</span>
       </p>
