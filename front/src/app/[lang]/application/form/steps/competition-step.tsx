@@ -122,7 +122,7 @@ export const CompetitionStep = ({
                       <RadioGroupItem value="not-selected" />
                     </FormControl>
                     <FormLabel className="font-normal">
-                      I applied but i wasn't selected
+                      I applied but i wasn&apos;t selected
                     </FormLabel>
                   </FormItem>
                 </RadioGroup>
