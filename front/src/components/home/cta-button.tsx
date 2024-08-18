@@ -36,7 +36,8 @@ const CtaButton = () => {
       <AuthModal />
       <button 
         className="p-[3px] relative"
-        onClick={onSubmitApplication}
+        onClick={() => router.push('application')}
+        // onClick={onSubmitApplication}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-sky-500 to-[#272162] rounded-lg" />
         <div className="px-8 py-2 bg-white rounded-[6px] relative group transition duration-200 text-black hover:bg-transparent hover:text-white">
