@@ -33,7 +33,7 @@ import {
 } from "@/components/shared/popover"
 import { Calendar } from "@/components/shared"
 import { CalendarIcon } from "@radix-ui/react-icons"
-import { PhoneInput } from "@/components/shared/phone-input";
+// import { PhoneInput } from "@/components/shared/phone-input";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent} from "@/components/shared/accordion";
 import { RadioGroup, RadioGroupItem } from '@/components/shared/radio-group';
 import Link from "next/link";
@@ -319,7 +319,7 @@ const ApplicationForm = ({
                 )}
               />
               {/* Phone Number */}
-              <FormField
+              {/* <FormField
                 control={form.control}
                 name="phoneNumber"
                 render={({ field }) => (
@@ -331,7 +331,7 @@ const ApplicationForm = ({
                     <FormMessage />
                   </FormItem>
                 )}
-              />
+              /> */}
               {/* Emergency Contact */}
               <FormField
                 control={form.control}
@@ -347,7 +347,7 @@ const ApplicationForm = ({
                 )}
               />
               {/* Emergency Contact Phone Number */}
-              <FormField
+              {/* <FormField
                 control={form.control}
                 name="emergencyContactPhoneNumber"
                 render={({ field }) => (
@@ -359,7 +359,7 @@ const ApplicationForm = ({
                     <FormMessage />
                   </FormItem>
                 )}
-              />
+              /> */}
             </AccordionContent>
           </AccordionItem>
 
