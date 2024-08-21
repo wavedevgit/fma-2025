@@ -9,16 +9,18 @@ export const FormNavigation = ({
   currentStep,
   setPreviousStep,
   setCurrentStep,
+  setFormType,
 }:{
   variant?: 'arrows' | 'button',
-  form: UseFormReturn,
+  form?: UseFormReturn,
   currentStep: number,
   setPreviousStep: Dispatch<SetStateAction<number>>,
   setCurrentStep: Dispatch<SetStateAction<number>>,
+  setFormType: Dispatch<SetStateAction<string>>,
 }) => {
   const next = async () => {
     const fields = steps[currentStep].fields
-    const output = await form.trigger(fields, { shouldFocus: true })
+    const output = await form?.trigger(fields, { shouldFocus: true })
     if (!output) return
 
     if (currentStep < steps.length - 1) {
@@ -33,6 +35,10 @@ export const FormNavigation = ({
       setPreviousStep(currentStep)
       setCurrentStep(step => step - 1)
       window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+
+    if (currentStep === 1) {
+      setFormType('')
     }
   }
 
@@ -92,6 +98,7 @@ export const FormNavigation = ({
     </div>
   )
 
+  if (!form) return;
   if (variant == 'arrows') return arrowsTemplate
   else return buttonTemplate
 }

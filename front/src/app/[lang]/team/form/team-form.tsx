@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FormSteps } from "./header/form-steps"
 import { FormNavigation } from "./navigation/form-navigation"
 import { useForm } from "react-hook-form"
@@ -11,7 +11,9 @@ import { z } from "zod"
 import { Form } from "@/components/shared/form"
 import { Button, Separator } from "@/components/shared"
 import { toast } from "@/components/hooks/use-toast";
-import { Step1 } from "./steps/step1"
+import { CreateOrJoinTeamStep } from "./steps/create-or-join-team"
+import { CreateTeamForm } from "./steps/create-team-form"
+import { JoinTeamForm } from "./steps/join-team-form"
 
 export const TeamForm = ({ 
   userData,
@@ -20,8 +22,15 @@ export const TeamForm = ({
 }) => {
   const [previousStep, setPreviousStep] = useState(0)
   const [currentStep, setCurrentStep] = useState(0)
+  const [formType, setFormType] = useState('')
   const delta = currentStep - previousStep
-  const form = useForm<z.infer<typeof applicationSchema>>({
+  
+  const createTeamForm = useForm<z.infer<typeof applicationSchema>>({
+    resolver: zodResolver(applicationSchema),
+    mode: "onChange",
+  })
+
+  const joinTeamForm = useForm<z.infer<typeof applicationSchema>>({
     resolver: zodResolver(applicationSchema),
     defaultValues: userData?.application 
       ? {...sanitizeApplication(userData?.application), firstName: userData?.firstName, lastName: userData?.lastName} 
@@ -29,7 +38,11 @@ export const TeamForm = ({
     mode: "onChange",
   })
 
-  const onSubmit = async (formData: z.infer<typeof applicationSchema>) => {
+  const onSubmitCreateTeam = async (formData: z.infer<typeof applicationSchema>) => {
+    console.log('formData', formData);
+  }
+
+  const onSubmitJoinTeam = async (formData: z.infer<typeof applicationSchema>) => {
     console.log('formData', formData);
   }
   
@@ -40,6 +53,14 @@ export const TeamForm = ({
       variant: 'destructive',
     })
   }
+
+  useEffect(() => {
+    if (formType) {
+      setPreviousStep(currentStep)
+      setCurrentStep(step => step + 1)
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+  }, [formType])
 
   return (
     <section className='w-full inset-0 flex flex-col justify-between mt-6'>
@@ -59,47 +80,79 @@ export const TeamForm = ({
       <FormSteps currentStep={currentStep} />
 
       {/* Navigation */}
-      <FormNavigation
-        currentStep={currentStep}
-        form={form}
-        setPreviousStep={setPreviousStep} 
-        setCurrentStep={setCurrentStep} 
-      />
+      {currentStep >= 1 && (
+        <FormNavigation
+          currentStep={currentStep}
+          form={formType === 'create' ? createTeamForm : formType === 'join' ? joinTeamForm : undefined}
+          setPreviousStep={setPreviousStep} 
+          setCurrentStep={setCurrentStep}
+          setFormType={setFormType}
+        />
+      )}
 
-      {/* Form */}
-      <Form {...form}>
-        <form className='mt-6' onSubmit={form.handleSubmit(onSubmit, onError)}>
-          {currentStep === 0 && (
-            <Step1 delta={delta} />
-          )}
+      {/* Forms */}
 
-          {currentStep === 1 && (
-            "Step 2"
-          )}
-
-          {currentStep === 2 && (
-            "Step 3"
-          )}
-
-          {/* Submit Button */}
-          {currentStep === 2 && (
-            <div className='mt-20 text-center'> 
-              <Button type="submit">
-                <div>Submit Application</div>
-              </Button>
-            </div>
-          )}
-        </form>
-      </Form>
+      {currentStep === 0 && (
+        <CreateOrJoinTeamStep delta={delta} setFormType={setFormType} />
+      )}
       
+      {formType === 'create' && (
+        <Form {...createTeamForm}>
+          <form className='mt-6' onSubmit={createTeamForm.handleSubmit(onSubmitCreateTeam, onError)}>
+            {currentStep === 1 && (
+              <CreateTeamForm form={createTeamForm} delta={delta} />
+            )}
+
+            {currentStep === 2 && (
+              "Validation Create Team"
+            )}
+
+            {/* Submit Button */}
+            {currentStep === 2 && (
+              <div className='mt-20 text-center'> 
+                <Button type="submit">
+                  <div>Create Team</div>
+                </Button>
+              </div>
+            )}
+          </form>
+        </Form>
+      )}
+
+      {formType === 'join' && (
+        <Form {...joinTeamForm}>
+          <form className='mt-6' onSubmit={joinTeamForm.handleSubmit(onSubmitJoinTeam, onError)}>
+            {currentStep === 1 && (
+              <JoinTeamForm form={joinTeamForm} delta={delta} />
+            )}
+
+            {currentStep === 2 && (
+              "Validation Join Team"
+            )}
+
+            {/* Submit Button */}
+            {currentStep === 2 && (
+              <div className='mt-20 text-center'> 
+                <Button type="submit">
+                  <div>Join Team</div>
+                </Button>
+              </div>
+            )}
+          </form>
+        </Form>
+      )}
+
       {/* Navigation */}
-      <FormNavigation
-        variant="button"
-        form={form}
-        currentStep={currentStep} 
-        setPreviousStep={setPreviousStep} 
-        setCurrentStep={setCurrentStep} 
-      />
+      {currentStep >= 1 && (
+        <FormNavigation
+          variant="button"
+          currentStep={currentStep}
+          form={formType === 'create' ? createTeamForm : formType === 'join' ? joinTeamForm : undefined}
+          setPreviousStep={setPreviousStep} 
+          setCurrentStep={setCurrentStep}
+          setFormType={setFormType}
+        />
+      )}
     </section>
   )
 }

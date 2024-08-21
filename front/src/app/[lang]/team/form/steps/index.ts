@@ -3,7 +3,7 @@ import { Step } from "./step.type";
 export const steps: Step[] = [
   {
     id: 'Step 1',
-    name: 'Team Selection',
+    name: 'Team options',
     fields: []
   },
   {
@@ -12,7 +12,7 @@ export const steps: Step[] = [
     fields: []
   },
   {
-    id: 'Step 2',
+    id: 'Step 3',
     name: 'Validation',
     fields: []
   },

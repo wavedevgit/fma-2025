@@ -24,7 +24,7 @@ import {
 } from "@/components/shared/popover"
 import { Calendar } from "@/components/shared"
 import { CalendarIcon } from "@radix-ui/react-icons"
-// import { PhoneInput } from "@/components/shared/phone-input"
+import { PhoneInput } from "@/components/shared/phone-input"
 import { cn } from '@/lib/utils'
 import { Button } from "@/components/shared"
 import { format } from "date-fns"
@@ -206,7 +206,7 @@ export const PersonalInformationStep = ({
         />
 
         {/* Phone Number */}
-        {/* <FormField
+        <FormField
           control={form.control}
           name="phoneNumber"
           render={({ field }) => (
@@ -218,7 +218,7 @@ export const PersonalInformationStep = ({
               <FormMessage />
             </FormItem>
           )}
-        /> */}
+        />
       </div>
       
       <div className='mt-6 grid grid-cols-1 gap-4 justify-between'>
@@ -266,7 +266,7 @@ export const PersonalInformationStep = ({
         />
     
         {/* Guardian Phone Number */}
-        {/* <FormField
+        <FormField
           control={form.control}
           name="guardianPhoneNumber"
           render={({ field }) => (
@@ -278,7 +278,7 @@ export const PersonalInformationStep = ({
               <FormMessage />
             </FormItem>
           )}
-        /> */}
+        />
 
         {/* Relationship with Guardian */}
         <FormField
