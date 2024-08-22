@@ -92,3 +92,8 @@ export const sanitizeApplication = (application: any) => {
   });
   return newObject;
 }
+
+export const camelCaseToText = (camel: string) => {
+  const result = camel.replace(/([A-Z])/g, " $1");
+  return result.charAt(0).toUpperCase() + result.slice(1);
+}

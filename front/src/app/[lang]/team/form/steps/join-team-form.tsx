@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { UseFormReturn } from 'react-hook-form'
 import {
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -24,35 +25,13 @@ const educationLevels = [
   {label: "2ème année Bac", value:"2bac"},
 ]
 
-const educationFields = [
-  {label: "TC sciences", value:"tc-sciences"},
-  {label: "TC technologique", value:"tc-technologique"},
-  {label: "1BAC Sciences Economiques et Gestion", value:"1bac-sciences-economiques-et-gestion"},
-  {label: "1BAC Arts Appliqués", value:"1bac-arts-appliques"},
-  {label: "1BAC Sciences Expérimentales", value:"1bac-sciences-experimentales"},
-  {label: "1BAC Sciences Mathématiques", value:"1bac-sciences-mathematiques"},
-  {label: "1BAC Sciences et Technologies Electriques", value:"1bac-sciences-et-technologies-electriques"},
-  {label: "1BAC Sciences et Technologies Mécaniques", value:"1bac-sciences-et-technologies-mecaniques"},
-  {label: "2BAC Sciences Economiques", value:"2bac-sciences-economiques"},
-  {label: "2BAC Sciences de Gestion et Comptabilité", value:"2bac-sciences-de-gestion-et-comptabilite"},
-  {label: "2BAC Arts Appliqués", value:"2bac-arts-appliques "},
-  {label: "2BAC Sciences de la Vie et de la Terre", value:"2bac-sciences-de-la-vie-et-de-la-terre"},
-  {label: "2BAC Sciences Physique Chimie", value:"2bac-sciences-physique-chimie"},
-  {label: "2BAC Sciences Agronomiques", value:"2bac-sciences-agronomiques"},
-  {label: "2BAC Sciences Mathématiques A", value:"2bac-sciences-mathematiques-a"},
-  {label: "2BAC Sciences Mathématiques B", value:"2bac-sciences-mathematiques-b"},
-  {label: "2BAC Sciences et Technologies Electrique", value:"2bac-sciences-et-technologies-electrique"},
-  {label: "2BAC Sciences et Technologies Mécanique", value:"2bac-sciences-et-technologies-mecanique"},
-  {label: "Autre", value:"autre"},
-]
-
 const RequiredAsterisk = () => <span className="text-red-500"> * </span>;
 
 export const JoinTeamForm = ({
   form,
   delta,
 }:{
-  form: UseFormReturn,
+  form: UseFormReturn<any>,
   delta: number
 }) => {
   return (
@@ -74,10 +53,10 @@ export const JoinTeamForm = ({
         {/* Education Level */}
         <FormField
           control={form.control}
-          name="educationLevel"
+          name="teamId"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Education Level <RequiredAsterisk /></FormLabel>
+              <FormLabel>Teams <RequiredAsterisk /></FormLabel>
               <FormControl>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <SelectTrigger>
@@ -98,44 +77,20 @@ export const JoinTeamForm = ({
           )}
         />
 
-        {/* Education Field */}
+        {/* Access Code */}
         <FormField
           control={form.control}
-          name="educationField"
+          name="accessCode"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Education Field<RequiredAsterisk /></FormLabel>
-              <FormControl>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Choose an option" />
-                  </SelectTrigger>
-                  <SelectContent className="max-h-60">
-                    <SelectGroup>
-                      <SelectLabel>Education Fields</SelectLabel>
-                      {educationFields.map(field =>
-                        <SelectItem key={field.value} value={field.value}>{field.label}</SelectItem>
-                      )}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {/* Highschool */}
-        <FormField
-          control={form.control}
-          name="highschool"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Highschool <RequiredAsterisk /></FormLabel>
+              <FormLabel>Access Code <RequiredAsterisk /></FormLabel>
               <FormControl>
                 <Input placeholder="Highschool" {...field} />
               </FormControl>
               <FormMessage />
+              <FormDescription>
+                You will be given an access code from your team leader as a permission to access this team
+              </FormDescription>
             </FormItem>
           )}
         />

@@ -1,5 +1,5 @@
 export type Step = {
   id: string,
   name: string,
-  fields?: string[],
+  getFields: (formType?: string) => string[],
 }

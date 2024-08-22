@@ -4,9 +4,7 @@ import { useEffect, useState } from "react"
 import { FormSteps } from "./header/form-steps"
 import { FormNavigation } from "./navigation/form-navigation"
 import { useForm } from "react-hook-form"
-import { applicationSchema, getApplicationDefaultValues } from "@/lib/schemas/application-schema"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { sanitizeApplication } from "@/lib/utils"
 import { z } from "zod"
 import { Form } from "@/components/shared/form"
 import { Button, Separator } from "@/components/shared"
@@ -14,6 +12,9 @@ import { toast } from "@/components/hooks/use-toast";
 import { CreateOrJoinTeamStep } from "./steps/create-or-join-team"
 import { CreateTeamForm } from "./steps/create-team-form"
 import { JoinTeamForm } from "./steps/join-team-form"
+import { createTeamDefaultValues, createTeamSchema } from "@/lib/schemas/create-team.schema"
+import { joinTeamDefaultValues, joinTeamSchema } from "@/lib/schemas/join-team.schema"
+import SummaryCard from "./steps/summary-step"
 
 export const TeamForm = ({ 
   userData,
@@ -25,25 +26,24 @@ export const TeamForm = ({
   const [formType, setFormType] = useState('')
   const delta = currentStep - previousStep
   
-  const createTeamForm = useForm<z.infer<typeof applicationSchema>>({
-    resolver: zodResolver(applicationSchema),
+  const createTeamForm = useForm<z.infer<typeof createTeamSchema>>({
+    resolver: zodResolver(createTeamSchema),
+    defaultValues: createTeamDefaultValues,
     mode: "onChange",
   })
 
-  const joinTeamForm = useForm<z.infer<typeof applicationSchema>>({
-    resolver: zodResolver(applicationSchema),
-    defaultValues: userData?.application 
-      ? {...sanitizeApplication(userData?.application), firstName: userData?.firstName, lastName: userData?.lastName} 
-      : getApplicationDefaultValues(userData),
+  const joinTeamForm = useForm<z.infer<typeof joinTeamSchema>>({
+    resolver: zodResolver(joinTeamSchema),
+    defaultValues: joinTeamDefaultValues,
     mode: "onChange",
   })
 
-  const onSubmitCreateTeam = async (formData: z.infer<typeof applicationSchema>) => {
-    console.log('formData', formData);
+  const onSubmitCreateTeam = async (formData: z.infer<typeof createTeamSchema>) => {
+    console.log('formData create', formData);
   }
 
-  const onSubmitJoinTeam = async (formData: z.infer<typeof applicationSchema>) => {
-    console.log('formData', formData);
+  const onSubmitJoinTeam = async (formData: z.infer<typeof joinTeamSchema>) => {
+    console.log('formData join', formData);
   }
   
   const onError = async (errors: any) => {
@@ -84,6 +84,7 @@ export const TeamForm = ({
         <FormNavigation
           currentStep={currentStep}
           form={formType === 'create' ? createTeamForm : formType === 'join' ? joinTeamForm : undefined}
+          formType={formType}
           setPreviousStep={setPreviousStep} 
           setCurrentStep={setCurrentStep}
           setFormType={setFormType}
@@ -104,13 +105,13 @@ export const TeamForm = ({
             )}
 
             {currentStep === 2 && (
-              "Validation Create Team"
+              <SummaryCard formData={createTeamForm.watch()} formType={formType} delta={delta} />
             )}
 
             {/* Submit Button */}
             {currentStep === 2 && (
               <div className='mt-20 text-center'> 
-                <Button type="submit">
+                <Button type="submit" className='text-lg md:w-1/4 lg:w-1/6 p-8'>
                   <div>Create Team</div>
                 </Button>
               </div>
@@ -127,13 +128,13 @@ export const TeamForm = ({
             )}
 
             {currentStep === 2 && (
-              "Validation Join Team"
+              <SummaryCard formData={joinTeamForm.watch()} formType={formType} delta={delta} />
             )}
 
             {/* Submit Button */}
             {currentStep === 2 && (
               <div className='mt-20 text-center'> 
-                <Button type="submit">
+                <Button type="submit" className='text-lg md:w-1/4 lg:w-1/6 p-8'>
                   <div>Join Team</div>
                 </Button>
               </div>
@@ -143,11 +144,12 @@ export const TeamForm = ({
       )}
 
       {/* Navigation */}
-      {currentStep >= 1 && (
+      {currentStep == 1 && (
         <FormNavigation
           variant="button"
           currentStep={currentStep}
           form={formType === 'create' ? createTeamForm : formType === 'join' ? joinTeamForm : undefined}
+          formType={formType}
           setPreviousStep={setPreviousStep} 
           setCurrentStep={setCurrentStep}
           setFormType={setFormType}

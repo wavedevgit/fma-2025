@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { UseFormReturn } from 'react-hook-form'
 import {
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -52,7 +53,7 @@ export const CreateTeamForm = ({
   form,
   delta,
 }:{
-  form: UseFormReturn,
+  form: UseFormReturn<any>,
   delta: number
 }) => {
   return (
@@ -97,6 +98,24 @@ export const CreateTeamForm = ({
                 <Input placeholder="Slogan of the Team" {...field} />
               </FormControl>
               <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* Mentor Full Name*/}
+        <FormField
+          control={form.control}
+          name="mentorFullName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Mentor full name</FormLabel>
+              <FormControl>
+                <Input placeholder="Mentor full name" {...field} />
+              </FormControl>
+              <FormMessage />
+              <FormDescription>
+                If your team have a mentor (teacher, researcher, etc), enter his full name above
+              </FormDescription>
             </FormItem>
           )}
         />

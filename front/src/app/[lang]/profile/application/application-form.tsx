@@ -42,7 +42,7 @@ import { useState } from "react"
 import { deleteApplication, postApplication, putApplication } from "@/api/ApplicationApi"
 import { LoadingDots } from "@/components/shared/icons"
 import { getSignedURL, uploadFile } from "@/api/MediaApi"
-import { applicationSchema, getApplicationDefaultValues } from "@/lib/schemas/application-schema"
+import { applicationSchema, getApplicationDefaultValues } from "@/lib/schemas/application.schema"
 
 const regions = [
   {label: "Tanger-Tétouan-Al Hoceïma", value:"tanger-tetouan-al-houceima"},

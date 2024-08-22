@@ -6,20 +6,22 @@ import { UseFormReturn } from "react-hook-form"
 export const FormNavigation = ({
   variant = "arrows",
   form,
+  formType,
   currentStep,
   setPreviousStep,
   setCurrentStep,
   setFormType,
 }:{
   variant?: 'arrows' | 'button',
-  form?: UseFormReturn,
+  form?: UseFormReturn<any>,
+  formType: string,
   currentStep: number,
   setPreviousStep: Dispatch<SetStateAction<number>>,
   setCurrentStep: Dispatch<SetStateAction<number>>,
   setFormType: Dispatch<SetStateAction<string>>,
 }) => {
   const next = async () => {
-    const fields = steps[currentStep].fields
+    const fields = steps[currentStep].getFields(formType)
     const output = await form?.trigger(fields, { shouldFocus: true })
     if (!output) return
 
@@ -38,6 +40,7 @@ export const FormNavigation = ({
     }
 
     if (currentStep === 1) {
+      form?.reset()
       setFormType('')
     }
   }

@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormItem, FormMessage } from "../shared/form"
 import { toast } from "@/components/hooks/use-toast"
 import { useRouter } from "next/navigation"
-import { signUpDefaultValues, signUpSchema } from "@/lib/schemas/signup-schema"
+import { signUpDefaultValues, signUpSchema } from "@/lib/schemas/signup.schema"
 
 interface SignUpFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 

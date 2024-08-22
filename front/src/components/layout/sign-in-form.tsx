@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/shared/form"
 import { useState } from "react"
-import { signInDefaultValues, signInSchema } from "@/lib/schemas/signin-schema"
+import { signInDefaultValues, signInSchema } from "@/lib/schemas/signin.schema"
 
 interface SignInFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
