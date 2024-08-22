@@ -1,10 +1,9 @@
 
 "use client"
 
-import ApplicationForm from "./application-form"
 import { Separator } from "@/components/shared"
 import { formatDate } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -16,75 +15,91 @@ import {
 import { Badge } from "@/components/shared/badge";
 import { Button } from "@/components/shared";
 import ProfileSkeleton from "../profile-skeleton";
-import Link from "next/link";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/store/userState";
 import { useAuthGuard } from "@/components/hooks/use-auth-guard";
+import { useRouter } from "next/navigation";
 
+const getBadgeClassname = (status: string) => {
+  switch(status) {
+    case 'DRAFT':
+      return 'bg-gray-300 text-black';
+    case 'PENDING':
+      return 'bg-[#FFE380] text-black';
+    case 'NOTIFIED':
+      return 'bg-[#79E2F2] text-black';
+    case 'UPDATED':
+      return 'bg-[#B3D4FF] text-black';
+    case 'VALIDATED':
+      return 'bg-[#79F2C0] text-black';
+    case 'ACCEPTED':
+      return 'bg-[#006644] text-white';
+    case 'REJECTED':
+      return 'bg-[#BF2600] text-white';
+    case 'WAITLIST':
+      return 'bg-[#403294] text-white';
+  }
+}
 
 export default function ApplicationPage() {
-  const [showForm, setShowForm] = useState<boolean>(false);
-  const userData = useRecoilValue<any>(userState);
-  const isNotified = userData?.application?.status?.status === 'NOTIFIED';
-  const isUpdated = userData?.application?.status?.status === 'UPDATED';
-  const updateApplicationCard = (
-    <Card>
-      <CardHeader>
-        <CardTitle>You&apos;ve already submitted an application</CardTitle>
-        <CardDescription>We&apos;ve received your application. It&apos;s under review by our team.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="text-sm">Submission date: {formatDate(userData?.application?.createdAt)}</div>
-        <div className="text-sm">Update date: {formatDate(userData?.application?.updatedAt)}</div>
-        <div className="text-sm">Status: <Badge className="bg-orange-500 text-black">Ongoing</Badge></div>
-      </CardContent>
-      {isNotified && (
-        <CardFooter className="space-x-4">
-          <CardDescription>You have been notified to update your application.</CardDescription>
-            
-          <Button
-            onClick={() => {setShowForm(true)}}
-          >
-            Update Application
-          </Button>
-        </CardFooter>
-      )}
-      {isUpdated &&
-        <CardFooter className="space-x-4">
-          <CardDescription>Thank you for updating your application.</CardDescription>
-        </CardFooter>
-      }
-    </Card>
-  );
-
-  const createApplicationCard = (
-    <Card>
-      <CardHeader>
-        <CardTitle>You haven&apos;t submitted an application yet</CardTitle>
-        <CardDescription>For a seamless process and following our guidelines, please download, sign, and upload the <Link className="text-blue-500 underline" href="https://drive.google.com/file/d/1Qj0KONxATeMhIVMr4Llqp_X6boAUxBcV/view?usp=sharing" target="_blank">regulations file</Link> in the application form under the <span className="text-black">{'"'}Handwritten signed regulation{'"'}</span> field. </CardDescription>
-        <CardDescription className="text-red-700"><span className="font-semibold text-medium text-red-500">Important:</span> {' '}Please do not forget to click on the <span className="text-red-500 font-semibold text-medium">{'"'}Submit Application{'"'}</span> button after filling the form to send your request.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Button
-          onClick={() => {setShowForm(true)}}
-        >
-          Fill Application
-        </Button>
-      </CardContent>
-    </Card>
-  );
-
-  const closedApplicationCard = (
-    <Card>
-      <CardHeader>
-        <CardTitle>The application for MMC 2024 is closed!</CardTitle>
-        <CardDescription>Thank you for your interest in our competition. Unfortunately, the application period has ended, and we are no longer accepting new applications.</CardDescription>
-        <CardDescription>Please check back for future opportunities. We hope to see you soon.</CardDescription>
-      </CardHeader>
-    </Card>
-  )
-
   useAuthGuard();
+  const userData = useRecoilValue<any>(userState);
+  const [content, setContent] = useState<any>(undefined);
+  const router = useRouter();
+  
+  useEffect(() => {
+    const application = userData?.application;
+    const applicationStatus = application?.status?.status;
+
+    if (!application) {
+      setContent({
+        title: "You haven't submitted an application yet",
+        subtitle: "Make sure to submit an application, and then join a team",
+        ctaLabel: "Create an application",
+      })
+    } else if (applicationStatus === 'DRAFT') {
+      setContent({
+        title: "You have saved an application draft. It's not yet submitted",
+        subtitle: "Make sure to complete and submit your application, and then join a team",
+        ctaLabel: "Complete your application",
+      })
+    } else {
+      setContent({
+        title: "You have already submitted an application",
+        subtitle: "Make sure that you joined a team so that your application will be taken into account",
+        ctaLabel: "Update your application",
+      })
+    }
+  }, [userData])
+
+  const applicationCard = (
+    <Card>
+      <CardHeader>
+        <CardTitle>
+          {content?.title}
+        </CardTitle>
+        <CardDescription>
+          {content?.subtitle}
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        {userData?.application && 
+          <>
+            <div className="text-sm"><span className="font-bold">Submission date</span>: {formatDate(userData?.application?.createdAt)}</div>
+            <div className="text-sm"><span className="font-bold">Update date</span>: {formatDate(userData?.application?.updatedAt)}</div>
+            <div className="text-sm"><span className="font-bold">Status</span>: <Badge className={`px-4 ${getBadgeClassname(userData?.application?.status?.status)}`}>{userData?.application?.status?.status}</Badge></div>
+          </>
+        }
+      </CardContent>
+      <CardFooter>
+        <Button
+          onClick={() => router.push('/application')}
+        >
+          {content?.ctaLabel}
+        </Button>
+      </CardFooter>
+    </Card>
+  );
 
   return (
     <div className="space-y-6">
@@ -99,12 +114,8 @@ export default function ApplicationPage() {
 
       {!userData
         ? <ProfileSkeleton />
-        : userData?.application 
-          ? updateApplicationCard 
-          : createApplicationCard
+        : applicationCard
       }
-
-      {showForm && <ApplicationForm application={userData?.application} userData={userData}/>}
     </div>
   )
 }

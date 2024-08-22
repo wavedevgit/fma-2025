@@ -25,11 +25,11 @@ class ApiMethods {
     return this.apiRequest('GET', url)
   }
 
-  static post(url: string, data: any) {
+  static post(url: string, data?: any) {
     return this.apiRequest('POST', url, data)
   }
 
-  static put(url: string, data: any, token?: string) {
+  static put(url: string, data?: any, token?: string) {
     return this.apiRequest('PUT', url, data, token)
   }
 
