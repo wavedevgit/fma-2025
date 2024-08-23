@@ -9,7 +9,7 @@ import { z } from "zod"
 import { Form } from "@/components/shared/form"
 import { Button, Separator } from "@/components/shared"
 import { toast } from "@/components/hooks/use-toast";
-import { CreateOrJoinTeamStep } from "./steps/create-or-join-team"
+import { CreateOrJoinTeamStep } from "./steps/create-or-join-team-step"
 import { CreateTeamForm } from "./steps/create-team-form"
 import { JoinTeamForm } from "./steps/join-team-form"
 import { createTeamDefaultValues, createTeamSchema } from "@/lib/schemas/create-team.schema"
@@ -45,18 +45,25 @@ export const TeamForm = ({
 
   const onSubmitCreateTeam = async (formData: z.infer<typeof createTeamSchema>) => {
     try {
-      const createResult = await createTeam(formData) as any;
-      const teamId = createResult?.id;
-      await addUser(teamId);
+      const createTeamResult = await createTeam(formData) as any;
+      if (createTeamResult?.statusCode !== 200) {
+        throw new Error(createTeamResult?.message)
+      }
+      
+      const teamId = createTeamResult?.team?.id;
+      const addUserResult = await addUser(teamId) as any;
+      if (addUserResult?.statusCode !== 200) {
+        throw new Error('Adding the user in the team failed')
+      }
       
       router.push('/profile/team')
       setTimeout(() => {
         window.location.reload()
       }, 200) 
-    } catch(e) {
+    } catch(err: any) {
       toast({
         title: 'This operation have failed',
-        description: 'There have a been a problem. Please try later',
+        description: err?.message,
         variant: 'destructive',
       });
     }
@@ -64,15 +71,19 @@ export const TeamForm = ({
 
   const onSubmitJoinTeam = async (formData: z.infer<typeof joinTeamSchema>) => {
     try {
-      await addUser(parseInt(formData?.teamId)) as any;
+      const addUserResult = await addUser(parseInt(formData?.teamId)) as any;
+      if (addUserResult?.statusCode !== 200) {
+        throw new Error('Adding the user in the team failed')
+      }
+
       router.push('/profile/team')
       setTimeout(() => {
         window.location.reload()
-      }, 200) 
-    } catch(e) {
+      }, 200)
+    } catch(err: any) {
       toast({
         title: 'This operation have failed',
-        description: 'There have a been a problem. Please try later',
+        description: err?.message,
         variant: 'destructive',
       });
     }
@@ -96,7 +107,7 @@ export const TeamForm = ({
     if (formType === 'join' && teams.length === 0) {
       getAllTeams()
         .then(res => {
-          const teams = res as Team[];
+          const teams = (res as any)?.teams;
           setTeams(teams)
         })
     }

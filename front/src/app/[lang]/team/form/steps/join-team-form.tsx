@@ -37,7 +37,7 @@ export const JoinTeamForm = ({
   teams: Team[],
   delta: number
 }) => {
-  const teamsOptions = teams.map(team => ({
+  const teamsOptions = teams?.map(team => ({
     label: team.name,
     value: team.id.toString()
   }))
