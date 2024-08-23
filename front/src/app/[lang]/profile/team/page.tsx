@@ -39,11 +39,8 @@ export default function TeamPage() {
 
   const onQuitTeam = async () => {
     try {
-      const result = await removeUser(userData?.team?.id);
-      console.log('result', result);
-      setTimeout(() => {
-        router.push('/profile/team')
-      }, 500)
+      const result = await removeUser(userData?.team?.id);      
+      window.location.reload()
     } catch(e) {
       toast({
         title: 'This operation have failed',

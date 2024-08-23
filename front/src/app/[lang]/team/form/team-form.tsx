@@ -15,6 +15,9 @@ import { JoinTeamForm } from "./steps/join-team-form"
 import { createTeamDefaultValues, createTeamSchema } from "@/lib/schemas/create-team.schema"
 import { joinTeamDefaultValues, joinTeamSchema } from "@/lib/schemas/join-team.schema"
 import SummaryCard from "./steps/summary-step"
+import { addUser, createTeam, getAllTeams } from "@/api/TeamApi"
+import { useRouter } from "next/navigation"
+import { Team } from "@/types/team.type"
 
 export const TeamForm = ({ 
   userData,
@@ -24,6 +27,8 @@ export const TeamForm = ({
   const [previousStep, setPreviousStep] = useState(0)
   const [currentStep, setCurrentStep] = useState(0)
   const [formType, setFormType] = useState('')
+  const [teams, setTeams] = useState<Team[]>([])
+  const router = useRouter()
   const delta = currentStep - previousStep
   
   const createTeamForm = useForm<z.infer<typeof createTeamSchema>>({
@@ -39,11 +44,38 @@ export const TeamForm = ({
   })
 
   const onSubmitCreateTeam = async (formData: z.infer<typeof createTeamSchema>) => {
-    console.log('formData create', formData);
+    try {
+      const createResult = await createTeam(formData) as any;
+      const teamId = createResult?.id;
+      await addUser(teamId);
+      
+      router.push('/profile/team')
+      setTimeout(() => {
+        window.location.reload()
+      }, 200) 
+    } catch(e) {
+      toast({
+        title: 'This operation have failed',
+        description: 'There have a been a problem. Please try later',
+        variant: 'destructive',
+      });
+    }
   }
 
   const onSubmitJoinTeam = async (formData: z.infer<typeof joinTeamSchema>) => {
-    console.log('formData join', formData);
+    try {
+      await addUser(parseInt(formData?.teamId)) as any;
+      router.push('/profile/team')
+      setTimeout(() => {
+        window.location.reload()
+      }, 200) 
+    } catch(e) {
+      toast({
+        title: 'This operation have failed',
+        description: 'There have a been a problem. Please try later',
+        variant: 'destructive',
+      });
+    }
   }
   
   const onError = async (errors: any) => {
@@ -59,6 +91,14 @@ export const TeamForm = ({
       setPreviousStep(currentStep)
       setCurrentStep(step => step + 1)
       window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+
+    if (formType === 'join' && teams.length === 0) {
+      getAllTeams()
+        .then(res => {
+          const teams = res as Team[];
+          setTeams(teams)
+        })
     }
   }, [formType])
 
@@ -124,7 +164,7 @@ export const TeamForm = ({
         <Form {...joinTeamForm}>
           <form className='mt-6' onSubmit={joinTeamForm.handleSubmit(onSubmitJoinTeam, onError)}>
             {currentStep === 1 && (
-              <JoinTeamForm form={joinTeamForm} delta={delta} />
+              <JoinTeamForm form={joinTeamForm} teams={teams} delta={delta} />
             )}
 
             {currentStep === 2 && (

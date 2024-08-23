@@ -8,32 +8,40 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/shared/form"
-import { Input, Separator } from "@/components/shared"
+import { Button, Input, Separator } from "@/components/shared"
+import { Check, ChevronsUpDown } from "lucide-react"
 import {
-  Select,
-  SelectGroup,
-  SelectValue,
-  SelectTrigger,
-  SelectContent,
-  SelectLabel,
-  SelectItem,
-} from "@/components/shared/select"
-
-const educationLevels = [
-  {label: "Tronc commun", value:"tronc-commun"},
-  {label: "1ère année Bac", value:"1bac"},
-  {label: "2ème année Bac", value:"2bac"},
-]
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/shared/command"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/shared/popover"
+import { cn } from '@/lib/utils'
+import { Team } from '@/types/team.type'
 
 const RequiredAsterisk = () => <span className="text-red-500"> * </span>;
 
 export const JoinTeamForm = ({
   form,
+  teams,
   delta,
 }:{
   form: UseFormReturn<any>,
+  teams: Team[],
   delta: number
 }) => {
+  const teamsOptions = teams.map(team => ({
+    label: team.name,
+    value: team.id.toString()
+  }))
+
   return (
     <motion.div
       initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
@@ -57,21 +65,63 @@ export const JoinTeamForm = ({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Teams <RequiredAsterisk /></FormLabel>
-              <FormControl>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Choose an option" />
-                  </SelectTrigger>
-                  <SelectContent className="max-h-60">
-                    <SelectGroup>
-                      <SelectLabel>Education Levels</SelectLabel>
-                      {educationLevels.map(level =>
-                        <SelectItem key={level.value} value={level.value}>{level.label}</SelectItem>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <FormControl>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      className={cn(
+                        "w-full justify-between",
+                        !field.value && "text-muted-foreground"
                       )}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select> 
-              </FormControl>
+                    >
+                      {field.value
+                        ? teamsOptions.find(
+                            (team) => team.value === field.value
+                          )?.label
+                        : "Select a team"
+                      }
+                      <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </FormControl>
+                </PopoverTrigger>
+
+                <PopoverContent className="w-full md:w-[20rem] lg:w-[30rem] p-0">
+                  <Command>
+                    <CommandInput placeholder="Search team..." />
+                    <CommandList>
+                      <CommandEmpty>No Team found.</CommandEmpty>
+                      <CommandGroup>
+                        {teamsOptions.map((team) => (
+                          <CommandItem
+                            value={team.label}
+                            key={team.value}
+                            onSelect={() => {
+                              form.setValue("teamId", team.value)
+                            }}
+                          >
+                            <Check
+                              className={cn(
+                                "mr-2 h-4 w-4",
+                                team.value === field.value
+                                  ? "opacity-100"
+                                  : "opacity-0"
+                              )}
+                            />
+                            {team.label}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
+
+              <FormDescription>
+                This is the language that will be used in the dashboard.
+              </FormDescription>
+
               <FormMessage />
             </FormItem>
           )}
@@ -85,12 +135,12 @@ export const JoinTeamForm = ({
             <FormItem>
               <FormLabel>Access Code <RequiredAsterisk /></FormLabel>
               <FormControl>
-                <Input placeholder="Highschool" {...field} />
+                <Input placeholder="Enter your access code" {...field} />
               </FormControl>
-              <FormMessage />
               <FormDescription>
                 You will be given an access code from your team leader as a permission to access this team
               </FormDescription>
+              <FormMessage />
             </FormItem>
           )}
         />
