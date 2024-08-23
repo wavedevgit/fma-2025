@@ -7,11 +7,13 @@ import { PersonalInformationStep, EducationStep, CompetitionStep, UploadStep, Va
 import { useForm } from "react-hook-form"
 import { applicationSchema, getApplicationDefaultValues } from "@/lib/schemas/application.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { sanitizeApplication } from "@/lib/utils"
+import { excludeFileFields, sanitizeApplication } from "@/lib/utils"
 import { z } from "zod"
 import { Form } from "@/components/shared/form"
 import { Button, Separator } from "@/components/shared"
 import { toast } from "@/components/hooks/use-toast";
+import { postApplication, putApplication } from "@/api/ApplicationApi"
+import { useRouter } from "next/navigation"
 
 export const ApplicationForm = ({ 
   userData,
@@ -20,6 +22,7 @@ export const ApplicationForm = ({
 }) => {
   const [previousStep, setPreviousStep] = useState(0)
   const [currentStep, setCurrentStep] = useState(0)
+  const router = useRouter()
   const delta = currentStep - previousStep
   const form = useForm<z.infer<typeof applicationSchema>>({
     resolver: zodResolver(applicationSchema),
@@ -32,9 +35,36 @@ export const ApplicationForm = ({
   const onSubmit = async (formData: z.infer<typeof applicationSchema>) => {
     console.log('formData', formData);
   }
+
   const onSave = async () => {
-    const formData = form.watch()
-    console.log('formData', formData);
+    const application = form.watch()
+
+    try {
+      const applicationResponse = userData?.application
+        ? await putApplication(application?.id, excludeFileFields(application)) as any
+        : await postApplication({userId: userData.id, ...application}) as any
+      ;
+
+      if (applicationResponse?.statusCode !== 200) {
+        throw new Error('Post of application failed')
+      }
+
+      toast({
+        title: 'Application saved successfully',
+        description: 'You can access your current application in your profile page',
+      });
+      
+      router.push('/profile/application')
+      setTimeout(() => {
+        window.location.reload();
+      }, 500)
+    } catch(err: any) {
+      toast({
+        title: 'Application submission failed',
+        description: err?.message,
+        variant: 'destructive'
+      });
+    }    
   }
 
   const onError = async (errors: any) => {

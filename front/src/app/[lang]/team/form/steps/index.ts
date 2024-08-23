@@ -1,4 +1,4 @@
-import { Step } from "./step.type";
+import { Step } from "../../../../../types/step.type";
 
 const createTeamFields = ['name', 'slogan', 'mentorFullName'];
 
