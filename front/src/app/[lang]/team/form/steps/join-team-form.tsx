@@ -38,8 +38,9 @@ export const JoinTeamForm = ({
   delta: number
 }) => {
   const teamsOptions = teams?.map(team => ({
-    label: team.name,
-    value: team.id.toString()
+    label: team?.name,
+    value: team?.id.toString(),
+    leader: `${team?.leader?.firstName} ${team?.leader?.lastName}`
   }))
 
   return (
@@ -100,16 +101,23 @@ export const JoinTeamForm = ({
                             onSelect={() => {
                               form.setValue("teamId", team.value)
                             }}
-                          >
-                            <Check
-                              className={cn(
-                                "mr-2 h-4 w-4",
-                                team.value === field.value
-                                  ? "opacity-100"
-                                  : "opacity-0"
-                              )}
-                            />
-                            {team.label}
+                          > 
+                            <div>
+                              <div className='flex'>
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    team.value === field.value
+                                      ? "opacity-100"
+                                      : "opacity-0"
+                                  )}
+                                />
+                                {team.label}
+                              </div>
+
+                              <div className='ml-6'> <span className='text-gray-500'>Created By: </span>{team.leader}</div>
+                            </div>
+                            
                           </CommandItem>
                         ))}
                       </CommandGroup>

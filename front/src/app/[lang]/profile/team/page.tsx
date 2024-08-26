@@ -83,7 +83,8 @@ export default function TeamPage() {
           <>
             <div className="text-sm"><span className="font-bold">Team Name</span>: {userData?.team?.name}</div>
             <div className="text-sm"><span className="font-bold">Team Slogan</span>: {userData?.team?.slogan}</div>
-            <div className="text-sm"><span className="font-bold">Mentor</span>: {userData?.team?.mentorFullName ?? '(not defined)'}</div>
+            <div className="text-sm"><span className="font-bold">Mentor</span>: {userData?.team?.mentorFullName ?? <span className="text-gray-500">(not defined)</span>}</div>
+            <div className="text-sm"><span className="font-bold">Created By</span>: {userData?.team?.leader ? `${userData?.team?.leader.firstName} ${userData?.team?.leader.lastName}` : '(not defined)'}</div>
           </>
         }
       </CardContent>
