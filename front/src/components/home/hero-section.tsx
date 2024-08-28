@@ -15,9 +15,9 @@ export default function HeroSection({
   return (
     <div className="w-full bg-transparent flex flex-col items-center justify-center rounded-md">
       {/* Logo */}
-      <div className="z-10">
+      <div className="z-10 mt-8 mb-2">
         <Image
-          src="/mmc.png"
+          src="/mtym.png"
           alt="M&M logo"
           width='400'
           height='200'
