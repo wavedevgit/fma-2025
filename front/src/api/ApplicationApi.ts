@@ -6,6 +6,12 @@ export const postApplication = (application: any) => {
   return ApiMethods.post(url, body);
 }
 
+export const updateApplicationStatus = (applicationId: number, partialApplicationStatus: any) => {
+  const url = `applications/status/${applicationId}`;
+  const body = {...partialApplicationStatus};
+  return ApiMethods.put(url, body);
+}
+
 export const getAllApplications = () => {
   const url = 'applications';
   return ApiMethods.get(url);
