@@ -14,16 +14,13 @@ import { CreateTeamForm } from "./steps/create-team-form"
 import { JoinTeamForm } from "./steps/join-team-form"
 import { createTeamDefaultValues, createTeamSchema } from "@/lib/schemas/create-team.schema"
 import { joinTeamDefaultValues, joinTeamSchema } from "@/lib/schemas/join-team.schema"
-import SummaryCard from "./steps/summary-step"
+import { SummaryCard } from "./steps/summary-step"
 import { addUser, createTeam, getAllTeams } from "@/api/TeamApi"
 import { useRouter } from "next/navigation"
 import { Team } from "@/types/team.type"
+import { checkAccessCode, deleteAccessCode } from "@/api/TeamAccessCodeApi"
 
-export const TeamForm = ({ 
-  userData,
-}: {
-  userData: any,
-}) => {
+export const TeamForm = () => {
   const [previousStep, setPreviousStep] = useState(0)
   const [currentStep, setCurrentStep] = useState(0)
   const [formType, setFormType] = useState('')
@@ -71,10 +68,17 @@ export const TeamForm = ({
 
   const onSubmitJoinTeam = async (formData: z.infer<typeof joinTeamSchema>) => {
     try {
+      const checkAccessCodeResult = await checkAccessCode(formData?.accessCode, parseInt(formData?.teamId)) as any;
+      if (checkAccessCodeResult?.statusCode !== 200) {
+        throw new Error(checkAccessCodeResult?.message)
+      }
+
       const addUserResult = await addUser(parseInt(formData?.teamId)) as any;
       if (addUserResult?.statusCode !== 200) {
         throw new Error('Adding the user in the team failed')
       }
+
+      const deleteAccessCodeResult = await deleteAccessCode(checkAccessCodeResult?.accessCode?.id) as any;
 
       router.push('/profile/team')
       setTimeout(() => {
@@ -156,7 +160,7 @@ export const TeamForm = ({
             )}
 
             {currentStep === 2 && (
-              <SummaryCard formData={createTeamForm.watch()} formType={formType} delta={delta} />
+              <SummaryCard formData={createTeamForm.watch()} formType={formType} teams={teams} delta={delta} />
             )}
 
             {/* Submit Button */}
@@ -179,7 +183,7 @@ export const TeamForm = ({
             )}
 
             {currentStep === 2 && (
-              <SummaryCard formData={joinTeamForm.watch()} formType={formType} delta={delta} />
+              <SummaryCard formData={joinTeamForm.watch()} formType={formType} teams={teams} delta={delta} />
             )}
 
             {/* Submit Button */}

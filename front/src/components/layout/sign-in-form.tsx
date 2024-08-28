@@ -27,7 +27,6 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
     const { email, password } = formData;
     setIsFormLoading(true)
     const response = await logIn(email, password) as any;
-    console.log(response)
 
     switch(response?.statusCode) {
       case 200:

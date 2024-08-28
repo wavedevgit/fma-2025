@@ -21,7 +21,7 @@ export default function ApplicationPage() {
     return (
       <div className="z-10 w-full px-5 max-w-screen-xl xl:px-0">
         <div className="space-y-6 p-10 pb-16">
-          <TeamForm userData={userData} />
+          <TeamForm />
         </div>
       </div>
     )

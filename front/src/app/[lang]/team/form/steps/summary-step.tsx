@@ -9,27 +9,21 @@ import {
 import { camelCaseToText } from '@/lib/utils'
 import { Label } from '@/components/shared'
 import { motion } from 'framer-motion'
+import { Team } from '@/types/team.type'
 
-const SummaryField = (key: string, value: string) => {
-  return (
-    <div key={key}>
-      <Label className='text-lg'>{camelCaseToText(key)}</Label>
-      <div>{value}</div>
-      <span className='text-gray-500'>{!value && '(not defined)'}</span>
-    </div>
-  )
-}
-
-const SummaryCard = ({
+export const SummaryCard = ({
   formData, 
   formType,
+  teams,
   delta,
 }:{
   formData: z.infer<any>,
   formType: string,
+  teams: Team[],
   delta: number,
 }) => {
   const formKeys = Object.keys(formData);
+  const teamName = teams?.find(team => team?.id === +formData?.teamId)?.name;
 
   return (
     <motion.div
@@ -45,10 +39,10 @@ const SummaryCard = ({
         
         <CardContent>
           <div className='grid grid-cols-1 md:grid-cols-3 gap-4 justify-between'>
-            {formKeys.map((key) => 
+            {formKeys.map((key) =>
               <div key={key}>
-                <Label>{camelCaseToText(key)}</Label>
-                <div className='text-lg'>{formData[key]}</div>
+                <Label>{key === 'teamId' ? 'Team' : camelCaseToText(key)}</Label>
+                <div className='text-lg'>{key === 'teamId' ? teamName : formData[key]}</div>
                 <span className='text-gray-500'>{!formData[key] && '(not defined)'}</span>
               </div>
             )}
@@ -59,5 +53,3 @@ const SummaryCard = ({
     
   )
 }
-
-export default SummaryCard

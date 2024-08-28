@@ -75,7 +75,6 @@ export default function TeamPage() {
         variant: 'destructive',
       });
     }
-    console.log('teamId', teamId)
   }
   
   useEffect(() => {
