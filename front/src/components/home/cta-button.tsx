@@ -61,7 +61,7 @@ const CtaButton = () => {
         >
           <div className="absolute inset-0 bg-gradient-to-r from-sky-500 to-[#272162] rounded-lg" />
           <div className="px-8 py-2 bg-white rounded-[6px] relative group transition duration-200 text-black hover:bg-transparent hover:text-white">
-            Submit Application
+            Envoyer une candidature
           </div>
         </button>
 
@@ -73,7 +73,7 @@ const CtaButton = () => {
         >
           <div className="absolute inset-0 bg-[#272162] rounded-lg" />
           <div className="px-8 py-2 bg-white rounded-[6px] relative group transition duration-200 text-gray-900 hover:bg-transparent hover:text-white">
-            Join a Team
+            Rejoindre une équipe
           </div>
         </button>
 
@@ -81,7 +81,7 @@ const CtaButton = () => {
       </div>
       
       <p>
-        <span className='font-semibold text-[#272162]'>Deadline for application:</span> <span className='font-bold'>May 31st 2024</span>
+        <span className='font-semibold text-[#272162]'>Date limite pour candidater:</span> <span className='font-bold'>30 Septembre 2024</span>
       </p>
     </div>
   )

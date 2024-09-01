@@ -10,8 +10,8 @@ const TimeAndLocation = () => {
       >
         <Calendar />
         <div className="text-sm text-gray-500 font-semibold py-6">
-          Sunday <span className='text-[#272162]'>July 28th</span> to <br/>
-          Thursday <span className='text-[#272162]'> August 1st</span>
+          Du Jeudi <span className='text-[#272162]'>26</span> au <br/>
+          Dimanche <span className='text-[#272162]'>29 Décembre</span>
         </div>
       </div>
 
@@ -22,8 +22,8 @@ const TimeAndLocation = () => {
         <Book className='h-16'/>
         
         <div className="text-sm text-gray-500 font-semibold py-4">
-          Top Students from <br/>
-          <span className='text-[#272162]'>Bac+1</span> to <span className='text-[#272162]'>Bac+4</span>
+          Élèves du <span className='text-[#272162]'>lycée</span> <br/>
+          d&apos;orientation scientifique
         </div>
       </div>
 
@@ -33,8 +33,8 @@ const TimeAndLocation = () => {
       >
         <Location />
         <div className="text-sm text-gray-500 font-semibold py-6">
-          <span className='text-[#272162] inline'>UM6P | College of Computing</span> <br/>
-          Benguerir
+          <span className='text-[#272162] inline'>Université Al Akhawayn</span> <br/>
+          Ifrane
         </div>
       </div>
     </div>

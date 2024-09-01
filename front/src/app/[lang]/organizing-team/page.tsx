@@ -71,7 +71,7 @@ export default function OrganizingTeamPage() {
           )}
         </div>
 
-        <h1
+        {/* <h1
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
@@ -91,9 +91,9 @@ export default function OrganizingTeamPage() {
               linkedinSrc={person.linkedinSrc}
             />
           )}
-        </div>
+        </div> */}
 
-        <h1
+        {/* <h1
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
@@ -113,9 +113,9 @@ export default function OrganizingTeamPage() {
               linkedinSrc={person.linkedinSrc}
             />
           )}
-        </div>
+        </div> */}
 
-        <h1
+        {/* <h1
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
@@ -134,7 +134,7 @@ export default function OrganizingTeamPage() {
               linkedinSrc={person.linkedinSrc}
             />
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   )

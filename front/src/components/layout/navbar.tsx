@@ -22,11 +22,6 @@ const links = [
     href: '/schedule',
   },
   {
-    key: 'speakers',
-    label: 'Speakers',
-    href: '/speakers',
-  },
-  {
     key: 'organizing-team',
     label: 'Organizing Team',
     href: '/organizing-team',

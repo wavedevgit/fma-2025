@@ -74,9 +74,6 @@ export const organizingCommittee = [
     imageSrc: '/organizing-team/rayan_mellouk.jpg',
     linkedinSrc: 'https://linkedin.com/in/rayan-mellouk-819936209',
   },
-];
-
-export const staff = [
   {
     name: 'Lina BELLAHMIDI',
     imageSrc: '/organizing-team/lina_bellahmidi.jpeg',
@@ -97,30 +94,21 @@ export const staff = [
     imageSrc: '/organizing-team/oussama_zouhry.jpeg',
     linkedinSrc: 'https://www.linkedin.com/in/oussama-zouhry-16024822b/',
   },
-];
-
-export const webDevelopment = [
   {
     name: 'Achraf EL KHAMSI',
     imageSrc: '/organizing-team/achraf_el_khamsi.jpeg',
     linkedinSrc: 'https://linkedin.com/in/achrafelkhamsi',
   },
+];
+
+export const staff = [
+  
+];
+
+export const webDevelopment = [
+  
 ]
 
 export const um6p = [
-  {
-    name: 'Omar SAADI',
-    imageSrc: '/organizing-team/omar_saadi.jpeg',
-    linkedinSrc: 'https://linkedin.com/in/omar-saadi-026450a1',
-  },
-  {
-    name: 'Nabila IDAR',
-    imageSrc: '/organizing-team/nabila_idar.jpeg',
-    linkedinSrc: 'https://linkedin.com/in/nabila-idar-37378024',
-  },
-  {
-    name: 'Abdelaziz BOUAAICH',
-    imageSrc: '/organizing-team/abdelaziz_bouaaich.jpeg',
-    linkedinSrc: 'https://linkedin.com/in/abdelaziz-bouaaich',
-  },
+
 ]
