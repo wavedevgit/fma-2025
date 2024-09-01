@@ -81,7 +81,7 @@ const CtaButton = () => {
       </div>
       
       <p>
-        <span className='font-semibold text-[#272162]'>Date limite pour candidater:</span> <span className='font-bold'>30 Septembre 2024</span>
+        <span className='font-semibold text-[#272162]'>Date limite pour candidater:</span> <span className='font-bold'>22 Septembre 2024</span>
       </p>
     </div>
   )
