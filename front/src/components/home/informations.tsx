@@ -16,18 +16,13 @@ const Informations = () => {
         <div className="w-full md:text-xl py-4 space-y-4">
           <p className="md:w-3/4">MTYM est une compétition de recherche déstinée aux lycéens d&apos;orientation scientifique. Elle consiste à explorer des problèmes mathématiques pendant trois mois en équipe et présenter les solutions sous forme d&apos;un débat. </p>
           <p className="md:w-3/4">Préparez-vous à vivre une expérience riche en divertissement, workshops, conférences scientifiques et séances d&apos;orientation.</p>
-          <div>
-            <button
-              className="p-[3px] relative"
-              onClick={() => router.push('/schedule')}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-sky-500 to-[#272162] rounded-lg" />
-              <div className="px-8 py-2 bg-white rounded-[6px] relative group transition duration-200 text-black hover:bg-transparent hover:text-white">
-              Découvrez le programme complet
-              </div>
-            </button>
-          </div>
+          <Button disabled variant='default'>
+        Le programme complet sera publié prochainement
+        </Button>
         </div>
+
+        
+        
 
         <div className="w-full md:leading-[5rem] font-medium text-4xl md:text-5xl">
           <p><span className='bg-gradient-to-br from-sky-500 to-[#272162] inline-block text-transparent bg-clip-text'>200+</span> Participants</p>

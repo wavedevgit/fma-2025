@@ -16,11 +16,11 @@ import { Button } from "../shared";
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 
 const links = [
-  {
-    key: 'schedule',
-    label: 'Programme',
-    href: '/schedule',
-  },
+  // {
+  //   key: 'schedule',
+  //   label: 'Programme',
+  //   href: '/schedule',
+  // },
   {
     key: 'organizing-team',
     label: 'Equipe organisatrice',
