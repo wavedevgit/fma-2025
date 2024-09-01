@@ -17,25 +17,35 @@ import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 
 const links = [
   {
-    key: 'agenda',
-    label: 'Schedule',
+    key: 'schedule',
+    label: 'Programme',
     href: '/schedule',
   },
   {
     key: 'organizing-team',
-    label: 'Organizing Team',
+    label: 'Equipe organisatrice',
     href: '/organizing-team',
   },
+  // {
+  //   key: 'problems',
+  //   label: 'Problems',
+  //   href: '/problems',
+  // },
   {
-    key: 'problems',
-    label: 'Problems',
-    href: '/problems',
+    key: 'partenaires',
+    label: 'Partenaires',
+    href: '/partners',
   },
-  {
-    key: 'past-edition',
-    label: 'Past Edition',
-    href: '/past-edition',
-  },
+  // {
+  //   key: 'past-edition',
+  //   label: 'Past Edition',
+  //   href: '/past-edition',
+  // },
+  // {
+  //   key: 'past-edition',
+  //   label: 'Past Edition',
+  //   href: '/past-edition',
+  // },
   {
     key: 'faq',
     label: 'FAQ',

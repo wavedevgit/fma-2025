@@ -26,6 +26,12 @@ const partners = [
     imageHref: '/ram.svg',
     imageHeight: '120px',
   },
+  {
+    key: 'evalmee',
+    label: 'Evalmee ',
+    imageHref: '/evalmee_sm.png',
+    imageHeight: '120px',
+  },
 ]
 
 export default function PartnersPage() {
@@ -118,6 +124,22 @@ export default function PartnersPage() {
 
             <div className="h-fit w-[16rem] p-4 md:w-[20rem] flex flex-col space-y-2">
               <div>La <span className='mb-8 bg-gradient-to-br from-[#f9597c] to-[#c3022d] text-transparent bg-clip-text font-semibold'>Royal Air Maroc</span>, compagnie aérienne nationale du Maroc, est une référence en matière d&apos;excellence et de service. Alliant modernité et tradition, elle relie le Maroc au monde tout en offrant une expérience de voyage unique et authentique.</div>
+            </div>
+          </div>
+
+          <div
+            className="w-[16rem] md:h-[18rem] md:w-[36rem] bg-white border-b-4 border-red-500 md:flex justify-center items-center rounded-md"
+            key={partners[3].key}
+          > 
+            <div className="h-[8rem] w-[16rem] md:h-fit md:w-[18rem] flex justify-center items-center">
+              <img
+                src={partners[3].imageHref}
+                style={{height: partners[3].imageHeight, width: 'auto'}}
+              />
+            </div>
+
+            <div className="h-fit w-[16rem] p-4 md:w-[20rem] flex flex-col space-y-2">
+              <div><span className='mb-8 bg-gradient-to-br from-[#7cb9ff] to-[#3691FB] text-transparent bg-clip-text font-semibold'>Evalmee</span> est une plateforme d&apos;évaluation en ligne offrant des outils précis et personnalisés pour dévoiler et perfectionner les compétences. Découvrez une approche dynamique pour révéler le potentiel caché et atteindre l&apos;excellence professionnelle.</div>
             </div>
           </div>
         </div>
