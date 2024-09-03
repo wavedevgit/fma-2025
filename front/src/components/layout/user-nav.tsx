@@ -56,7 +56,7 @@ export function UserNav(props: any) {
           <DropdownMenuItem
             onClick={() => router.push('/profile/account')}
           >
-            Profile
+            Profil
           </DropdownMenuItem>
         </DropdownMenuGroup>
         
@@ -65,7 +65,7 @@ export function UserNav(props: any) {
         <DropdownMenuItem
           onClick={handleLogOut}
         >
-          Log out
+          Se déconnecter
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

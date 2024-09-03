@@ -67,7 +67,7 @@ export default function ResetPasswordPage() {
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-5xl md:leading-[4rem]"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
-          Reset Password
+          Réinitialiser votre mot de passe
         </h1>
 
         {userData &&
@@ -88,7 +88,7 @@ export default function ResetPasswordPage() {
                           <FormControl>
                             <Input
                               id="password"
-                              placeholder="Password"
+                              placeholder="Mot de passe"
                               type="password"
                               autoCapitalize="none"
                               autoComplete="password"
@@ -110,7 +110,7 @@ export default function ResetPasswordPage() {
                           <FormControl>
                             <Input
                               id="confirm-password"
-                              placeholder="Confirm Password"
+                              placeholder="Confirmer mot de passe"
                               type="password"
                               autoCapitalize="none"
                               autoComplete="confirm-password"
@@ -129,7 +129,7 @@ export default function ResetPasswordPage() {
                       {isFormLoading ? (
                         <LoadingDots color="#808080" />
                       ) : (
-                        <p>Reset Password</p>
+                        <p>Réinitialiser</p>
                       )}
                     </Button>
 

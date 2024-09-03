@@ -12,12 +12,13 @@ export default function ApplicationPage() {
   const userData = useRecoilValue<any>(userState);
   const router = useRouter();
   useAuthGuard();
+  console.log('userData', userData)
 
   if (!userData) {
     return <ProfileSkeleton />;
-  } else if (userData?.team) {
+  } else if (!userData?.application || userData?.application?.status?.status === 'DRAFT' || userData?.team) {
     router.push('/profile/team')
-  } else {
+  }  else {
     return (
       <div className="z-10 w-full px-5 max-w-screen-xl xl:px-0">
         <div className="space-y-6 p-10 pb-16">

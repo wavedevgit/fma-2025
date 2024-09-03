@@ -41,7 +41,7 @@ export const TeamForm = () => {
   })
 
   const onSubmitCreateTeam = async (formData: z.infer<typeof createTeamSchema>) => {
-    try {
+    try {      
       const createTeamResult = await createTeam(formData) as any;
       if (createTeamResult?.statusCode !== 200) {
         throw new Error(createTeamResult?.message)

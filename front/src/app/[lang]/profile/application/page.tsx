@@ -53,21 +53,21 @@ export default function ApplicationPage() {
 
     if (!application) {
       setContent({
-        title: "You haven't submitted an application yet",
-        subtitle: "Make sure to submit an application, and then join a team",
-        ctaLabel: "Create an application",
+        title: "Vous n'avez pas encore soumis votre candidature",
+        subtitle: "Assurez-vous de soumettre une candidature, puis de rejoindre une équipe.",
+        ctaLabel: "Créer votre candidature",
       })
     } else if (applicationStatus === 'DRAFT') {
       setContent({
-        title: "You have saved an application draft. It's not yet submitted",
-        subtitle: "Make sure to complete and submit your application, and then join a team",
-        ctaLabel: "Complete your application",
+        title: "Vous avez sauvegardé un brouillon de candidature. Elle n'est pas encore soumise.",
+        subtitle: "Assurez-vous de compléter et de soumettre votre candidature, puis de rejoindre une équipe.",
+        ctaLabel: "Continuer votre candidature",
       })
     } else {
       setContent({
-        title: "You have already submitted an application",
-        subtitle: "Make sure that you joined a team so that your application will be taken into account",
-        ctaLabel: "Update your application",
+        title: "Vous avez déjà soumis une candidature",
+        subtitle: "Assurez-vous d'avoir rejoint une équipe afin que votre candidature soit prise en compte.",
+        ctaLabel: "Mettre à jour votre candidature",
       })
     }
   }, [userData])
@@ -85,8 +85,8 @@ export default function ApplicationPage() {
       <CardContent>
         {userData?.application && 
           <>
-            <div className="text-sm"><span className="font-bold">Submission date</span>: {formatDate(userData?.application?.createdAt)}</div>
-            <div className="text-sm"><span className="font-bold">Update date</span>: {formatDate(userData?.application?.updatedAt)}</div>
+            <div className="text-sm"><span className="font-bold">Date de soumission</span>: {formatDate(userData?.application?.createdAt)}</div>
+            <div className="text-sm"><span className="font-bold">Date de sauvegarde</span>: {formatDate(userData?.application?.updatedAt)}</div>
             <div className="text-sm"><span className="font-bold">Status</span>: <Badge className={`px-4 ${getBadgeClassname(userData?.application?.status?.status)}`}>{userData?.application?.status?.status}</Badge></div>
           </>
         }
