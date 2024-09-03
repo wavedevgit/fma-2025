@@ -47,11 +47,11 @@ const Informations = () => {
 
         <div className='w-full'>
           <MeteorCard 
-            title='Problèmes' 
-            description='Découvrez les problèmes de cette année, aussi stimulant que passionnants'
-            ctaLabel='Découvrir les problèmes'
+            title='Dernière Édition' 
+            description='Découvrez comment s&apos;est déroulé la dernière édition de MTYM.'
+            ctaLabel='Voir la dernière édition'
             className='h-full'
-            onClick={() => router.push('/problems')}
+            onClick={() => router.push('/last-edition')}
           />
         </div>
 

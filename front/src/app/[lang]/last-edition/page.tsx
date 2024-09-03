@@ -14,7 +14,7 @@ export default function ProblemsPage() {
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-5xl md:leading-[4rem]"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
-          Problèmes
+          Dernière édition
         </h1>
 
         <div
@@ -22,11 +22,15 @@ export default function ProblemsPage() {
           style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
         >
           <p className="mt-12">
+            Découvrez comment s&apos;est déroulée la dernière édition de <span className='bg-gradient-to-br from-sky-500 to-[#272162] inline-block text-transparent bg-clip-text'>MTYM</span> au Lycée Mohamed 6 d&apos;Excellence de Benguerir, avec des participants venus de tous les coins du Maroc pour démontrer leurs compétences dans le cadre d&apos;une compétition de recherche de haut niveau valorisant la bienveillance entre les compétiteurs.  
+          </p>
+
+          <p className="mt-12">
             Les problèmes proposés à <span className='bg-gradient-to-br from-sky-500 to-[#272162] inline-block text-transparent bg-clip-text'>MTYM</span> sont très stimulants et nécessitent une bonne maîtrise des bases mathématiques, puisqu&apos;ils sont conçus pour aider à développer l&apos;esprit de recherche chez les lycéens.  
           </p>
 
           <p className="mt-6">
-            N&apos;hésitez pas à jeter un coup d&apos;œil sur les problèmes de l&apos;édition de 2023/2024!
+            Besoin de plus d&apos;idées sur le type de problèmes à <span className='bg-gradient-to-br from-sky-500 to-[#272162] inline-block text-transparent bg-clip-text'>MTYM</span> ? Ici tu trouveras tout pour assouvir ta curiosité !
           </p>
         </div>
         

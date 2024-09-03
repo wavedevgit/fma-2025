@@ -25,8 +25,8 @@ const links = [
   // },
   {
     key: 'problems',
-    label: 'Problèmes',
-    href: '/problems',
+    label: 'Dernière Édition',
+    href: '/last-edition',
   },
   {
     key: 'problems',
