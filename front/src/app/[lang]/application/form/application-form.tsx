@@ -132,7 +132,7 @@ export const ApplicationForm = ({
       router.push('/profile/application')
       setTimeout(() => {
         window.location.reload();
-      }, 500)
+      }, 1000)
     } catch(err: any) {
       toast({
         title: 'Application submission failed',
@@ -155,14 +155,14 @@ export const ApplicationForm = ({
       {/* Header */}
       <div className="flex justify-between">
         <div className="space-y-0.5">
-          <h2 className="text-2xl font-bold tracking-tight">Application</h2>
+          <h2 className="text-2xl font-bold tracking-tight">Candidature</h2>
           <div className="text-muted-foreground">
-            Follow the steps below to complete your application
+            Suivez les étapes ci-dessous pour compléter votre candidature
           </div>
         </div>
 
         <div>
-          <Button onClick={onSave}>Save as Draft</Button>
+          <Button onClick={onSave}>Sauvegarder & Terminer plus tard</Button>
         </div>
       </div>
         

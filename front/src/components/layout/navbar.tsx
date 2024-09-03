@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import useScroll from "@/lib/hooks/use-scroll";
 import { useAuthModal } from "./auth-modal";
 import { UserNav } from "./user-nav";
@@ -10,9 +9,7 @@ import { useRouter } from "next/navigation";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/store/userState";
 import { getToken } from "@/lib/utils";
-import LanguageSwitcher from "./language-switcher";
 import useMediaQuery from "@/lib/hooks/use-media-query";
-import { Button } from "../shared";
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 
 const links = [
@@ -26,11 +23,16 @@ const links = [
   //   label: 'Equipe organisatrice',
   //   href: '/organizing-team',
   // },
-  // {
-  //   key: 'problems',
-  //   label: 'Problems',
-  //   href: '/problems',
-  // },
+  {
+    key: 'problems',
+    label: 'Dernière Édition',
+    href: '/last-edition',
+  },
+  {
+    key: 'problems',
+    label: 'Test de sélection',
+    href: '/selection',
+  },
   {
     key: 'partenaires',
     label: 'Partenaires',

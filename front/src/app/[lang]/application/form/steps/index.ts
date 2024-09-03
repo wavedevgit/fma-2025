@@ -9,7 +9,7 @@ export const steps: Step[] = [
   {
     id: 'Step 2',
     name: 'Education',
-    fields: ['educationLevel', 'educationField', 'highschool']
+    fields: ['educationLevel', 'educationField', 'highschool', 'averageGrade', 'ranking', 'mathAverageGrade', 'mathRanking', 'numberOfStudentsInClass']
   },
   {
     id: 'Step 3',
