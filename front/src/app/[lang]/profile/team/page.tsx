@@ -49,7 +49,7 @@ export default function TeamPage() {
       })
     } else {
       setContent({
-        title: isTeamLeader ? "Vous avez créer un équipe!" : "Vous avez rejoins une équipe!",
+        title: isTeamLeader ? "Vous avez créé une équipe!" : "Vous avez rejoint une équipe!",
         subtitle: "Votre candidature sera jointe à celles de vos coéquipiers.",
       })
     }
@@ -113,7 +113,12 @@ export default function TeamPage() {
                 <Table>
                   <TableBody>
                     <TableRow>
-                      <TableCell className="font-medium">{userData?.team?.mentorFullname ?? <span className="text-gray-500">(non défini)</span>}</TableCell>
+                      <TableCell className="font-medium">
+                        {userData?.team?.mentorFullname
+                          ? userData?.team?.mentorFullname 
+                          : <span className="text-gray-500">(non défini)</span>
+                        }
+                      </TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
