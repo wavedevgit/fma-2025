@@ -8,7 +8,7 @@ const AboutSection = () => {
   return (
     <div className="">
       <div className='drop-shadow-sm space-y-6 md:space-y-0 md:flex md:justify-around mb-12 text-center text-lg'>
-        Nous sommes avant tout des gens passionnés par la science, et uni par l&apos;envie de partager et de former les leaders de demain.<br/>
+        Nous sommes avant tout des gens passionnés par la science, et unis par l&apos;envie de partager et de former les leaders de demain.<br/>
         Notre vision est celle d&apos;un Maroc où chaque jeune a l&apos;opportunité de réaliser son plein potentiel grâce à une éducation de qualité.
       </div>
 
