@@ -105,7 +105,7 @@ export const CreateTeamForm = ({
         {/* Mentor Full Name*/}
         <FormField
           control={form.control}
-          name="mentorFullName"
+          name="mentorFullname"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Mentor full name</FormLabel>

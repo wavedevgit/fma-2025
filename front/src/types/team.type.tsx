@@ -2,6 +2,6 @@ export type Team = {
   id: number;
   name: string;
   slogan: string;
-  mentorFullName: string;
+  mentorFullname: string;
   leader: any;
 }

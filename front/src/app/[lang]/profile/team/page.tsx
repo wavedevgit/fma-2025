@@ -79,6 +79,7 @@ export default function TeamPage() {
   
   useEffect(() => {
     const team = userData?.team;
+    console.log('team: ', team);
     const isTeamLeader = team?.leader?.id === userData?.id 
     setIsTeamLeader(isTeamLeader);
 
@@ -116,7 +117,7 @@ export default function TeamPage() {
             </div>
             
             <div className="p-4">
-              <div className="text-sm"><span className="font-bold">Mentor</span>: {userData?.team?.mentorFullName ?? <span className="text-gray-500">(not defined)</span>}</div>
+              <div className="text-sm"><span className="font-bold">Mentor</span>: {userData?.team?.mentorFullname ?? <span className="text-gray-500">(not defined)</span>}</div>
               <div className="text-sm"><span className="font-bold">Created By</span>: {userData?.team?.leader ? `${userData?.team?.leader.firstName} ${userData?.team?.leader.lastName}` : '(not defined)'}</div>
             </div>
           </>
