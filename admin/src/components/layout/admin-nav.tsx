@@ -59,7 +59,7 @@ export function AdminNav() {
         <DropdownMenuItem
           onClick={handleLogOut}
         >
-          Log out
+          Se déconnecter
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

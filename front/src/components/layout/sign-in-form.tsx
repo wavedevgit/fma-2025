@@ -81,7 +81,7 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
                   <FormControl>
                     <Input
                       id="password"
-                      placeholder="Password"
+                      placeholder="Mot de passe"
                       type="password"
                       autoCapitalize="none"
                       autoComplete="email"
@@ -99,7 +99,7 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
               {isFormLoading ? (
                 <LoadingDots color="#808080" />
               ) : (
-                <p>Sign In</p>
+                <p>Se connecter</p>
               )}
             </Button>
             

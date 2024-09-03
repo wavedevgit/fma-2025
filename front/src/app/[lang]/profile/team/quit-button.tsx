@@ -37,7 +37,7 @@ const QuitButton = () => {
         <Button
           variant='destructive'
         >
-          Quit this team
+          Quitter l&apos;équipe
         </Button>
       </AlertDialogTrigger>
 

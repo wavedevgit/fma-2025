@@ -52,19 +52,18 @@ export default function TeamPage() {
   
   useEffect(() => {
     const team = userData?.team;
-    console.log('team: ', team);
     const isTeamLeader = team?.leader?.id === userData?.id 
     setIsTeamLeader(isTeamLeader);
 
     if (!team) {
       setContent({
-        title: "You are not part of a team yet!",
-        subtitle: "Make sure to join a team so that your application will be taken into account",
+        title: "Vous ne faites pas partie d'une équipe!",
+        subtitle: "Assurez-vous de rejoindre une équipe afin que votre candidature soit prise en compte.",
       })
     } else {
       setContent({
-        title: isTeamLeader ? "You have created a team!" : "You have joined a team!",
-        subtitle: "Your application will be joined to the applications of your teammates",
+        title: isTeamLeader ? "Vous avez créer un équipe!" : "Vous avez rejoins une équipe!",
+        subtitle: "Votre candidature sera jointe à celles de vos coéquipiers.",
       })
     }
   }, [userData])
@@ -92,7 +91,6 @@ export default function TeamPage() {
                 <span className="font-bold">Membres de l&apos;équipe</span>
 
                 <Table>
-                  <TableCaption>A list of the team members.</TableCaption>
                   <TableHeader>
                     <TableRow>
                       <TableHead>Prénom</TableHead>
@@ -142,7 +140,7 @@ export default function TeamPage() {
           <Button
             onClick={() => router.push('/team')}
           >
-            Join a team
+            Rejoindre une équipe
           </Button>
         }
         {userData?.team &&
@@ -158,9 +156,9 @@ export default function TeamPage() {
   return (
     <div className="space-y-6">
       <div>
-        <div className="text-lg font-medium">Application</div>
+        <div className="text-lg font-medium">Équipe</div>
         <p className="text-sm text-muted-foreground">
-          This is where you manage your current application.
+          C&apos;est ici que vous trouverez le statut de votre équipe.
         </p>
       </div>
 

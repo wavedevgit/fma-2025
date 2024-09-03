@@ -49,22 +49,22 @@ export const InviteButton = () => {
         <Button
           variant='default'
         >
-          Invite people
+          Inviter des personnes
         </Button>
       </AlertDialogTrigger>
 
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Generate Access Code</AlertDialogTitle>
+          <AlertDialogTitle>Générer un code d&apos;accès</AlertDialogTitle>
           <AlertDialogDescription className="space-y-6">
-            <p>Send an access code to the people you want to invite. It&apos;s to be used by them in the team application form.</p>
-            <p>This is a single use access code. You&apos;ll have to generate a new access code to each member of the team.</p>
+            <p>Pour qu&apos;une personne puisse rejoindre l&apos;équipe, elle aura besoin d&apos;un code d&apos;accès utilisable dans le formulaire de candidature d&apos;équipe.</p>
+            <p>Ce code est à usage unique. Vous devriez générer un nouveau code pour chaque membre de l&apos;équipe.</p>
 
             <div className="mt-6 flex space-x-4">
               <Button
                 onClick={onGenerateAccessCode}
               >
-                Generate Access Code
+                Générer un nouveau code d&apos;accès
               </Button>
 
               {accessCode && 
@@ -80,7 +80,7 @@ export const InviteButton = () => {
           <AlertDialogCancel
             onClick={() => setAccessCode('')}
           >
-            Cancel
+            Fermer
           </AlertDialogCancel>
         </AlertDialogFooter>
       </AlertDialogContent>

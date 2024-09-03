@@ -45,9 +45,9 @@ const AuthModal = ({
 
           <>
             <h3 className="font-display text-2xl font-bold">
-              {formType === 'sign-in' && 'Log in'}
-              {formType === 'sign-up' && 'Sign up'}
-              {formType === 'reset-password' && 'Reset Password'}
+              {formType === 'sign-in' && 'Se connecter'}
+              {formType === 'sign-up' && 'Créer un compte'}
+              {formType === 'reset-password' && 'Réinitialiser votre mot de passe'}
             </h3>
             <div className="w-full space-y-5">
               {formType === 'sign-in' && (
@@ -55,7 +55,7 @@ const AuthModal = ({
                   <SignInForm className="w-full"/> 
                   <p className="w-full text-sm text-muted-foreground text-center">
                     <Link href="/" className="underline underline-offset-4 hover:text-primary" onClick={() => setFormType('reset-password')}>
-                      Forgot password?
+                      Mot de passe oublié?
                     </Link>
                   </p>
                 </>
@@ -67,16 +67,16 @@ const AuthModal = ({
               
 
               <p className="w-full text-sm text-muted-foreground">
-                {formType === 'sign-in' && `Don't have an account?` }
-                {formType === 'sign-up' && 'Already have an account?' }
+                {formType === 'sign-in' && `Pas de compte?` }
+                {formType === 'sign-up' && 'Vous avez déjà un compte?' }
                 
                 <Button
                   variant="link"
                   onClick={() => onFormToggle((formType === 'sign-in') ? 'sign-up' : 'sign-in')}
                   className="underline underline-offset-4 hover:text-primary text-blue-500"
                 >
-                  {formType === 'sign-in' && 'Sign up' }
-                  {formType === 'sign-up' && 'Log in' }
+                  {formType === 'sign-in' && 'Créer un compte' }
+                  {formType === 'sign-up' && 'Se connecter' }
                 </Button>
               </p>
             </div>
