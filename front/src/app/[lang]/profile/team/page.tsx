@@ -12,22 +12,9 @@ import {
   CardTitle,
 } from "@/components/shared/card";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/shared/alert-dialog"
-import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -38,10 +25,10 @@ import { useRecoilValue } from "recoil";
 import { userState } from "@/store/userState";
 import { useAuthGuard } from "@/components/hooks/use-auth-guard";
 import { useRouter } from "next/navigation";
-import { InviteButton } from "./invite-button";
-import QuitButton from "./quit-button";
+import { InviteButton } from "./components/invite-button";
+import QuitButton from "./components/quit-button";
 import { Badge } from "@/components/shared/badge";
-import { ActionButton } from "./action-button";
+import { ActionButton } from "./components/action-button";
 
 export default function TeamPage() {
   useAuthGuard();
@@ -87,7 +74,7 @@ export default function TeamPage() {
             </div>
             
             <div className="mt-4 p-4">
-              <>
+              <div className="mb-4">
                 <span className="font-bold">Membres de l&apos;équipe</span>
 
                 <Table>
@@ -118,7 +105,7 @@ export default function TeamPage() {
                   </TableBody>
 
                 </Table>
-              </>
+              </div>
 
               <>
                 <span className="font-bold">Mentor</span>
@@ -136,18 +123,31 @@ export default function TeamPage() {
         }
       </CardContent>
       <CardFooter>
-        {!userData?.team &&
-          <Button
-            onClick={() => router.push('/team')}
-          >
-            Rejoindre une équipe
-          </Button>
-        }
-        {userData?.team &&
-          <div className="flex space-x-4">
-            {isTeamLeader && <InviteButton />}
-            <QuitButton />
-          </div>
+        {(!userData?.application || userData?.application?.status?.status === 'DRAFT')
+          ? (
+            <>
+              <p>Avant que vous puissiez rejoindre une équipe, il faut que vous soumettiez votre candidature:</p>
+              <Button
+                onClick={() => router.push('/application')}
+              >
+                Créer votre candidature
+              </Button>
+            </>
+          ) : (
+            userData?.team
+              ? (
+                <div className="flex space-x-4">
+                  {isTeamLeader && <InviteButton />}
+                  <QuitButton />
+                </div>
+              ) : (
+                <Button
+                  onClick={() => router.push('/team')}
+                >
+                  Rejoindre une équipe
+                </Button>
+              )
+          )
         }
       </CardFooter>
     </Card>
