@@ -4,7 +4,7 @@ import { Compass, Exam, Rocket, Solution, Trophy } from "@/components/shared/ico
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function ProblemsPage() {
+export default function SelectionPage() {
   const router = useRouter();
 
   return (
@@ -14,7 +14,7 @@ export default function ProblemsPage() {
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-5xl md:leading-[4rem]"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
-          Problèmes <span className='bg-gradient-to-br from-sky-500 to-[#272162] inline-block text-transparent bg-clip-text'>&</span> Syllabus
+          Test de selection
         </h1>
 
         <div
@@ -22,11 +22,11 @@ export default function ProblemsPage() {
           style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
         >
           <p className="mt-12">
-            Bien que <span className='bg-gradient-to-br from-sky-500 to-[#272162] inline-block text-transparent bg-clip-text'>MTYM</span>, soit destinée aux lycéens, les problèmes proposés sont très stimulants et nécessitent une très bonne maîtrise des bases mathématiques, une bonne vision critique, puisqu&apos;ils sont conçus pour aider à développer l&apos;esprit de recherche chez les participants.  
+            ...
           </p>
 
           <p className="mt-6">
-            Donc que vous soyez éligible à la compétition, ou tout simplement passionné de mathématiques, soyez sûrs que vous apprécierez bien de penser à ces problèmes. Alors n&apos;hésitez pas à y jeter un coup d&apos;œil !
+            ...
           </p>
         </div>
         
