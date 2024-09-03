@@ -48,8 +48,8 @@ const Informations = () => {
         <div className='w-full'>
           <MeteorCard 
             title='Problèmes' 
-            description='...'
-            ctaLabel='Voir les problèmes'
+            description='Découvrez les problèmes de cette année, aussi stimulant que passionnants'
+            ctaLabel='Découvrir les problèmes'
             className='h-full'
             onClick={() => router.push('/problems')}
           />
@@ -69,10 +69,10 @@ const Informations = () => {
         <div className='w-full'>
           <MeteorCard 
             title='Test de sélection' 
-            description='...'
-            ctaLabel='Voir le test de sélection'
+            description='Apprenez plus sur le processus de sélection'
+            ctaLabel='Voir la sélection'
             className='h-full'
-            onClick={() => router.push('/speakers')}
+            onClick={() => router.push('/selection')}
           />
         </div>
       </div>

@@ -22,11 +22,15 @@ export default function SelectionPage() {
           style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
         >
           <p className="mt-12">
-            ...
+            La sélection pour la participation à <span className='bg-gradient-to-br from-sky-500 to-[#272162] inline-block text-transparent bg-clip-text'>MTYM</span> se fait principalement sur la base d&apos;un test de sélection qui aura lieu les <span className="font-bold">28 et 29 septembre 2024</span>.
           </p>
 
           <p className="mt-6">
-            ...
+            Le <span className="font-bold">syllabus</span> vous permettra de connaître les sujets couverts lors du test. 
+          </p>
+
+          <p className="mt-6">
+            Les <span className="font-bold">questions types</span> du test de sélection vous donneront une idée sur les questions auxquelles il faut s&apos;attendre et sont mises à votre disposition pour vous aider à vous y préparer.
           </p>
         </div>
         
@@ -34,54 +38,25 @@ export default function SelectionPage() {
           className="flex justify-around flex-wrap gap-6 p-8 animate-fade-up opacity-0"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
-          <div className="space-y-4 flex flex-col md:flex-row md:space-x-4 md:space-y-0">          
-            <Link href='https://drive.google.com/file/d/138cwliaGh_KuHp4RIKGVrmzirtHaW3tf/view' target="_blank">
+          <div className="space-y-4 flex flex-col md:flex-row md:space-x-8 md:space-y-0">          
+            <Link href='https://drive.google.com/file/d/1jw5CnHPFfalatYdoPDCz9cKt7yYp6bdL/view?usp=drive_link' target="_blank">
               <div 
-                className="h-[7rem] w-[8rem] bg-white border-b-4 border-b-red-500 border-2 shadow-md flex justify-center items-center rounded-md py-2 hover:cursor-pointer"
+                className="h-[8rem] w-[9rem] bg-white border-b-4 border-b-red-500 border-2 shadow-md flex justify-center items-center rounded-md py-2 hover:cursor-pointer"
               > 
                 <div className="flex flex-col items-center text-center">
-                <span className="text-sm">Syllabus 2024</span>
+                <span className="text-sm">Syllabus 2024/2025</span>
                 <Compass />
                 </div>
               </div>
             </Link>
 
-            <Link href='https://drive.google.com/file/d/1L8Zla_r5Qh86J8lx36va9IE_YTuP04L2/view?usp=drive_link' target="_blank">
+            <Link href='#' target="_blank">
               <div 
-                className="h-[7rem] w-[8rem] bg-white border-b-4 border-b-red-500 border-2 shadow-md flex justify-center items-center rounded-md py-2 hover:cursor-pointer"
+                className="h-[8rem] w-[9rem] bg-white border-b-4 border-b-red-500 border-2 shadow-md flex justify-center items-center rounded-md py-2 hover:cursor-pointer"
               > 
                 <div className="flex flex-col items-center text-center">
-                  <span className="text-sm">Exam 1 2024</span>
+                  <span className="text-sm">Questions types</span>
                   <Exam />
-                </div>
-              </div>
-              {/* <div className="text-sm text-gray-500 w-[8rem] text-center mt-2">
-                Released after contest
-              </div> */}
-            </Link>
-
-            <Link href='https://drive.google.com/file/d/14JGyh9KM5ekbF9XYe-auTgpwfdjYDu1e/view?usp=drive_link' target="_blank">
-              <div 
-                className="h-[7rem] w-[8rem] bg-white border-b-4 border-b-red-500 border-2 shadow-md flex justify-center items-center rounded-md py-2 hover:cursor-pointer"
-                onClick={() => router.push('/past-edition/results')}
-              > 
-                <div className="flex flex-col items-center text-center">
-                  <span className="text-sm">Exam 2 2024</span>
-                  <Exam />
-                </div>
-              </div>
-              {/* <div className="text-sm text-gray-500 w-[8rem] text-center mt-2">
-                Released after contest
-              </div> */}
-            </Link>
-
-            <Link href='https://drive.google.com/file/d/13qO6jjetOpObz2MGRZe_9dRdWTQhYMq8/view?usp=drive_link' target="_blank">
-              <div 
-                className="h-[7rem] w-[8rem] bg-white border-b-4 border-b-red-500 border-2 shadow-md flex justify-center items-center rounded-md py-2 hover:cursor-pointer"
-              > 
-                <div className="flex flex-col items-center text-center">
-                <span className="text-sm">Solutions 2024</span>
-                <Rocket />
                 </div>
               </div>
             </Link>

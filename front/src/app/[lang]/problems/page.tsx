@@ -14,7 +14,7 @@ export default function ProblemsPage() {
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-5xl md:leading-[4rem]"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
-          Problèmes <span className='bg-gradient-to-br from-sky-500 to-[#272162] inline-block text-transparent bg-clip-text'>&</span> Syllabus
+          Problèmes
         </h1>
 
         <div
@@ -22,11 +22,11 @@ export default function ProblemsPage() {
           style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
         >
           <p className="mt-12">
-            Bien que <span className='bg-gradient-to-br from-sky-500 to-[#272162] inline-block text-transparent bg-clip-text'>MTYM</span>, soit destinée aux lycéens, les problèmes proposés sont très stimulants et nécessitent une très bonne maîtrise des bases mathématiques, une bonne vision critique, puisqu&apos;ils sont conçus pour aider à développer l&apos;esprit de recherche chez les participants.  
+            Les problèmes proposés à <span className='bg-gradient-to-br from-sky-500 to-[#272162] inline-block text-transparent bg-clip-text'>MTYM</span> sont très stimulants et nécessitent une bonne maîtrise des bases mathématiques, puisqu&apos;ils sont conçus pour aider à développer l&apos;esprit de recherche chez les lycéens.  
           </p>
 
           <p className="mt-6">
-            Donc que vous soyez éligible à la compétition, ou tout simplement passionné de mathématiques, soyez sûrs que vous apprécierez bien de penser à ces problèmes. Alors n&apos;hésitez pas à y jeter un coup d&apos;œil !
+            N&apos;hésitez pas à jeter un coup d&apos;œil sur les problèmes de l&apos;édition de 2023/2024!
           </p>
         </div>
         
@@ -35,53 +35,13 @@ export default function ProblemsPage() {
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
           <div className="space-y-4 flex flex-col md:flex-row md:space-x-4 md:space-y-0">          
-            <Link href='https://drive.google.com/file/d/138cwliaGh_KuHp4RIKGVrmzirtHaW3tf/view' target="_blank">
+            <Link href='https://drive.google.com/file/d/1NlL0g7inbF_zO_jVfyzs--IpHzG_VLor/view?usp=drive_link' target="_blank">
               <div 
-                className="h-[7rem] w-[8rem] bg-white border-b-4 border-b-red-500 border-2 shadow-md flex justify-center items-center rounded-md py-2 hover:cursor-pointer"
+                className="h-[8rem] w-[9rem] py-2 bg-white border-b-4 border-b-red-500 border-2 shadow-md flex justify-center items-center rounded-md hover:cursor-pointer"
               > 
-                <div className="flex flex-col items-center text-center">
-                <span className="text-sm">Syllabus 2024</span>
-                <Compass />
-                </div>
-              </div>
-            </Link>
-
-            <Link href='https://drive.google.com/file/d/1L8Zla_r5Qh86J8lx36va9IE_YTuP04L2/view?usp=drive_link' target="_blank">
-              <div 
-                className="h-[7rem] w-[8rem] bg-white border-b-4 border-b-red-500 border-2 shadow-md flex justify-center items-center rounded-md py-2 hover:cursor-pointer"
-              > 
-                <div className="flex flex-col items-center text-center">
-                  <span className="text-sm">Exam 1 2024</span>
+                <div className="flex flex-col items-center text-center p-4">
+                  <span className="text-sm">Problèmes 2023/2024</span>
                   <Exam />
-                </div>
-              </div>
-              {/* <div className="text-sm text-gray-500 w-[8rem] text-center mt-2">
-                Released after contest
-              </div> */}
-            </Link>
-
-            <Link href='https://drive.google.com/file/d/14JGyh9KM5ekbF9XYe-auTgpwfdjYDu1e/view?usp=drive_link' target="_blank">
-              <div 
-                className="h-[7rem] w-[8rem] bg-white border-b-4 border-b-red-500 border-2 shadow-md flex justify-center items-center rounded-md py-2 hover:cursor-pointer"
-                onClick={() => router.push('/past-edition/results')}
-              > 
-                <div className="flex flex-col items-center text-center">
-                  <span className="text-sm">Exam 2 2024</span>
-                  <Exam />
-                </div>
-              </div>
-              {/* <div className="text-sm text-gray-500 w-[8rem] text-center mt-2">
-                Released after contest
-              </div> */}
-            </Link>
-
-            <Link href='https://drive.google.com/file/d/13qO6jjetOpObz2MGRZe_9dRdWTQhYMq8/view?usp=drive_link' target="_blank">
-              <div 
-                className="h-[7rem] w-[8rem] bg-white border-b-4 border-b-red-500 border-2 shadow-md flex justify-center items-center rounded-md py-2 hover:cursor-pointer"
-              > 
-                <div className="flex flex-col items-center text-center">
-                <span className="text-sm">Solutions 2024</span>
-                <Rocket />
                 </div>
               </div>
             </Link>
