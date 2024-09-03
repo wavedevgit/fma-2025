@@ -21,11 +21,11 @@ const links = [
   //   label: 'Programme',
   //   href: '/schedule',
   // },
-  {
-    key: 'organizing-team',
-    label: 'Equipe organisatrice',
-    href: '/organizing-team',
-  },
+  // {
+  //   key: 'organizing-team',
+  //   label: 'Equipe organisatrice',
+  //   href: '/organizing-team',
+  // },
   // {
   //   key: 'problems',
   //   label: 'Problems',
@@ -162,7 +162,7 @@ export default function NavBar({ lang }: { lang: string }) {
                     className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
                     onClick={() => setShowAuthModal(true)}
                   >
-                    Log In
+                    Se connecter
                   </button>
                 )
               )
