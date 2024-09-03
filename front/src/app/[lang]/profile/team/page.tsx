@@ -111,7 +111,7 @@ export default function TeamPage() {
                           {user?.id === userData?.team?.leader?.id 
                             ? <Badge className="bg-green-700">Lead</Badge>
                             : isTeamLeader
-                              ? <ActionButton />
+                              ? <ActionButton user={user}/>
                               : ''
                           }
                         </TableCell>

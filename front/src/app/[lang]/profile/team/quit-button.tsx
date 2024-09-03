@@ -43,18 +43,18 @@ const QuitButton = () => {
 
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure you want to quit this team?</AlertDialogTitle>
+          <AlertDialogTitle>Êtes-vous sûr de vouloir quitter cette équipe?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. You&apos;ll have to reapply for a new team for your application to be taken into account. 
+            Cette action est irréversible. Vous devrez postuler à nouveau pour une nouvelle équipe afin que votre candidature soit prise en compte. 
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>Fermer</AlertDialogCancel>
           <AlertDialogAction
             onClick={onQuitTeam}
           >
-            Quit
+            Quitter
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

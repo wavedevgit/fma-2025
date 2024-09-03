@@ -27,9 +27,10 @@ export const addUser = (teamId: number) => {
   return ApiMethods.put(url);
 }
 
-export const removeUser = (teamId: number) => {
+export const removeUser = (teamId: number, userId?: number) => {
   const url = `teams/unjoin/${teamId}`;
-  return ApiMethods.put(url);
+  const body = userId ? { userId } : {};
+  return ApiMethods.put(url, body);
 }
 
 // export const deleteTeam = (teamId: number) => {
