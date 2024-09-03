@@ -34,7 +34,7 @@ const Informations = () => {
       <div
         className="drop-shadow-sm space-y-6 md:space-y-0 md:flex md:justify-around"
       >
-        <div className='w-full'>
+        {/* <div className='w-full'>
           <MeteorCard 
             title='Speakers' 
             description='Échangez avec des conférenciers d&apos;institutions de renommée mondiale.'
@@ -43,9 +43,19 @@ const Informations = () => {
             buttonDisabled={true}
             onClick={() => router.push('/speakers')}
           />
-        </div>
+        </div> */}
 
         <div className='w-full'>
+          <MeteorCard 
+            title='Problèmes' 
+            description='...'
+            ctaLabel='Voir les problèmes'
+            className='h-full'
+            onClick={() => router.push('/problems')}
+          />
+        </div>
+
+        {/* <div className='w-full'>
           <MeteorCard 
             title='Prix' 
             description='Découvrez les prix réservés aux meilleurs participants du concours.'
@@ -53,6 +63,16 @@ const Informations = () => {
             className='h-full'
             buttonDisabled={true}
             onClick={() => router.push('/prizes')}
+          />
+        </div> */}
+
+        <div className='w-full'>
+          <MeteorCard 
+            title='Test de sélection' 
+            description='...'
+            ctaLabel='Voir le test de sélection'
+            className='h-full'
+            onClick={() => router.push('/speakers')}
           />
         </div>
       </div>
