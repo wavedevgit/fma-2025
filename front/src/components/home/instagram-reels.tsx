@@ -11,7 +11,7 @@ const InstagramReels = () => {
       style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
     >
       <InstagramEmbed url="https://www.instagram.com/reel/C_Gh54XOIFH/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==" width={328}/>
-      <InstagramEmbed url="https://www.instagram.com/reel/C66pCJVtZC6/?utm_source=ig_web_copy_link" width={328}/>
+      <InstagramEmbed url="https://www.instagram.com/reel/C_gSfSLOpF9/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==" width={328}/>
     </div>
   );
 }

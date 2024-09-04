@@ -13,7 +13,6 @@ const TutorialSection = () => {
         <iframe width="710" height="444" src="https://www.youtube.com/embed/bLxunPmuipQ?si=h58D0wPOWl11apqj" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
       </div>
     </div>
-    
   )
 }
 
