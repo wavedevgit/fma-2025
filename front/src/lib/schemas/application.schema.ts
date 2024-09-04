@@ -13,7 +13,7 @@ export const applicationSchema: ZodSchema = z.object({
   firstName: z.string().min(1).max(50),
   lastName: z.string().min(1).max(50),
   dateOfBirth: z.date({ required_error: "A date of birth is required." }),
-  identityCardNumber: z.string().min(1).max(50),
+  identityCardNumber: z.string().optional(),
   city: z.string().min(1).max(50),
   region: z.string().nonempty("Please select an option"),
   phoneNumber: z.string().refine(isValidPhoneNumber, { message: "Invalid phone number" }),
