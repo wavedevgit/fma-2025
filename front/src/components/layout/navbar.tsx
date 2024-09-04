@@ -72,10 +72,9 @@ export default function NavBar({ lang }: { lang: string }) {
   }, [])
 
   useEffect(() => {
-    if (!userData) {
-      localStorage.removeItem('access_token');
+    if (userData) {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }, [userData])
 
   const onMenuClick = (href: string) => {
