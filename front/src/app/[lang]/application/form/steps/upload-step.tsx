@@ -154,7 +154,7 @@ export const UploadStep = ({
             return (
               <FormItem>
                 <FormLabel>Règlement signé par l&apos;élève et le tuteur légal 
-                  (<Link className="text-blue-500 underline" href='https://drive.google.com/file/d/1vbC98AXIDK_Mn8lsS-NhhWX3VTKEODKx/view?usp=drive_link' target="_blank">fichier</Link>)
+                  (<Link className="text-blue-500 underline" href='https://drive.google.com/file/d/16yx363zCnFXsvlsl6s5I-dCkCq8FlvQw/view?usp=sharing' target="_blank">fichier</Link>)
                   .<RequiredAsterisk /></FormLabel>
                 <FormControl>
                   <Input

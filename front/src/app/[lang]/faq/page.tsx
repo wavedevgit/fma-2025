@@ -85,7 +85,7 @@ export default function FAQPage() {
         <AccordionItem value="item-7">
           <AccordionTrigger>Est-ce que la compétition est réservée aux élèves du lycée publique ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
-          Oui, tous les élèves du lycée peuvent s&apos;inscrire incluant lycée publique, privé ou bien mission étrangère.
+          Non, tous les élèves du lycée peuvent s&apos;inscrire incluant lycée publique, privé ou bien mission étrangère.
           </AccordionContent>
         </AccordionItem>
 

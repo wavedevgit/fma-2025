@@ -50,7 +50,7 @@ export default function SelectionPage() {
               </div>
             </Link>
 
-            <Link href='#' target="_blank">
+            <Link href='https://drive.google.com/file/d/1LoMTILi7YbOp11FdCioLDpyR5smT7m7i/view?usp=sharing' target="_blank">
               <div 
                 className="h-[8rem] w-[9rem] bg-white border-b-4 border-b-red-500 border-2 shadow-md flex justify-center items-center rounded-md py-2 hover:cursor-pointer"
               > 
