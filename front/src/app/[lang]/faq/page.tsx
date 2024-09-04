@@ -117,112 +117,112 @@ export default function FAQPage() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-12">
           <AccordionTrigger>Dois-je obligatoirement avoir une équipe pour participer ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Oui, aucune candidature sans équipe ne sera acceptée. Les équipes avec 1 ou 2 personnes ne seront pas convoquées au test de sélection. Aucune exception ne sera accordée. 
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-13">
           <AccordionTrigger>Est-ce qu&apos;il faut nécessairement que je sois avec une équipe de mon lycée / de ma ville ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Non, vous pouvez rejoindre une équipe qui n&apos;est pas du même lycée/ville que la vôtre.
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-14">
           <AccordionTrigger>Est-ce que deux équipes du même lycée peuvent toutes les deux participer ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Oui, ya aucune limite sur des équipes provenant du même lycée.
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-15">
           <AccordionTrigger>Dans une même équipe peut-il y avoir des élèves de filières différentes (ex : sciences mathématiques et sciences physiques) ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Oui, il n&apos;y a pas de restriction sur les branches des élèves. 
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-16">
           <AccordionTrigger>Est ce qu&apos;un membre de l&apos;équipe peut être refusé ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Un membre de l&apos;équipe peut être refusé seulement s&apos;il y a un problème dans son dossier de candidature.
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-17">
           <AccordionTrigger>Comment savoir si mon équipe a été sélectionné ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Vous serez notifié par email et on vous ajoutera dans un groupe whatsapp, pensez à bien vérifier que vous avez mis le bon numéro de téléphone qui contient whatsapp. 
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-18">
           <AccordionTrigger>Quand est-ce que je pourrais si mon équipe est sélectionnée?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Les résultats de sélection seront envoyés au plus tard début Octobre. 
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-19">
           <AccordionTrigger>A quel type de problèmes dois-je m&apos;attendre ? Quelles sont les notions dont j&apos;aurais besoin ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Les problèmes sont très différents de ce que vous avez l&apos;habitude à l&apos;école. Référez vous aux problèmes de l&apos;année dernière disponible dans (la page édition 2023-2024).
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-20">
           <AccordionTrigger>Est-ce qu&apos;il y aura des problèmes différents selon le niveau scolaire ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Non, tous les candidats auront affaire aux mêmes problèmes. 
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-21">
           <AccordionTrigger>Est-ce qu&apos;il y aura des certificats de participation ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Oui, il y aura des certificats aux gagnants ainsi qu&apos;aux participants.
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-22">
           <AccordionTrigger>Quels sont les prix à gagner ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Les prix seront annoncés avant la compétition sur nos réseaux sociaux.
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-23">
           <AccordionTrigger>Quelle langue doit être utilisée lors de la compétition ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Vous êtes libre d&apos;utiliser n&apos;importe quelle langue pendant les préparations. Par contre les rendus doivent être en français ou anglais.  
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-24">
           <AccordionTrigger>Va-t-on passer des tests type examen lors de la compétition ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Non y&apos;aura pas d&apos;examen durant la compétition. Mais un rendu intermédiaire et un rendu final seront demandés à un moment donné. Les détails seront communiqués par mail ainsi que par le groupe whatsapp qui sera créé pour les participants. 
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-25">
           <AccordionTrigger>Doit-on choisir une personne pour faire la présentation ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Le jour de la présentation, le jury vous demandera de choisir une personne pour faire la présentation. Mais c&apos;est mieux de se préparer à l&apos;avance et de désigner par exemple une personne par problème. 
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-26">
           <AccordionTrigger>Comment se fait le classement des équipes si elles arrivent toutes à résoudre les problèmes ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Le but n&apos;est pas que de résoudre les problèmes mais il faut aussi réussir à bien jouer les rôles de défense, attaque et rapport. Une session zoom sera organisé avant l&apos;événement pour mettre tout ça au clair.  
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-11">
+        <AccordionItem value="item-27">
           <AccordionTrigger>Est-ce que deux équipes peuvent s&apos;entraider dans la résolution des problèmes ?</AccordionTrigger>
           <AccordionContent className="text-gray-700">
           Non, il est strictement interdit d&apos;échanger des solutions entre équipes. En faisant ça vous risquez d&apos;être disqualifié et black listé de math&maroc. C&apos;est bien dommage parce que vous n&apos;êtes qu&apos;au lycée et Maths&Maroc organisera des événements pour vous jusqu&apos;au BAC+4.
