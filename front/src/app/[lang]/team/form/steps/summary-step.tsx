@@ -33,17 +33,17 @@ export const SummaryCard = ({
     >
       <Card className="w-full">
         <CardHeader>
-          <CardTitle>Summary</CardTitle>
-          <CardDescription>{formType === 'create' ? 'Team Creation' : 'Team Join'}</CardDescription>
+          <CardTitle>Récapitulatif</CardTitle>
+          <CardDescription>{formType === 'create' ? "Création d'équipe" : 'Rejoindre une équipe'}</CardDescription>
         </CardHeader>
         
         <CardContent>
           <div className='grid grid-cols-1 md:grid-cols-3 gap-4 justify-between'>
             {formKeys.map((key) =>
               <div key={key}>
-                <Label>{key === 'teamId' ? 'Team' : camelCaseToText(key)}</Label>
+                <Label>{key === 'teamId' ? "Nom de l'équipe" : camelCaseToText(key)}</Label>
                 <div className='text-lg'>{key === 'teamId' ? teamName : formData[key]}</div>
-                <span className='text-gray-500'>{!formData[key] && '(not defined)'}</span>
+                <span className='text-gray-500'>{!formData[key] && '(non défini)'}</span>
               </div>
             )}
           </div>

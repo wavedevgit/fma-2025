@@ -62,10 +62,10 @@ export const EducationStep = ({
       transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
       <h2 className='text-base font-semibold leading-7 text-[#0284C7]'>
-        Education
+        Éducation
       </h2>
       <p className='mt-1 text-sm leading-6 text-gray-600'>
-        Provide informations about your studies
+        Fournissez des informations à propos de vos études
         <Separator className='mt-4 bg-[#0284C7]'/>
       </p>
       <div className='mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 justify-between'>
@@ -75,7 +75,7 @@ export const EducationStep = ({
           name="educationLevel"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Education Level <RequiredAsterisk /></FormLabel>
+              <FormLabel>Niveau d&apos;étude <RequiredAsterisk /></FormLabel>
               <FormControl>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <SelectTrigger>
@@ -102,7 +102,7 @@ export const EducationStep = ({
           name="educationField"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Education Field<RequiredAsterisk /></FormLabel>
+              <FormLabel>Filière d&apos;étude<RequiredAsterisk /></FormLabel>
               <FormControl>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <SelectTrigger>
@@ -129,7 +129,7 @@ export const EducationStep = ({
           name="highschool"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Highschool <RequiredAsterisk /></FormLabel>
+              <FormLabel>École / Établissement<RequiredAsterisk /></FormLabel>
               <FormControl>
                 <Input placeholder="Highschool" {...field} />
               </FormControl>

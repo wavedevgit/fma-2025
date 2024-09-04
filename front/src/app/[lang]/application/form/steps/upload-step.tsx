@@ -30,7 +30,7 @@ export const UploadStep = ({
         Uploads
       </h2>
       <p className='mt-1 text-sm leading-6 text-gray-600'>
-        Provide personal documents
+        Fournissez vos documents personnels
         <Separator className='mt-4 bg-[#0284C7]'/>
       </p>
 
@@ -61,7 +61,7 @@ export const UploadStep = ({
                 />
                 </FormControl>
                 <FormDescription>
-                  <span className="text-red-400">Remarque</span>: Le document doit de préference être la CNIE ou le passeport. Sinon, vous pouvez envoyer tout document contenant les informations de l&apos;élève avec sa photo; ou bien son acte de naissance accompagné de sa photo dans le même PDF.
+                  <span className="text-blue-500">Remarque</span>: Le document doit de préference être la CNIE ou le passeport. Sinon, vous pouvez envoyer tout document contenant les informations de l&apos;élève avec sa photo; ou bien son acte de naissance accompagné de sa photo dans le même PDF.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -85,7 +85,7 @@ export const UploadStep = ({
 
             return (
               <FormItem>
-                <FormLabel>Certificat de scolarité pour l&apos;année 2023-2024. <RequiredAsterisk /></FormLabel>
+                <FormLabel>Certificat de scolarité pour l&apos;année 2024-2025 <RequiredAsterisk /></FormLabel>
                 <FormControl>
                   <Input
                     {...form.register("schoolCertificate", {
@@ -117,7 +117,7 @@ export const UploadStep = ({
 
             return (
               <FormItem>
-                <FormLabel>Bulletin du 1er trimestre 2023-2024 (avec les notes du contrôle continu et de l&apos;examen unifié) <RequiredAsterisk /></FormLabel>
+                <FormLabel>Bulletin de l&apos;année scolaire 2023-2024 (année derniére)<RequiredAsterisk /></FormLabel>
                 <FormControl>
                   <Input
                     {...form.register("grades", {
@@ -129,7 +129,7 @@ export const UploadStep = ({
                   />
                 </FormControl>
                 <FormDescription>
-                  <span className="text-red-400">Remarque</span>: votre bulletin sera utilisé pour vérifier les notes que vous avez entrez plus haut.
+                  <span className="text-blue-500">Remarque</span>: votre bulletin sera utilisé pour vérifier les notes que vous avez fournis précedemment.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -154,7 +154,7 @@ export const UploadStep = ({
             return (
               <FormItem>
                 <FormLabel>Règlement signé par l&apos;élève et le tuteur légal 
-                  (<Link className="text-blue-500 underline" href='https://drive.google.com/file/d/1Ah068enVUm9NnPcvPxtsUq4Db5KeNL2X/view' target="_blank">fichier</Link>)
+                  (<Link className="text-blue-500 underline" href='https://drive.google.com/file/d/1vbC98AXIDK_Mn8lsS-NhhWX3VTKEODKx/view?usp=drive_link' target="_blank">fichier</Link>)
                   .<RequiredAsterisk /></FormLabel>
                 <FormControl>
                   <Input
@@ -167,7 +167,7 @@ export const UploadStep = ({
                   />
                 </FormControl>
                 <FormDescription>
-                  <span className="text-red-400">Remarque</span>: Il faut l&apos;imprimer, le signer à la main puis le scanner. Il n&apos;y a pas besoin de le légaliser.
+                  <span className="text-blue-500">Remarque</span>: Il faut l&apos;imprimer, le signer à la main puis le scanner. <span className="font-bold">Il n&apos;y a pas besoin de le légaliser</span>.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -191,7 +191,7 @@ export const UploadStep = ({
 
             return (
               <FormItem>
-                <FormLabel>Autorisation parentale signée et légalisée par le tuteur légal (<Link className="text-blue-500 underline" href='https://drive.google.com/file/d/1aSP6Z_boXo8Fz1oef2Fwd6kPx7BGc0UM/view' target="_blank">fichier</Link>)<RequiredAsterisk /></FormLabel>
+                <FormLabel>Autorisation parentale signée et légalisée par le tuteur légal (<Link className="text-blue-500 underline" href='https://drive.google.com/file/d/19I9hXIptNqAL_RDT6C1m2uA5FFok-Lmd/view?usp=drive_link' target="_blank">fichier</Link>)<RequiredAsterisk /></FormLabel>
                 <FormControl>
                   <Input
                     {...form.register("parentalAuthorization", {
@@ -203,7 +203,7 @@ export const UploadStep = ({
                   />
                 </FormControl>
                 <FormDescription>
-                    <span className="text-red-400">Remarque</span>: il faut l&apos;imprimer, la signer à la main, la légaliser, puis le scanner; <span className="font-bold">la légalisation est obligatoire</span>.
+                    <span className="text-blue-500">Remarque</span>: il faut l&apos;imprimer, la signer à la main, la légaliser, puis le scanner; <span className="font-bold">la légalisation est obligatoire</span>.
                 </FormDescription>
                 <FormMessage />
               </FormItem>

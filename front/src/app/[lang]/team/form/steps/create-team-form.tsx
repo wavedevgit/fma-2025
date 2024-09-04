@@ -63,11 +63,11 @@ export const CreateTeamForm = ({
       transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
       <h2 className='text-base font-semibold leading-7 text-[#0284C7]'>
-        Create a new Team
+        Créer une nouvelle équipe
       </h2>
 
       <p className='mt-1 text-sm leading-6 text-gray-600'>
-        Provide informations about your team
+        Fournissez des informations à propos de votre équipe
         <Separator className='mt-4 bg-[#0284C7]'/>
       </p>
 
@@ -78,9 +78,9 @@ export const CreateTeamForm = ({
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name<RequiredAsterisk /></FormLabel>
+              <FormLabel>Nom de l&apos;équipe<RequiredAsterisk /></FormLabel>
               <FormControl>
-                <Input placeholder="Name of the Team" {...field} />
+                <Input placeholder="Nom de l'équipe" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -95,7 +95,7 @@ export const CreateTeamForm = ({
             <FormItem>
               <FormLabel>Slogan <RequiredAsterisk /></FormLabel>
               <FormControl>
-                <Input placeholder="Slogan of the Team" {...field} />
+                <Input placeholder="Slogan de l'équipe" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -108,13 +108,13 @@ export const CreateTeamForm = ({
           name="mentorFullname"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Mentor full name</FormLabel>
+              <FormLabel>Prénom et Nom de votre mentor</FormLabel>
               <FormControl>
-                <Input placeholder="Mentor full name" {...field} />
+                <Input placeholder="Nom complet du mentor" {...field} />
               </FormControl>
               <FormMessage />
               <FormDescription>
-                If your team have a mentor (teacher, researcher, etc), enter his full name above
+                Si votre équipe a un mentor (enseignant, chercheur, etc.), veuillez indiquer son nom complet ci-dessus.
               </FormDescription>
             </FormItem>
           )}

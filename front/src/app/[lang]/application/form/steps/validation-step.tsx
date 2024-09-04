@@ -29,7 +29,7 @@ export const ValidationStep = ({
         Validation
       </h2>
       <p className='mt-1 text-sm leading-6 text-gray-600'>
-        Read carefully our Terms of Agreement and validate your application 
+        Lisez attentivement nos Conditions Générales et validez votre candidature
         <Separator className='mt-4 bg-[#0284C7]'/>
       </p>
 
@@ -48,12 +48,11 @@ export const ValidationStep = ({
                 </FormControl>
                 <div className="space-y-1 leading-none">
                   <FormLabel>
-                    Terms of Agreement <RequiredAsterisk />
+                    Conditions Générales <RequiredAsterisk />
                   </FormLabel>
                   <FormDescription>
-                  I confirm that I have read the competition regulations in full and commit to abide by them.<br/> 
-                  In particular, I undertake to be present on the UM6P Benguérir campus for the entire duration of the competition (except for any derogation requested by email and explicitly approved by the organizing committee).<br/>
-                  I acknowledge that providing false or incomplete information may result the automatic refusal of my application, the interdiction to compete and/or the withdrawal of prizes.
+                  Je confirme avoir lu entièrement le règlement de la compétition et m&apos;engage à le respecter.<br/> 
+                  En particulier, je m&apos;engage à être présent sur le campus de AUI Ifrane pendant toute la durée de la compétition (sauf dérogation demandée par mail et approuvée explicitement par le comité d&apos;organisation)<br/>
                   </FormDescription>
                 </div>
               </FormItem>

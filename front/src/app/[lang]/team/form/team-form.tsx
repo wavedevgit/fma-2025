@@ -122,9 +122,9 @@ export const TeamForm = () => {
       {/* Header */}
       <div className="flex justify-between">
         <div className="space-y-0.5">
-          <h2 className="text-2xl font-bold tracking-tight">Team Selection</h2>
+          <h2 className="text-2xl font-bold tracking-tight">Selection d&apos;équipe</h2>
           <div className="text-muted-foreground">
-            Follow the steps below to create or join a team
+            Suivez les étapes ci-dessous pour créer ou rejoindre une équipe
           </div>
         </div>
       </div>

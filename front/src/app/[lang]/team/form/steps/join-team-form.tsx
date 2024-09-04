@@ -50,11 +50,11 @@ export const JoinTeamForm = ({
       transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
       <h2 className='text-base font-semibold leading-7 text-[#0284C7]'>
-        Join an existing Team
+        Rejoindre une équipe existante
       </h2>
 
       <p className='mt-1 text-sm leading-6 text-gray-600'>
-        Provide informations about your studies
+        Choisissez l&apos;équipe de vous voulez rejoindre, et le code d&apos;accès fourni par le lead de cette team.
         <Separator className='mt-4 bg-[#0284C7]'/>
       </p>
 
@@ -65,7 +65,7 @@ export const JoinTeamForm = ({
           name="teamId"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Teams <RequiredAsterisk /></FormLabel>
+              <FormLabel>Équipes <RequiredAsterisk /></FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -92,7 +92,7 @@ export const JoinTeamForm = ({
                   <Command>
                     <CommandInput placeholder="Search team..." />
                     <CommandList>
-                      <CommandEmpty>No Team found.</CommandEmpty>
+                      <CommandEmpty>Aucun résultat</CommandEmpty>
                       <CommandGroup>
                         {teamsOptions.map((team) => (
                           <CommandItem
@@ -127,7 +127,7 @@ export const JoinTeamForm = ({
               </Popover>
 
               <FormDescription>
-                This is the language that will be used in the dashboard.
+                Vous trouverez içi toutes les équipes créées
               </FormDescription>
 
               <FormMessage />
@@ -141,12 +141,12 @@ export const JoinTeamForm = ({
           name="accessCode"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Access Code <RequiredAsterisk /></FormLabel>
+              <FormLabel>Code d&apos;accès <RequiredAsterisk /></FormLabel>
               <FormControl>
-                <Input placeholder="Enter your access code" {...field} />
+                <Input placeholder="Entrez votre code d&apos;accès" {...field} />
               </FormControl>
               <FormDescription>
-                You will be given an access code from your team leader as a permission to access this team
+                Vous recevrez un code d&apos;accès de la part de votre chef d&apos;équipe pour vous permettre d&apos;accéder à cette équipe.
               </FormDescription>
               <FormMessage />
             </FormItem>

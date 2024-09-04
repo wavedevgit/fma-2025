@@ -2,26 +2,26 @@ import { Step } from "./step.type";
 
 export const steps: Step[] = [
   {
-    id: 'Step 1',
-    name: 'Personal Information',
+    id: 'Étape 1',
+    name: 'Informations Personnelles',
     fields: ['firstName', 'lastName', 'dateOfBirth', 'identityCardNumber', 'city', 'region', 'phoneNumber', 'guardianFullName', 'guardianPhoneNumber', 'relationshipWithGuardian', 'specialConditions']
   },
   {
-    id: 'Step 2',
-    name: 'Education',
+    id: 'Étape 2',
+    name: 'Éducation',
     fields: ['educationLevel', 'educationField', 'highschool', 'averageGrade', 'ranking', 'mathAverageGrade', 'mathRanking', 'numberOfStudentsInClass']
   },
   {
-    id: 'Step 3',
-    name: 'Competition',
+    id: 'Étape 3',
+    name: 'Compétition',
     fields: ['hasPreviouslyParticipated', 'previousCompetitions', 'hasPreviouslyParticipatedInMtym', 'motivations', 'comments']
   },
   {
-    id: 'Step 4',
+    id: 'Étape 4',
     name: 'Uploads',
     fields: ['cnie', 'schoolCertificate', 'grades', 'regulations', 'parentalAuthorization']
   },
-  { id: 'Step 5', 
+  { id: 'Étape 5', 
     name: 'Validation',
     fields: ['termsAgreement']
   }
