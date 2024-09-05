@@ -46,11 +46,11 @@ export default function PartnersPage() {
         </h1>
 
         <div 
-          className="flex justify-around flex-wrap gap-6 p-8 animate-fade-up opacity-0"
+          className="flex justify-around flex-wrap gap-6 bg-gray-200 shadow-lg p-8 rounded-lg animate-fade-up opacity-0"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
           <div 
-            className="w-[16rem] md:h-[18rem] md:w-[40rem] bg-white border-b-4 border-red-500 md:flex justify-center items-center rounded-md shadow-lg"
+            className="w-[16rem] md:h-[18rem] md:w-[40rem] bg-white border-b-4 border-red-500 md:flex justify-center items-center rounded-md"
             key={organizers[0].key}
           > 
             <div className="h-[8rem] w-[16rem] md:h-fit md:w-[18rem] flex justify-center items-center">
@@ -67,75 +67,52 @@ export default function PartnersPage() {
           </div>
         </div>
 
-        <div 
-          className="flex justify-between space-y-8 md:space-y-0 flex-wrap gap-6 p-8 animate-fade-up opacity-0"
-          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
-        >
-          <div>
-            <h1
-              className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-5xl md:leading-[4rem]"
-              style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
-            >
-              Partenaire Officiel
-            </h1>
-
-            <div
-              className="w-[16rem] md:h-[18rem] md:w-[36rem] bg-white border-b-4 border-red-500 md:flex justify-center items-center rounded-md shadow-lg mt-10"
-              key={partners[0].key}
-            >
-              <div className="h-[8rem] w-[16rem] md:h-fit md:w-[18rem] flex justify-center items-center">
-                <img
-                  src={partners[0].imageHref}
-                  style={{height: partners[0].imageHeight, width: 'auto'}}
-                />
-              </div>
-
-              <div className="h-fit w-[16rem] p-4 md:w-[20rem] flex flex-col space-y-2">
-                <div><span className='mb-8 bg-gradient-to-br from-stone-500 to-[#FC5C00] text-transparent bg-clip-text font-semibold'>Adria Business and Technology</span> est un expert dans l&apos;édition et l&apos;intégration des logiciels destinés aux institutions financières.</div>
-                <div>Il s&apos;agit du <span className="font-semibold">partenaire officiel</span> de Math&Maroc, qui a permis à la majorité de nos événements de voir le jour.</div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h1
-              className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-5xl md:leading-[4rem]"
-              style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
-            >
-              Co-organisateur
-            </h1>
-
-            <div
-              className="w-[16rem] md:h-[18rem] md:w-[36rem] bg-white border-b-4 border-red-500 md:flex justify-center items-center rounded-md shadow-lg mt-10"
-              key={partners[1].key}
-            > 
-              <div className="h-[8rem] w-[16rem] md:h-fit md:w-[18rem] flex justify-center items-center">
-                <img
-                  src={partners[1].imageHref}
-                  style={{height: partners[1].imageHeight, width: 'auto'}}
-                />
-              </div>
-
-              <div className="h-fit w-[16rem] p-4 md:w-[20rem] flex flex-col space-y-2">
-                <div><span className='mb-8 bg-gradient-to-br from-[#1d9145] to-[#166432] text-transparent bg-clip-text font-semibold'>Université Al Akhawayn (AUI)</span> est une institution d&apos;élite au Maroc, reconnue pour son excellence académique. Elle forme des leaders engagés et ouverts sur le monde, dans un cadre multiculturel et moderne.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <h1
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-5xl md:leading-[4rem]"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
-          Sponsors
+          Partenaires
         </h1>
 
-        <div
-          className="flex justify-between flex-wrap gap-6 p-8 animate-fade-up opacity-0"
+        <div 
+          className="flex justify-around flex-wrap gap-6 bg-gray-200 shadow-lg p-8 rounded-lg animate-fade-up opacity-0"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
+          <div 
+            className="w-[16rem] md:h-[18rem] md:w-[36rem] bg-white border-b-4 border-red-500 md:flex justify-center items-center rounded-md"
+            key={partners[0].key}
+          >
+            <div className="h-[8rem] w-[16rem] md:h-fit md:w-[18rem] flex justify-center items-center">
+              <img
+                src={partners[0].imageHref}
+                style={{height: partners[0].imageHeight, width: 'auto'}}
+              />
+            </div>
+
+            <div className="h-fit w-[16rem] p-4 md:w-[20rem] flex flex-col space-y-2">
+              <div><span className='mb-8 bg-gradient-to-br from-stone-500 to-[#FC5C00] text-transparent bg-clip-text font-semibold'>Adria Business and Technology</span> est un expert dans l&apos;édition et l&apos;intégration des logiciels destinés aux institutions financières.</div>
+              <div>Il s&apos;agit du <span className="font-semibold">partenaire officiel</span> de Math&Maroc, qui a permis à la majorité de nos événements de voir le jour.</div>
+            </div>
+          </div>
+
           <div
-            className="w-[16rem] md:h-[18rem] md:w-[36rem] bg-white border-b-4 border-red-500 md:flex justify-center items-center rounded-md shadow-lg"
+            className="w-[16rem] md:h-[18rem] md:w-[36rem] bg-white border-b-4 border-red-500 md:flex justify-center items-center rounded-md"
+            key={partners[1].key}
+          > 
+            <div className="h-[8rem] w-[16rem] md:h-fit md:w-[18rem] flex justify-center items-center">
+              <img
+                src={partners[1].imageHref}
+                style={{height: partners[1].imageHeight, width: 'auto'}}
+              />
+            </div>
+
+            <div className="h-fit w-[16rem] p-4 md:w-[20rem] flex flex-col space-y-2">
+              <div><span className='mb-8 bg-gradient-to-br from-[#1d9145] to-[#166432] text-transparent bg-clip-text font-semibold'>Université Al Akhawayn (AUI)</span> est une institution d&apos;élite au Maroc, reconnue pour son excellence académique. Elle forme des leaders engagés et ouverts sur le monde, dans un cadre multiculturel et moderne.</div>
+            </div>
+          </div>
+
+          <div
+            className="w-[16rem] md:h-[18rem] md:w-[36rem] bg-white border-b-4 border-red-500 md:flex justify-center items-center rounded-md"
             key={partners[2].key}
           > 
             <div className="h-[8rem] w-[16rem] md:h-fit md:w-[18rem] flex justify-center items-center">
@@ -151,9 +128,9 @@ export default function PartnersPage() {
           </div>
 
           <div
-            className="w-[16rem] md:h-[18rem] md:w-[36rem] bg-white border-b-4 border-red-500 md:flex justify-center items-center rounded-md shadow-lg"
+            className="w-[16rem] md:h-[18rem] md:w-[36rem] bg-white border-b-4 border-red-500 md:flex justify-center items-center rounded-md"
             key={partners[3].key}
-          >
+          > 
             <div className="h-[8rem] w-[16rem] md:h-fit md:w-[18rem] flex justify-center items-center">
               <img
                 src={partners[3].imageHref}
