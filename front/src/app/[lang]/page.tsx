@@ -7,6 +7,7 @@ import Informations from "@/components/home/informations";
 import InstagramReels from "@/components/home/instagram-reels";
 import { useTranslation } from "../i18n";
 import AboutSection from "@/components/home/about-section";
+import TutorialSection from "@/components/home/tutorial-section";
 
 export default async function Home({
   params
@@ -43,10 +44,21 @@ export default async function Home({
             className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-5xl md:leading-[4rem]"
             style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
           >
-            De quoi s&apos;agit-il ?
+            C&apos;est quoi, MTYM ?
           </h1>
 
           <Informations />
+        </div>
+
+        <div className="space-y-6">
+          <h1
+            className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-5xl md:leading-[4rem]"
+            style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+          >
+            Comment participer?
+          </h1>
+
+          <TutorialSection />
         </div>
 
         <div className="space-y-6">

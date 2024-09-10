@@ -26,10 +26,10 @@ export const CompetitionStep = ({
       transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
       <h2 className='text-base font-semibold leading-7 text-[#0284C7]'>
-        Competition
+        Compétition
       </h2>
       <p className='mt-1 text-sm leading-6 text-gray-600'>
-        Provide informations about your previous competitions
+        Fournissez des informations à propos de vos participations passées et vos motivations.
         <Separator className='mt-4 bg-[#0284C7]'/>
       </p>
       <div className='mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 justify-between'>
@@ -39,7 +39,7 @@ export const CompetitionStep = ({
           name="hasPreviouslyParticipated"
           render={({ field }) => (
             <FormItem className="space-y-3">
-              <FormLabel>Have you participated in competitions before (Olympiads, national contests...) ? <RequiredAsterisk /></FormLabel>
+              <FormLabel>Avez-vous déjà participé à des compétitions (Olympiades, concours nationaux...)  <RequiredAsterisk /></FormLabel>
               <FormControl>
                 <RadioGroup
                   onValueChange={field.onChange}
@@ -51,7 +51,7 @@ export const CompetitionStep = ({
                       <RadioGroupItem value="yes" />
                     </FormControl>
                     <FormLabel className="font-normal">
-                      Yes
+                      Oui
                     </FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-3 space-y-0">
@@ -59,7 +59,7 @@ export const CompetitionStep = ({
                       <RadioGroupItem value="no" />
                     </FormControl>
                     <FormLabel className="font-normal">
-                      No
+                      Non
                     </FormLabel>
                   </FormItem>
                 </RadioGroup>
@@ -75,10 +75,10 @@ export const CompetitionStep = ({
           name="previousCompetitions"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>If yes, please specify which ones and the achieved result.</FormLabel>
+              <FormLabel>Si oui, veuillez spécifier lesquelles et le résultat obtenu.</FormLabel>
               <FormControl>
               <Textarea
-                placeholder="Tell us about your achievements"
+                placeholder="Parlez-nous de vos accomplissements"
                 className="resize-none"
                 {...field}
               />
@@ -94,7 +94,7 @@ export const CompetitionStep = ({
           name="hasPreviouslyParticipatedInMtym"
           render={({ field }) => (
             <FormItem className="space-y-3">
-              <FormLabel>Have you participated in MTYM in Mai 2024 ? <RequiredAsterisk /></FormLabel>
+              <FormLabel>Avez-vous participé à MTYM in Mai 2024 ? <RequiredAsterisk /></FormLabel>
               <FormControl>
                 <RadioGroup
                   onValueChange={field.onChange}
@@ -106,7 +106,7 @@ export const CompetitionStep = ({
                       <RadioGroupItem value="yes" />
                     </FormControl>
                     <FormLabel className="font-normal">
-                      Yes
+                      Oui
                     </FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-3 space-y-0">
@@ -114,7 +114,7 @@ export const CompetitionStep = ({
                       <RadioGroupItem value="no" />
                     </FormControl>
                     <FormLabel className="font-normal">
-                      No
+                      Non
                     </FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-3 space-y-0">
@@ -122,7 +122,7 @@ export const CompetitionStep = ({
                       <RadioGroupItem value="not-selected" />
                     </FormControl>
                     <FormLabel className="font-normal">
-                      I applied but i wasn&apos;t selected
+                      J&apos;ai postulé, mais je n&apos;ai pas été sélectionné.
                     </FormLabel>
                   </FormItem>
                 </RadioGroup>
@@ -140,10 +140,10 @@ export const CompetitionStep = ({
           name="motivations"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Tell us about your motivations to participate in the competition ? <RequiredAsterisk /></FormLabel>
+              <FormLabel>Parlez-nous de vos motivations à participer à cette compétition <RequiredAsterisk /></FormLabel>
               <FormControl>
               <Textarea
-                placeholder="Max 300 words"
+                placeholder="Maximum 300 mots"
                 className="resize-none"
                 {...field}
               />
@@ -161,10 +161,10 @@ export const CompetitionStep = ({
           name="comments"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Remarks / Comments</FormLabel>
+              <FormLabel>Remarques / Commentaires</FormLabel>
               <FormControl>
               <Textarea
-                placeholder="Anything to add ?"
+                placeholder="Quelque chose à ajouter ?"
                 className="resize-none"
                 {...field}
               />

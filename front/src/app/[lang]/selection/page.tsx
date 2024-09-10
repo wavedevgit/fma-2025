@@ -14,7 +14,7 @@ export default function SelectionPage() {
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-5xl md:leading-[4rem]"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
-          Test de selection
+          Test de sélection
         </h1>
 
         <div
@@ -22,7 +22,7 @@ export default function SelectionPage() {
           style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
         >
           <p className="mt-12">
-            La sélection pour la participation à <span className='bg-gradient-to-br from-sky-500 to-[#272162] inline-block text-transparent bg-clip-text'>MTYM</span> se fait principalement sur la base d&apos;un test de sélection qui aura lieu les <span className="font-bold">28 et 29 septembre 2024</span>.
+            La sélection pour la participation à <span className='bg-gradient-to-br from-sky-500 to-[#272162] inline-block text-transparent bg-clip-text'>MTYM</span> se fait principalement sur la base d&apos;un test de sélection en ligne qui aura lieu le <span className="font-bold">28 ou 29 septembre 2024</span>. <span className="font-bold">Bloquer bien ce weekend dans votre calendrier.</span>
           </p>
 
           <p className="mt-6">
@@ -50,7 +50,7 @@ export default function SelectionPage() {
               </div>
             </Link>
 
-            <Link href='#' target="_blank">
+            <Link href='https://drive.google.com/file/d/1LoMTILi7YbOp11FdCioLDpyR5smT7m7i/view?usp=sharing' target="_blank">
               <div 
                 className="h-[8rem] w-[9rem] bg-white border-b-4 border-b-red-500 border-2 shadow-md flex justify-center items-center rounded-md py-2 hover:cursor-pointer"
               > 

@@ -17,9 +17,9 @@ const Footer = () => {
           style={{height: isMobile ? 'auto' : '40px', width: 'auto'}}
         />
         <img
-          src="/adria.png"
+          src="/adria_official_partner.png"
           alt="M&M logo"
-          style={{height: isMobile ? 'auto' : '40px', width: 'auto'}}
+          style={{height: isMobile ? 'auto' : '60px', width: 'auto'}}
         />
         <img
           src="/akhawayn.png"

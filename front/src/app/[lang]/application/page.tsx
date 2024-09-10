@@ -1,10 +1,8 @@
 "use client"
 
-import { Separator } from "@radix-ui/react-separator";
 import { ApplicationForm } from "./form/application-form";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/store/userState";
-import { Button } from "@/components/shared";
 import { useAuthGuard } from "@/components/hooks/use-auth-guard";
 import ProfileSkeleton from "../profile/profile-skeleton";
 

@@ -6,13 +6,13 @@ const joinTeamFields = ['teamId', 'accessCode'];
 
 export const steps: Step[] = [
   {
-    id: 'Step 1',
-    name: 'Team options',
+    id: 'Étape 1',
+    name: "Options d'équipe",
     getFields: (_) => [],
   },
   {
-    id: 'Step 2',
-    name: 'Create / Join a Team',
+    id: 'Étape 2',
+    name: 'Créer / Rejoindre une Équipe',
     getFields: (formType?: string) => {
       switch(formType) {
         case 'create':
@@ -25,8 +25,8 @@ export const steps: Step[] = [
     }
   },
   {
-    id: 'Step 3',
-    name: 'Summary',
+    id: 'Étape 3',
+    name: 'Récapitulatif',
     getFields: (_) => [],
   },
 ];

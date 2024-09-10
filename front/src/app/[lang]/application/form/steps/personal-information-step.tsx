@@ -67,10 +67,10 @@ export const PersonalInformationStep = ({
       transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
       <h2 className='text-base font-semibold leading-7 text-[#0284C7]'>
-        Student Personal Information
+        Informations personnelles de l&apos;éléve
       </h2>
       <p className='mt-1 text-sm leading-6 text-gray-600'>
-        Provide the student personal details
+        Fournissez les informations personnelles de l&apos;éléve.
         <Separator className='mt-4 bg-[#0284C7]'/>
       </p>
       <div className='mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-between'>
@@ -80,7 +80,7 @@ export const PersonalInformationStep = ({
           name="firstName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>First Name <RequiredAsterisk /></FormLabel>
+              <FormLabel>Prénom <RequiredAsterisk /></FormLabel>
               <FormControl>
                 <Input disabled placeholder="First Name" {...field} />
               </FormControl>
@@ -95,7 +95,7 @@ export const PersonalInformationStep = ({
           name="lastName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Last Name <RequiredAsterisk /></FormLabel>
+              <FormLabel>Nom <RequiredAsterisk /></FormLabel>
               <FormControl>
                 <Input disabled placeholder="Last Name" {...field} />
               </FormControl>
@@ -110,7 +110,7 @@ export const PersonalInformationStep = ({
           name="dateOfBirth"
           render={({ field }) => (
             <FormItem className="flex flex-col mt-2">
-              <FormLabel>Date of birth <RequiredAsterisk /></FormLabel>
+              <FormLabel>Date de naissance <RequiredAsterisk /></FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -124,7 +124,7 @@ export const PersonalInformationStep = ({
                       {field.value ? (
                         format(field.value, "PPP")
                       ) : (
-                        <span>Pick a date</span>
+                        <span>Choisis une date</span>
                       )}
                       <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
@@ -154,7 +154,7 @@ export const PersonalInformationStep = ({
           name="identityCardNumber"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>CNIE Number <RequiredAsterisk /></FormLabel>
+              <FormLabel>Numéro CNIE</FormLabel>
               <FormControl>
                 <Input placeholder="CNIE Number" {...field} />
               </FormControl>
@@ -169,9 +169,9 @@ export const PersonalInformationStep = ({
           name="city"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>City of residence<RequiredAsterisk /></FormLabel>
+              <FormLabel>Ville de résidence<RequiredAsterisk /></FormLabel>
               <FormControl>
-                <Input placeholder="City" {...field} />
+                <Input placeholder="Ville" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -184,7 +184,7 @@ export const PersonalInformationStep = ({
           name="region"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Region of residence<RequiredAsterisk /></FormLabel>
+              <FormLabel>Région de résidence<RequiredAsterisk /></FormLabel>
               <FormControl>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <SelectTrigger>
@@ -192,7 +192,7 @@ export const PersonalInformationStep = ({
                   </SelectTrigger>
                   <SelectContent className="max-h-60">
                     <SelectGroup>
-                      <SelectLabel>Regions</SelectLabel>
+                      <SelectLabel>Régions</SelectLabel>
                       {regions.map(region =>
                         <SelectItem key={region.value} value={region.value}>{region.label}</SelectItem>
                       )}
@@ -211,7 +211,7 @@ export const PersonalInformationStep = ({
           name="phoneNumber"
           render={({ field }) => (
             <FormItem className="flex flex-col mt-2 items-start">
-              <FormLabel className="text-left">Phone Number <RequiredAsterisk /></FormLabel>
+              <FormLabel className="text-left">Téléphone <RequiredAsterisk /></FormLabel>
               <FormControl className="w-full">
                 <PhoneInput placeholder="Enter a phone number" {...field} />
               </FormControl>
@@ -243,10 +243,10 @@ export const PersonalInformationStep = ({
       </div>
 
       <h2 className='text-base font-semibold leading-7 text-[#0284C7] mt-6'>
-        Guardian Personal Information
+        Informations personnelles du tuteur
       </h2>
       <p className='mt-1 text-sm leading-6 text-gray-600'>
-        Provide the student&apos;s guardian personal details
+        Fournissez les informations personnelles du tuteur de l&apos;éléve.
         <Separator className='mt-4 bg-[#0284C7]'/>
       </p>
       <div className='mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-between'>
@@ -256,7 +256,7 @@ export const PersonalInformationStep = ({
           name="guardianFullName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nom et prénom du tuteur de l&apos;élève<RequiredAsterisk /></FormLabel>
+              <FormLabel>Nom et Prénom du tuteur<RequiredAsterisk /></FormLabel>
               <FormControl>
                 <Input placeholder="Entrez un nom complet" {...field} />
               </FormControl>
@@ -271,7 +271,7 @@ export const PersonalInformationStep = ({
           name="guardianPhoneNumber"
           render={({ field }) => (
             <FormItem className="flex flex-col mt-2 items-start">
-              <FormLabel className="text-left">Téléphone du tuteur de l&apos;élève <RequiredAsterisk /></FormLabel>
+              <FormLabel className="text-left">Téléphone du tuteur <RequiredAsterisk /></FormLabel>
               <FormControl className="w-full">
                 <PhoneInput placeholder="Enter a phone number" {...field} />
               </FormControl>
