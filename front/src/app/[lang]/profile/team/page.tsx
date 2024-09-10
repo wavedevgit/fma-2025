@@ -143,7 +143,7 @@ export default function TeamPage() {
               ? (
                 <div className="flex space-x-4">
                   {isTeamLeader && <InviteButton />}
-                  <QuitButton />
+                  <QuitButton isTeamLeader={isTeamLeader} />
                 </div>
               ) : (
                 <Button

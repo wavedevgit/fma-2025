@@ -33,7 +33,15 @@ export const removeUser = (teamId: number, userId?: number) => {
   return ApiMethods.put(url, body);
 }
 
-// export const deleteTeam = (teamId: number) => {
-//   const url = `teams/${teamId}`;
-//   return ApiMethods.delete(url);
-// }
+export const changeLeader = (teamId: number, newLeaderId: number) => {
+  const url = `teams/change-leader/${teamId}`;
+  const body = {
+    newLeaderId
+  }
+  return ApiMethods.put(url, body);
+}
+
+export const deleteTeam = (teamId: number) => {
+  const url = `teams/${teamId}`;
+  return ApiMethods.delete(url);
+}
