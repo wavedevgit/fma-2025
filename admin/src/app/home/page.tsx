@@ -11,6 +11,12 @@ const links = [
     link: "/home/applications",
   },
   {
+    title: "Teams",
+    description:
+      "Manage teams",
+    link: "/home/teams",
+  },
+  {
     title: "Users",
     description:
       "Manage user pofiles",
@@ -26,10 +32,10 @@ export default function Home() {
         Dashboard
       </div>
       <div className="flex flex-col items-center pr-[15rem]">
-        <div className="">
+        <div className="mt-20">
           <Image
-            src="/mmc.png"
-            alt="M&M logo"
+            src="/mtym.png"
+            alt="MTYM logo"
             width='400'
             height='200'
           />

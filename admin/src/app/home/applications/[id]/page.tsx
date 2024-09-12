@@ -33,19 +33,45 @@ const regionLabels = {
   'abroad': "Abroad",
 } as any;
 
-const educationLevelLabels = {
-  'bac-plus-1': "Bac +1",
-  'bac-plus-2': "Bac +2",
-  'bac-plus-3': "Bac +3",
-  'bac-plus-4': "Bac +4",
+const relationshipWithGuardianLabels = {
+  'father': 'Père',
+  'mother': 'Mère',
+  'guardian': 'Tuteur'
 } as any;
 
-const educationProgramLabels = {
-  'cpge': 'CPGE',
-  'university': 'University',
-  'engineering-school-post-bac': 'Engineering School post BAC',
-  'engineering-school-post-cpge': 'Engineering School post CPGE'
+const educationLevelLabels = {
+  "tronc-commun": "Tronc commun",
+  "1bac": "1ère année Bac",
+  "2bac": "2ème année Bac",
+ } as any;
+
+const educationFieldLabels = {
+  "tc-sciences": "TC sciences",
+  "tc-technologique": "TC technologique",
+  "1bac-sciences-economiques-et-gestion": "1BAC Sciences Economiques et Gestion",
+  "1bac-arts-appliques": "1BAC Arts Appliqués",
+  "1bac-sciences-experimentales": "1BAC Sciences Expérimentales",
+  "1bac-sciences-mathematiques": "1BAC Sciences Mathématiques",
+  "1bac-sciences-et-technologies-electriques": "1BAC Sciences et Technologies Electriques",
+  "1bac-sciences-et-technologies-mecaniques": "1BAC Sciences et Technologies Mécaniques",
+  "2bac-sciences-economiques": "2BAC Sciences Economiques",
+  "2bac-sciences-de-gestion-et-comptabilite": "2BAC Sciences de Gestion et Comptabilité",
+  "2bac-arts-appliques": "2BAC Arts Appliqués",
+  "2bac-sciences-de-la-vie-et-de-la-terre": "2BAC Sciences de la Vie et de la Terre",
+  "2bac-sciences-physique-chimie": "2BAC Sciences Physique Chimie",
+  "2bac-sciences-agronomiques": "2BAC Sciences Agronomiques",
+  "2bac-sciences-mathematiques-a": "2BAC Sciences Mathématiques A",
+  "2bac-sciences-mathematiques-b": "2BAC Sciences Mathématiques B",
+  "2bac-sciences-et-technologies-electrique": "2BAC Sciences et Technologies Electrique",
+  "2bac-sciences-et-technologies-mecanique": "2BAC Sciences et Technologies Mécanique",
+  "autre": "Autre",
 } as any;
+
+const renderText = (value: any) => {
+  return value
+    ? value
+    : <span className='text-gray-400'>(empty)</span>
+}
 
 const Field = ({
   label,
@@ -105,58 +131,46 @@ export default function ApplicationDetailsPage({ params }: { params: { id: strin
             {/* PERSONAL INFORMARIONS */}
             <TabsContent value="personal-informations">
               <div className='space-y-6'>
-                <Field label='First name'>{application?.firstName}</Field>
-                <Field label='Last name'>{application?.lastName}</Field>
-                <Field label='Date of birth'>{formatDate(application?.dateOfBirth)}</Field>
-                <Field label='CNIE number'>{application?.identityCardNumber}</Field>
-                <Field label='City of residence'>{application?.city}</Field>
-                <Field label='Region of residence'>{regionLabels[application?.region]}</Field>
-                <Field label='Phone number'>{application?.phoneNumber}</Field>
-                <Field label='Emergency contact full Name'>{application?.emergencyContactName}</Field>
-                <Field label='Emergency contact phone number'>{application?.emergencyContactPhoneNumber}</Field>
+                <Field label='First name'>{renderText(application?.firstName)}</Field>
+                <Field label='Last name'>{renderText(application?.lastName)}</Field>
+                <Field label='Date of birth'>{renderText(formatDate(application?.dateOfBirth))}</Field>
+                <Field label='CNIE number'>{renderText(application?.identityCardNumber)}</Field>
+                <Field label='City of residence'>{renderText(application?.city)}</Field>
+                <Field label='Region of residence'>{renderText(regionLabels[application?.region])}</Field>
+                <Field label='Phone number'>{renderText(application?.phoneNumber)}</Field>
+                <Separator className="my-6" />
+                <Field label='Guardian full name'>{renderText(application?.guardianFullName)}</Field>
+                <Field label='Guardian phone number'>{renderText(application?.guardianPhoneNumber)}</Field>
+                <Field label='Relationship with guardian'>{renderText(relationshipWithGuardianLabels[application?.relationshipWithGuardian])}</Field>
+                <Field label='Special conditions'>{renderText(application?.specialConditions)}</Field>
               </div>
             </TabsContent>
             
             {/* EDUCATION */}
             <TabsContent value="education">
               <div className='space-y-6'>
-                <Field label='In 2023-2024, I attended higher education (in Morocco or abroad) at'>{educationLevelLabels[application?.lastYearEducationLevel]}</Field>
-                <Field label='Education program'>{educationProgramLabels[application?.educationProgram]}</Field>
-                <Field label='University Name'>{application?.establishment}</Field>
-                <Field label='Field of study'>{application?.fieldOfStudy}</Field>
-
+                <Field label='Education levels'>{renderText(educationLevelLabels[application?.educationLevel])}</Field>
+                <Field label='Education program'>{renderText(educationFieldLabels[application?.educationField])}</Field>
+                <Field label='Highschool'>{renderText(application?.highschool)}</Field>
                 <Separator className="my-6" />
 
-                {application?.educationProgram === 'cpge'
-                  ? (
-                    <>
-                      <Field label='Math Grade Trimester 1 '>{application?.cpgeGradeTrimesterOne}</Field>
-                      <Field label='Math Grade Trimester 2 '>{application?.cpgeGradeTrimesterTwo}</Field>
-                      <Field label='Math Ranking Trimester 1 '>{application?.cpgeRankingTrimesterOne}</Field>
-                      <Field label='Math Ranking Trimester 2 '>{application?.cpgeRankingTrimesterTwo}</Field>
-                    </>
-                  )
-                  : (
-                    <>
-                      <Field label='Average Grade of the 3 best scientific subjects'>{application?.nonCpgeAverageThreeBestScienceGrades}</Field>
-                      <Field label='Average Grade of all scientific subjects'>{application?.nonCpgeAverageScienceGrades}</Field>
-                      <Field label='Overall Average Grade'>{application?.nonCpgeOverallAverage}</Field>
-                    </>
-                  )
-                }
+                <Field label='Average grade'>{renderText(application?.averageGrade)}</Field>
+                <Field label='Math average grade'>{renderText(application?.mathAverageGrade)}</Field>
+                <Field label='Ranking'>{renderText(application?.ranking)}</Field>
+                <Field label='Math ranking'>{renderText(application?.mathRanking)}</Field>
+                <Field label='Number of students in class'>{renderText(application?.numberOfStudentsInClass)}</Field>                 
               </div>
             </TabsContent>
               
             {/* COMPETTION */}
             <TabsContent value="competition">
               <div className='space-y-6'>
-                <Field label='Have you participated in competitions before (Olympiads, national contests...) ?'>{application?.hasPreviouslyParticipated}</Field>
-                <Field label='If yes, please specify which ones and the achieved result.'>{application?.previousCompetitions ? application?.previousCompetitions : <span className='text-gray-400'>(empty)</span>}</Field>
-                <Field label='Have you participated in Math&Maroc Competition 2023 ?'>{application?.hasPreviouslyParticipatedInMmc}</Field>
-                <Field label='If yes, please specify your ranking'>{application?.previousResultsInMmc ? application?.previousResultsInMmc : <span className='text-gray-400'>(empty)</span>}</Field>
+                <Field label='Have you participated in competitions before (Olympiads, national contests...) ?'>{renderText(application?.hasPreviouslyParticipated)}</Field>
+                <Field label='If yes, please specify which ones and the achieved result.'>{renderText(application?.previousCompetitions)}</Field>
+                <Field label='Have you participated in MTYM 2023/2024 ?'>{renderText(application?.hasPreviouslyParticipatedInMtym)}</Field>
                 <Separator className="my-6" />
-                <Field label='Motivations'>{application?.motivations}</Field>
-                <Field label='Comments'>{application?.comments ? application?.comments : <span className='text-gray-400'>(empty)</span>}</Field>
+                <Field label='Motivations'>{renderText(application?.motivations)}</Field>
+                <Field label='Comments'>{renderText(application?.comments)}</Field>
               </div>
             </TabsContent>
             

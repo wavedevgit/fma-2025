@@ -21,7 +21,7 @@ export default function ApplicationsPage() {
           email: application?.user?.email,
           dateOfBirth: application?.dateOfBirth,
           city: application?.city,
-          establishment: application?.establishment,
+          establishment: application?.highschool,
           status: application?.status?.status,
         }))
       )
