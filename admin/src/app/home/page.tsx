@@ -11,6 +11,12 @@ const links = [
     link: "/home/applications",
   },
   {
+    title: "Teams",
+    description:
+      "Manage teams",
+    link: "/home/teams",
+  },
+  {
     title: "Users",
     description:
       "Manage user pofiles",

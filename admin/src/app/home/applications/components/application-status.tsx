@@ -12,6 +12,7 @@ import { putApplicationStatus } from '@/api/ApplicationApi';
 import { toast } from '@/components/hooks/use-toast';
 
 export type Status =
+  | 'DRAFT'
   | 'PENDING'
   | 'NOTIFIED'
   | 'UPDATED'
@@ -28,6 +29,9 @@ export const getStatusClassname = (status: Status, size: 'sm' | 'md') => {
   let colorClassname;
 
   switch(status) {
+    case 'DRAFT':
+      colorClassname = 'bg-gray-300 text-black';
+      break;
     case 'PENDING':
       colorClassname = 'bg-[#FFE380] text-black';
       break;
@@ -37,11 +41,9 @@ export const getStatusClassname = (status: Status, size: 'sm' | 'md') => {
     case 'UPDATED':
       colorClassname = 'bg-[#B3D4FF] text-black';
       break;
-
     case 'VALIDATED':
       colorClassname = 'bg-[#79F2C0] text-black';
       break;
-
     case 'ACCEPTED':
       colorClassname = 'bg-[#006644] text-white';
       break;
@@ -111,6 +113,7 @@ const ApplicationStatus = ({
           <SelectValue placeholder="Select a status" />
         </SelectTrigger>
         <SelectContent>
+          <SelectItem value="DRAFT"><StatusCard value='DRAFT' /></SelectItem>
           <SelectItem value="PENDING"><StatusCard value='PENDING' /></SelectItem>
           <SelectItem value="NOTIFIED"><StatusCard value='NOTIFIED' /></SelectItem>
           <SelectItem value="UPDATED"><StatusCard value='UPDATED' /></SelectItem>

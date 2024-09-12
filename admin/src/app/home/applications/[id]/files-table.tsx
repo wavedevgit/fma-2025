@@ -54,13 +54,13 @@ const FilesTable = ({
         </TableRow>
 
         <TableRow key='school-certificate'>
-          <TableCell>Certificate of Schooling</TableCell>
+          <TableCell>School Certificate</TableCell>
           <TableCell><FileCard href={application?.schoolCertificateUrl} /></TableCell>
           <TableCell><FileStatus slug='schoolCertificate' application={application} /></TableCell>
         </TableRow>
 
         <TableRow key='grades'>
-          <TableCell>Official Transcript 2023/2024</TableCell>
+          <TableCell>Grades 2023/2024</TableCell>
           <TableCell><FileCard href={application?.gradesUrl} /></TableCell>
           <TableCell><FileStatus slug='grades' application={application} /></TableCell>
         </TableRow>
@@ -69,6 +69,12 @@ const FilesTable = ({
           <TableCell>Handwritten signed regulation</TableCell>
           <TableCell><FileCard href={application?.regulationsUrl} /></TableCell>
           <TableCell><FileStatus slug='regulations' application={application} /></TableCell>
+        </TableRow>
+
+        <TableRow key='parental-authorization'>
+          <TableCell>Parental Authorization</TableCell>
+          <TableCell><FileCard href={application?.parentalAuthorizationUrl} /></TableCell>
+          <TableCell><FileStatus slug='parentalAuthorization' application={application} /></TableCell>
         </TableRow>
       </TableBody>
     </Table>
