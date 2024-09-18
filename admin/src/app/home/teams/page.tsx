@@ -19,7 +19,7 @@ export default function TeamsPage() {
           id: team?.id,
           name: team?.name,
           slogan: team?.slogan,
-          mentorFullName: team?.mentorFullName,
+          mentorFullname: team?.mentorFullname,
           leaderId: team?.leader?.id,
           leaderName: `${team?.leader?.firstName} ${team?.leader?.lastName}`,
           numberOfMembers: team?.users?.length,
