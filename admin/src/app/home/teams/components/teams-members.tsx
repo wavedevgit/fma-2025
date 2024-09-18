@@ -32,19 +32,19 @@ const TeamsMembers = ({
         <Button className="text-xs">Show Members</Button>
       </DialogTrigger>
 
-      <DialogContent className="">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Team Members</DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-xs">
             You&apos;ll find the list of all the team members
           </DialogDescription>
 
-          <div>
+          <div className="w-full">
             <Table>
-              <TableCaption>{members.length === 0 ? <span className="text-gray-400">Empty list</span> : ''}</TableCaption>
+              <TableCaption>{members.length === 0 ? <span className="text-xs text-gray-400">Empty list</span> : ''}</TableCaption>
               <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[100px]">Id</TableHead>
+                <TableRow className="text-xs">
+                  <TableHead>Id</TableHead>
                   <TableHead>First Name</TableHead>
                   <TableHead>Last Name</TableHead>
                   <TableHead>Email</TableHead>
@@ -60,9 +60,7 @@ const TeamsMembers = ({
                     <TableCell>{member.email}</TableCell>
                     <TableCell className="text-right">
                       <Link href={`/home/applications/${member?.application?.id}`} target="_blank">
-                        <Button 
-                          className="text-xs" 
-                        >
+                        <Button className="text-xs">
                           Show Application
                         </Button>
                       </Link>

@@ -7,7 +7,7 @@ export type TeamRow = {
   id: string,
   name: string,
   slogan: string,
-  mentorFullName: string,
+  mentorFullname: string,
   leaderName: string,
   leaderId: string,
   members: any[],
@@ -57,7 +57,7 @@ export const columns: ColumnDef<TeamRow>[] = [
     },
   },
   {
-    accessorKey: "mentorFullName",
+    accessorKey: "mentorFullname",
     header: ({ column }) => {
       return (
         <Button
@@ -70,9 +70,9 @@ export const columns: ColumnDef<TeamRow>[] = [
       )
     },
     cell: ({ row }) => {
-      const mentorFullName = row.getValue("mentorFullName") as string;
+      const mentorFullname = row.getValue("mentorFullname") as string;
       return <>
-        {mentorFullName ?? <span className="text-gray-300">{"(empty)"}</span>}
+        {mentorFullname ?? <span className="text-gray-300">{"(empty)"}</span>}
       </>
     }
   },
