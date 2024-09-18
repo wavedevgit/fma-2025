@@ -1,12 +1,16 @@
 import { Button } from "@/components/shared/button"
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown } from "lucide-react"
+import TeamsMembers from "./teams-members"
  
 export type TeamRow = {
   id: string,
   name: string,
   slogan: string,
   mentorFullName: string,
+  leaderName: string,
+  leaderId: string,
+  members: any[],
 }
  
 export const columns: ColumnDef<TeamRow>[] = [
@@ -22,7 +26,7 @@ export const columns: ColumnDef<TeamRow>[] = [
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
-    },
+    }
   },
   {
     accessorKey: "name",
@@ -65,6 +69,12 @@ export const columns: ColumnDef<TeamRow>[] = [
         </Button>
       )
     },
+    cell: ({ row }) => {
+      const mentorFullName = row.getValue("mentorFullName") as string;
+      return <>
+        {mentorFullName ?? <span className="text-gray-300">{"(empty)"}</span>}
+      </>
+    }
   },
   {
     accessorKey: "leader",
@@ -78,6 +88,13 @@ export const columns: ColumnDef<TeamRow>[] = [
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
+    },
+    cell: ({ row }) => {
+      const leaderId = row.original?.leaderId;
+      const leaderName = row.original?.leaderName;
+      return <>
+        {leaderName} <span className="text-gray-300">(id={leaderId})</span>
+      </>
     },
   },
   {
@@ -93,5 +110,20 @@ export const columns: ColumnDef<TeamRow>[] = [
         </Button>
       )
     },
+    cell: ({ row }) => {
+      return <div className="text-center">
+        {row.getValue('numberOfMembers') as string}
+      </div>
+    },
+  },
+  {
+    id: "showButton",
+    cell: ({ row }) => {
+      const members = row.original?.members;
+ 
+      return <div className='flex justify-end'>
+        <TeamsMembers members={members}/>
+      </div>
+    }
   },
 ]

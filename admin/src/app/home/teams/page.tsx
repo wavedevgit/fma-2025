@@ -13,13 +13,17 @@ export default function TeamsPage() {
   useEffect(() => {
     if (teams) {
       setTableData(
-        teams.map((team: any) => ({
+        teams
+        .filter((team: any) => team?.users?.length)
+        .map((team: any) => ({
           id: team?.id,
           name: team?.name,
           slogan: team?.slogan,
           mentorFullName: team?.mentorFullName,
-          leader: `${team?.leader?.firstName} ${team?.leader?.lastName} [id=${team?.leader?.id}]`,
+          leaderId: team?.leader?.id,
+          leaderName: `${team?.leader?.firstName} ${team?.leader?.lastName}`,
           numberOfMembers: team?.users?.length,
+          members: team?.users,
         }))
       )
     }
