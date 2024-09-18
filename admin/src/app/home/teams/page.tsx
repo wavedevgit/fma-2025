@@ -13,7 +13,9 @@ export default function TeamsPage() {
   useEffect(() => {
     if (teams) {
       setTableData(
-        teams.map((team: any) => ({
+        teams
+        .filter((team: any) => team?.users?.length)
+        .map((team: any) => ({
           id: team?.id,
           name: team?.name,
           slogan: team?.slogan,
@@ -21,6 +23,7 @@ export default function TeamsPage() {
           leaderId: team?.leader?.id,
           leaderName: `${team?.leader?.firstName} ${team?.leader?.lastName}`,
           numberOfMembers: team?.users?.length,
+          members: team?.users,
         }))
       )
     }
