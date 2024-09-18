@@ -72,7 +72,7 @@ export const columns: ColumnDef<TeamRow>[] = [
     cell: ({ row }) => {
       const mentorFullname = row.getValue("mentorFullname") as string;
       return <>
-        {mentorFullname ?? <span className="text-gray-300">{"(empty)"}</span>}
+        {mentorFullname ? mentorFullname : <span className="text-gray-300">{"(empty)"}</span>}
       </>
     }
   },
