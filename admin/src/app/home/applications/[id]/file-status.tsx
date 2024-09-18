@@ -12,6 +12,7 @@ import { putApplicationStatus } from '@/api/ApplicationApi';
 import { toast } from '@/components/hooks/use-toast';
 
 export type FileStatus =
+  | 'DRAFT'
   | 'PENDING'
   | 'VALID'
   | 'NOT_VALID';
@@ -21,6 +22,9 @@ const getStatusClassname = (status: FileStatus) => {
   let colorClassname;
 
   switch(status) {
+    case 'DRAFT':
+      colorClassname = 'bg-gray-300 text-black';
+      break;
     case 'PENDING':
       colorClassname = 'bg-[#FFE380] text-black';
       break;
@@ -92,6 +96,7 @@ const FileStatus = ({
         <SelectValue placeholder="Select a status" />
       </SelectTrigger>
       <SelectContent>
+        <SelectItem value="DRAFT"><StatusCard value='DRAFT'>DRAFT</StatusCard></SelectItem>
         <SelectItem value="PENDING"><StatusCard value='PENDING'>PENDING</StatusCard></SelectItem>
         <SelectItem value="VALID"><StatusCard value='VALID'>VALID</StatusCard></SelectItem>
         <SelectItem value="NOT_VALID"><StatusCard value='NOT_VALID'>NOT VALID</StatusCard></SelectItem>
