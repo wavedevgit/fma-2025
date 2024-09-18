@@ -65,9 +65,20 @@ export const columns: ColumnDef<TeamRow>[] = [
         </Button>
       )
     },
+    cell: ({ row }) => {
+      const mentorFullName = row.getValue("mentorFullName") as string;
+      return <>
+        {mentorFullName ?? <span className="text-gray-300">{"(empty)"}</span>}
+      </>
+    }
+  },
+  { // hidden column to make its value available in another column
+    accessorKey: "leaderId",
+    header: ({ column }) => { return },
+    cell: ({ row }) => { return },
   },
   {
-    accessorKey: "leader",
+    accessorKey: "leaderName",
     header: ({ column }) => {
       return (
         <Button
@@ -78,6 +89,14 @@ export const columns: ColumnDef<TeamRow>[] = [
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
+    },
+    cell: ({ row }) => {
+      const leaderName = row.getValue("leaderName") as string;
+      const leaderId = row.getValue("leaderId") as string;
+      console.log('row: ', row.getVisibleCells());
+      return <>
+        {leaderName} <span className="text-gray-300">(id={leaderId})</span>
+      </>
     },
   },
   {
