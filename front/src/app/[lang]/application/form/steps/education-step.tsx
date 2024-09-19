@@ -153,7 +153,7 @@ export const EducationStep = ({
           name="averageGrade"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Moyenne générale<RequiredAsterisk /></FormLabel>
+              <FormLabel>Moyenne générale du 2e semestre<RequiredAsterisk /></FormLabel>
               <FormControl>
                 <Input placeholder="Entrez votre moyenne générale" type="number" {...field} />
               </FormControl>
