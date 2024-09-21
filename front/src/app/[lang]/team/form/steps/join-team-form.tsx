@@ -37,11 +37,13 @@ export const JoinTeamForm = ({
   teams: Team[],
   delta: number
 }) => {
-  const teamsOptions = teams?.map(team => ({
-    label: team?.name,
-    value: team?.id.toString(),
-    leader: `${team?.leader?.firstName} ${team?.leader?.lastName}`
-  }))
+  const teamsOptions = teams
+    ?.filter(team => team?.users?.length)
+    ?.map(team => ({
+      label: team?.name,
+      value: team?.id.toString(),
+      leader: `${team?.leader?.firstName} ${team?.leader?.lastName}`
+    }))
 
   return (
     <motion.div

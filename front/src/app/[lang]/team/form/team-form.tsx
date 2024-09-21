@@ -75,10 +75,10 @@ export const TeamForm = () => {
 
       const addUserResult = await addUser(parseInt(formData?.teamId)) as any;
       if (addUserResult?.statusCode !== 200) {
-        throw new Error('Adding the user in the team failed')
+        throw new Error(addUserResult?.message ?? 'Adding the user in the team failed')
       }
 
-      const deleteAccessCodeResult = await deleteAccessCode(checkAccessCodeResult?.accessCode?.id) as any;
+      await deleteAccessCode(checkAccessCodeResult?.accessCode?.id) as any;
 
       router.push('/profile/team')
       setTimeout(() => {

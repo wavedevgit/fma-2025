@@ -4,4 +4,5 @@ export type Team = {
   slogan: string;
   mentorFullname: string;
   leader: any;
+  users?: any[],
 }
