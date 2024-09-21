@@ -75,32 +75,21 @@ export const ApplicationForm = ({
       // Upload files
       for (const file of files) {
         const checksum = await computeSHA256(file);
-
         const signedURLResponse = await getSignedURL(`upload_mtym/${uploadFolderName}/${file.name}`, file.type, file.size, checksum) as any;
-        if (signedURLResponse?.statusCode !== 200) {
-          throw new Error(signedURLResponse?.message ?? 'Get of application signed URL failed');
-        }
-
-        const uploadResponse = await uploadFile(signedURLResponse?.url, file) as any;
-        if (uploadResponse?.statusCode !== 200) {
-          throw new Error(uploadResponse?.message ?? 'Upload of file failed');
-        }
+        await uploadFile(signedURLResponse?.url, file) as any;
       }
 
       // Update Application upload links
-      const putApplicationResponse = await putApplication(applicationId, {
+      await putApplication(applicationId, {
         cnieUrl: `upload_mtym/${uploadFolderName}/${files[0].name}`,
         schoolCertificateUrl: `upload_mtym/${uploadFolderName}/${files[1].name}`,
         gradesUrl: `upload_mtym/${uploadFolderName}/${files[2].name}`,
         regulationsUrl: `upload_mtym/${uploadFolderName}/${files[3].name}`,
         parentalAuthorizationUrl: `upload_mtym/${uploadFolderName}/${files[4].name}`,
       }) as any
-      if (putApplicationResponse?.affected === 0) {
-        throw new Error(putApplicationResponse?.message ?? 'Put of application failed');
-      }
 
       // Update Application status
-      const updateApplicationStatusResponse = await updateApplicationStatus(applicationId, { status: 'PENDING' }) as any;
+      await updateApplicationStatus(applicationId, { status: 'PENDING' }) as any;
 
       toast({
         title: 'Application created with success',
@@ -110,7 +99,7 @@ export const ApplicationForm = ({
       router.push('/profile/application')
       setTimeout(() => {
         window.location.reload();
-      }, 500)
+      }, 1000)
     } catch(err: any) {
       setError(err);
       setShowErrorDialog(true);
@@ -129,7 +118,7 @@ export const ApplicationForm = ({
       ;
 
       if (applicationResponse?.statusCode !== 200) {
-        throw new Error('Post of application failed')
+        throw new Error(applicationResponse?.message ?? 'Post of application failed')
       }
 
       toast({
