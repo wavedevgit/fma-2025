@@ -16,6 +16,15 @@ import { postApplication, putApplication, updateApplicationStatus } from "@/api/
 import { useRouter } from "next/navigation"
 import { getSignedURL, uploadFile } from "@/api/MediaApi"
 import { LoadingDots } from "@/components/shared/icons"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/shared/dialog"
 
 export const ApplicationForm = ({ 
   userData,
@@ -25,6 +34,8 @@ export const ApplicationForm = ({
   const [previousStep, setPreviousStep] = useState(0)
   const [currentStep, setCurrentStep] = useState(0)
   const [isFormLoading, setIsFormLoading] = useState(false);
+  const [error, setError] = useState<any>(undefined);
+  const [showErrorDialog, setShowErrorDialog] = useState(false);
   const router = useRouter()
   const delta = currentStep - previousStep
   const form = useForm<z.infer<typeof applicationSchema>>({
@@ -56,7 +67,7 @@ export const ApplicationForm = ({
       ;
 
       if (applicationResponse?.statusCode !== 200) {
-        throw new Error('Post of application failed')
+        throw new Error(applicationResponse?.message ?? 'Post of application failed')
       }
 
       const applicationId = applicationResponse?.id;
@@ -67,12 +78,12 @@ export const ApplicationForm = ({
 
         const signedURLResponse = await getSignedURL(`upload_mtym/${uploadFolderName}/${file.name}`, file.type, file.size, checksum) as any;
         if (signedURLResponse?.statusCode !== 200) {
-          throw new Error('Get of application signed URL failed');
+          throw new Error(signedURLResponse?.message ?? 'Get of application signed URL failed');
         }
 
         const uploadResponse = await uploadFile(signedURLResponse?.url, file) as any;
         if (uploadResponse?.statusCode !== 200) {
-          throw new Error('Upload of file failed');
+          throw new Error(uploadResponse?.message ?? 'Upload of file failed');
         }
       }
 
@@ -85,7 +96,7 @@ export const ApplicationForm = ({
         parentalAuthorizationUrl: `upload_mtym/${uploadFolderName}/${files[4].name}`,
       }) as any
       if (putApplicationResponse?.affected === 0) {
-        throw new Error('Put of application failed');
+        throw new Error(putApplicationResponse?.message ?? 'Put of application failed');
       }
 
       // Update Application status
@@ -101,11 +112,8 @@ export const ApplicationForm = ({
         window.location.reload();
       }, 500)
     } catch(err: any) {
-      toast({
-        title: 'Application submission failed',
-        description: err?.message,
-        variant: 'destructive'
-      });
+      setError(err);
+      setShowErrorDialog(true);
     } finally {
       setIsFormLoading(false);
     }
@@ -228,6 +236,24 @@ export const ApplicationForm = ({
         setPreviousStep={setPreviousStep} 
         setCurrentStep={setCurrentStep} 
       />
+
+      <Dialog open={showErrorDialog} onOpenChange={setShowErrorDialog}>
+        <DialogContent className="sm:max-w-[525px]">
+          <DialogHeader>
+            <DialogTitle className="my-2 text-red-700">La soumission de votre candidature a échouée</DialogTitle>
+            <DialogDescription className="text-xs space-y-2">
+              <p>
+                Une erreur est survenue lors de la soumission de votre candidature. <br/>
+                Message de l&apos;erreur: <span className="text-black">{error?.message} (app {userData?.application?.id ?? ''})</span>
+              </p>
+              <p>
+                Veuillez réessayer plus tard <span className="text-black">ou</span> contactez-nous sur l&apos;addresse email <span className="text-blue-500">math.maroc.mtym@gmail.com</span> en précisant votre nom, prénom et en joignant le message de l&apos;erreur çi-haut.
+              </p>
+              
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </section>
   )
 }
