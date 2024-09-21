@@ -67,6 +67,12 @@ const educationFieldLabels = {
   "autre": "Autre",
 } as any;
 
+const booleanLabels = {
+  "yes": "Oui",
+  "no": "Non",
+  "not-selected": "J'ai postulé, mais je n'ai pas été sélectionné."
+} as any;
+
 const renderText = (value: any) => {
   return value
     ? value
@@ -165,9 +171,9 @@ export default function ApplicationDetailsPage({ params }: { params: { id: strin
             {/* COMPETTION */}
             <TabsContent value="competition">
               <div className='space-y-6'>
-                <Field label='Have you participated in competitions before (Olympiads, national contests...) ?'>{renderText(application?.hasPreviouslyParticipated)}</Field>
+                <Field label='Have you participated in competitions before (Olympiads, national contests...) ?'>{renderText(booleanLabels[application?.hasPreviouslyParticipated])}</Field>
                 <Field label='If yes, please specify which ones and the achieved result.'>{renderText(application?.previousCompetitions)}</Field>
-                <Field label='Have you participated in MTYM 2023/2024 ?'>{renderText(application?.hasPreviouslyParticipatedInMtym)}</Field>
+                <Field label='Have you participated in MTYM 2023/2024 ?'>{renderText(booleanLabels[application?.hasPreviouslyParticipatedInMtym])}</Field>
                 <Separator className="my-6" />
                 <Field label='Motivations'>{renderText(application?.motivations)}</Field>
                 <Field label='Comments'>{renderText(application?.comments)}</Field>

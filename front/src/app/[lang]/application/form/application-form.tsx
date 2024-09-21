@@ -61,10 +61,7 @@ export const ApplicationForm = ({
     
     try {
       // Post application
-      const applicationResponse = userData?.application
-        ? await putApplication(userData?.application?.id, excludeFileFields(formData)) as any
-        : await postApplication({userId: userData.id, ...formData}) as any
-      ;
+      const applicationResponse = await postApplication(excludeFileFields(formData)) as any
 
       if (applicationResponse?.statusCode !== 200) {
         throw new Error(applicationResponse?.message ?? 'Post of application failed')
@@ -89,7 +86,10 @@ export const ApplicationForm = ({
       }) as any
 
       // Update Application status
-      await updateApplicationStatus(applicationId, { status: 'PENDING' }) as any;
+      await updateApplicationStatus(applicationId, { status: userData?.application?.status?.status === 'NOTIFIED'
+        ? 'UPDATED'
+        : 'PENDING'
+      }) as any;
 
       toast({
         title: 'Application created with success',
@@ -112,10 +112,7 @@ export const ApplicationForm = ({
     const application = form.watch()
 
     try {
-      const applicationResponse = userData?.application
-        ? await putApplication(application?.id, excludeFileFields(application)) as any
-        : await postApplication({userId: userData.id, ...application}) as any
-      ;
+      const applicationResponse = await postApplication(excludeFileFields(application)) as any;
 
       if (applicationResponse?.statusCode !== 200) {
         throw new Error(applicationResponse?.message ?? 'Post of application failed')
@@ -131,11 +128,8 @@ export const ApplicationForm = ({
         window.location.reload();
       }, 1000)
     } catch(err: any) {
-      toast({
-        title: 'Application submission failed',
-        description: err?.message,
-        variant: 'destructive'
-      });
+      setError(err);
+      setShowErrorDialog(true);
     }    
   }
 
