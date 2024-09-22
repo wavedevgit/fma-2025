@@ -53,20 +53,20 @@ export default function ApplicationPage() {
 
     if (!application) {
       setContent({
-        title: "Vous n'avez pas encore soumis votre candidature",
-        subtitle: "Assurez-vous de soumettre une candidature, puis de rejoindre une équipe.",
+        title: "Vous n'avez pas soumis une candidature",
+        subtitle: "Merci pour l'intérêt que vous portez à MTYM! Malheureusement les inscriptions sont désormais closes. Néanmoins, restez à l'écoute pour ne pas manquer de futures opportunités.",
         ctaLabel: "Créer votre candidature",
       })
     } else if (applicationStatus === 'DRAFT') {
       setContent({
         title: "Vous avez sauvegardé un brouillon de candidature. Elle n'est pas encore soumise.",
-        subtitle: "Assurez-vous de compléter et de soumettre votre candidature, puis de rejoindre une équipe.",
+        subtitle: "Merci pour l'intérêt que vous portez à MTYM! Malheureusement les inscriptions sont désormais closes. Néanmoins, restez à l'écoute pour ne pas manquer de futures opportunités.",
         ctaLabel: "Continuer votre candidature",
       })
     } else {
       setContent({
         title: "Vous avez déjà soumis une candidature",
-        subtitle: "Assurez-vous d'avoir rejoint une équipe afin que votre candidature soit prise en compte.",
+        subtitle: "Vous trouverez l'avancement de votre candidature ci-dessous. On vous notifiera des prochaines étapes par mail.",
         ctaLabel: "Mettre à jour votre candidature",
       })
     }
@@ -91,22 +91,22 @@ export default function ApplicationPage() {
           </>
         }
       </CardContent>
-      <CardFooter>
+      {/* <CardFooter>
         <Button
           onClick={() => router.push('/application')}
         >
           {content?.ctaLabel}
         </Button>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 
   return (
     <div className="space-y-6">
       <div>
-        <div className="text-lg font-medium">Application</div>
+        <div className="text-lg font-medium">Candidature</div>
         <p className="text-sm text-muted-foreground">
-          This is where you manage your current application.
+          C&apos;est ici que vous trouverez le statut de votre candidature.
         </p>
       </div>
 

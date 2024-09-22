@@ -52,7 +52,7 @@ const CtaButton = () => {
     >
       <AuthModal />
 
-      <div className='flex flex-col space-y-4 sm:flex-row sm:items-center sm:space-y-0 '>
+      {/* <div className='flex flex-col space-y-4 sm:flex-row sm:items-center sm:space-y-0 '>
         {!isMobile && <DottedLine1 className='w-1/6'/>}
 
         <button 
@@ -78,11 +78,32 @@ const CtaButton = () => {
         </button>
 
         {!isMobile && <DottedLine3 className='w-1/6'/>}
+      </div> */}
+
+      <div className='flex flex-col space-y-4 justify-center sm:flex-row sm:items-center sm:space-y-0 '>
+        <button 
+          className="p-[3px] relative"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-sky-500 to-[#272162] rounded-lg" />
+          <div className="px-8 py-2 bg-white rounded-[6px] relative group transition duration-200 text-black hover:bg-transparent hover:text-white">
+            L&apos;inscription est fermée!
+          </div>
+        </button>
       </div>
       
-      <p>
+      {/* <p>
         <span className='font-semibold text-[#272162]'>Date limite pour candidater:</span> <span className='font-bold'>22 Septembre 2024</span>
+      </p> */}
+
+      <p>
+        Merci pour l&apos;intérêt que vous portez à <span className='font-semibold text-[#272162]'>MTYM</span>!
       </p>
+      <p>
+        Pour suivre l&apos;avancement de votre candidature, {!userData
+          ? <> veuillez vous <span className='text-blue-600 hover:cursor-pointer hover:underline' onClick={() => setShowAuthModal(true)}>connectez</span> </>
+          : <> veuillez accéder à votre <span className='text-blue-600 hover:cursor-pointer hover:underline' onClick={() => router.push('/profile/application')}>profil</span> </>
+        }
+      </p>      
     </div>
   )
 }
