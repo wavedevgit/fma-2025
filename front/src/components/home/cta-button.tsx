@@ -52,7 +52,7 @@ const CtaButton = () => {
     >
       <AuthModal />
 
-      {/* <div className='flex flex-col space-y-4 sm:flex-row sm:items-center sm:space-y-0 '>
+      <div className='flex flex-col space-y-4 sm:flex-row sm:items-center sm:space-y-0 '>
         {!isMobile && <DottedLine1 className='w-1/6'/>}
 
         <button 
@@ -78,9 +78,9 @@ const CtaButton = () => {
         </button>
 
         {!isMobile && <DottedLine3 className='w-1/6'/>}
-      </div> */}
+      </div>
 
-      <div className='flex flex-col space-y-4 justify-center sm:flex-row sm:items-center sm:space-y-0 '>
+      {/* <div className='flex flex-col space-y-4 justify-center sm:flex-row sm:items-center sm:space-y-0 '>
         <button 
           className="p-[3px] relative"
         >
@@ -89,13 +89,14 @@ const CtaButton = () => {
             L&apos;inscription est fermée!
           </div>
         </button>
-      </div>
+      </div> */}
       
-      {/* <p>
-        <span className='font-semibold text-[#272162]'>Date limite pour candidater:</span> <span className='font-bold'>22 Septembre 2024</span>
-      </p> */}
-
       <p>
+        <span className='text-sky-500'>Bonne nouvelle! La période d&apos;inscription est prolongée de <span className='font-bold'>4 jours</span></span> <br/>
+        <span className='font-semibold text-[#272162]'>Date limite pour candidater:</span> <span className='font-bold'>26 Septembre 2024 à 23h59</span>
+      </p>
+
+      {/* <p>
         Merci pour l&apos;intérêt que vous portez à <span className='font-semibold text-[#272162]'>MTYM</span>!
       </p>
       <p>
@@ -103,7 +104,7 @@ const CtaButton = () => {
           ? <> veuillez vous <span className='text-blue-600 hover:cursor-pointer hover:underline' onClick={() => setShowAuthModal(true)}>connectez</span> </>
           : <> veuillez accéder à votre <span className='text-blue-600 hover:cursor-pointer hover:underline' onClick={() => router.push('/profile/application')}>profil</span> </>
         }
-      </p>      
+      </p>       */}
     </div>
   )
 }

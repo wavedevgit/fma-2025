@@ -45,7 +45,7 @@ export default function TeamPage() {
     if (!team) {
       setContent({
         title: "Vous ne faites pas partie d'une équipe!",
-        subtitle: "Merci pour l'intérêt que vous portez à MTYM! Malheureusement les inscriptions sont désormais closes. Néanmoins, restez à l'écoute pour ne pas manquer de futures opportunités.",
+        subtitle: "Assurez-vous de rejoindre une équipe afin que votre candidature soit prise en compte.",
       })
     } else {
       setContent({
@@ -53,6 +53,18 @@ export default function TeamPage() {
         subtitle: "Votre candidature sera jointe à celles de vos coéquipiers.",
       })
     }
+
+    // if (!team) {
+    //   setContent({
+    //     title: "Vous ne faites pas partie d'une équipe!",
+    //     subtitle: "Merci pour l'intérêt que vous portez à MTYM! Malheureusement les inscriptions sont désormais closes. Néanmoins, restez à l'écoute pour ne pas manquer de futures opportunités.",
+    //   })
+    // } else {
+    //   setContent({
+    //     title: isTeamLeader ? "Vous avez créé une équipe!" : "Vous avez rejoint une équipe!",
+    //     subtitle: "Votre candidature sera jointe à celles de vos coéquipiers.",
+    //   })
+    // }
   }, [userData])
 
   const applicationCard = (
@@ -95,10 +107,9 @@ export default function TeamPage() {
                         <TableCell className="flex justify-end">
                           {user?.id === userData?.team?.leader?.id 
                             ? <Badge className="bg-green-700">Lead</Badge>
-                            : <Badge className="bg-gray-100"></Badge>
-                            // : isTeamLeader
-                            //   ? <ActionButton user={user}/>
-                            //   : ''
+                            : isTeamLeader
+                              ? <ActionButton user={user}/>
+                              : ''
                           }
                         </TableCell>
                       </TableRow>
@@ -128,7 +139,7 @@ export default function TeamPage() {
           </>
         }
       </CardContent>
-      {/* <CardFooter>
+      <CardFooter>
         {(!userData?.application || userData?.application?.status?.status === 'DRAFT')
           ? (
             <>
@@ -155,7 +166,7 @@ export default function TeamPage() {
               )
           )
         }
-      </CardFooter> */}
+      </CardFooter>
     </Card>
   );
 
