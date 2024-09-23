@@ -12,7 +12,7 @@ export default function ApplicationPage() {
   const userData = useRecoilValue<any>(userState);
   const router = useRouter();
   useAuthGuard();
-  router.push('/profile/team')
+  router.push('/profile/team');
 
   // if (!userData) {
   //   return <ProfileSkeleton />;
