@@ -91,13 +91,15 @@ export default function ApplicationPage() {
           </>
         }
       </CardContent>
-      {/* <CardFooter>
-        <Button
-          onClick={() => router.push('/application')}
-        >
-          {content?.ctaLabel}
-        </Button>
-      </CardFooter> */}
+      {userData?.application && userData?.application?.status?.status !== 'DRAFT' &&
+        <CardFooter>
+          <Button
+            onClick={() => router.push('/application')}
+          >
+            {content?.ctaLabel}
+          </Button>
+        </CardFooter> 
+      }
     </Card>
   );
 

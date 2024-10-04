@@ -11,7 +11,22 @@ export default function ApplicationPage() {
   const userData = useRecoilValue<any>(userState);
   const router = useRouter();
   useAuthGuard();
-  router.push('/profile/application')
+
+  if (userData) {
+    if (userData?.application && userData?.application?.status?.status !== 'DRAFT') {
+      return (
+        <div className="z-10 w-full px-5 max-w-screen-xl xl:px-0">
+          <div className="space-y-6 p-10 pb-16">
+            <ApplicationForm userData={userData} />
+          </div>
+        </div>
+      )
+    } else {
+      router.push('/profile/application')
+    }
+  } else { 
+    return <ProfileSkeleton />
+  }
 
   // if (!userData) return <ProfileSkeleton />;
 
@@ -22,6 +37,4 @@ export default function ApplicationPage() {
   //     </div>
   //   </div>
   // )
-
-  return <ProfileSkeleton />
 }
