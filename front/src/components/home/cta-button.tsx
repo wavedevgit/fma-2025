@@ -86,11 +86,11 @@ const CtaButton = () => {
             </Button>
           </Link>
 
-          <Link href='https://drive.google.com/file/d/1Ah068enVUm9NnPcvPxtsUq4Db5KeNL2X/view'>
+          <Link href='partners'>
             <Button
               className='border border-white text-white w-[11rem] bg-[#2C2C62]'
             >
-              Programme
+              Partenaires
             </Button>
           </Link>
         </div>

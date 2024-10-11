@@ -18,11 +18,6 @@ const links = [
   //   label: 'Programme',
   //   href: '/schedule',
   // },
-  // {
-  //   key: 'organizing-team',
-  //   label: 'Equipe organisatrice',
-  //   href: '/organizing-team',
-  // },
   {
     key: 'problems',
     label: 'Dernière Édition',
@@ -32,6 +27,11 @@ const links = [
     key: 'problems',
     label: 'Test de sélection',
     href: '/selection',
+  },
+  {
+    key: 'organizing-team',
+    label: 'Équipe organisatrice',
+    href: '/organizing-team',
   },
   {
     key: 'partenaires',
