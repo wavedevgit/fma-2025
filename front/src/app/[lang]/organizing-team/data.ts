@@ -84,6 +84,15 @@ export const staff = [
   },
 ];
 
+export const brandDesign = [
+  {
+    name: 'Ayoub BENNOUNA',
+    imageSrc: '/organizing-team/ayoub_bennouna.jpg',
+    linkedinSrc: '',
+    portfolioSrc: 'https://www.ayoubdesigns.com/',
+  },
+]
+
 export const webDevelopment = [
   {
     name: 'Achraf EL KHAMSI',
