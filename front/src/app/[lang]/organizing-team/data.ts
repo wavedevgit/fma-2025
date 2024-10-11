@@ -61,7 +61,7 @@ export const organizingCommittee = [
   },
   {
     name: 'Ayman AMASROUR',
-    imageSrc: '/organizing-team/unknown.jpg',
+    imageSrc: '/organizing-team/ayman_amasrour.jpeg',
     linkedinSrc: 'https://www.linkedin.com/in/ayman-amasrour-1a280228a/',
   },
   {
