@@ -74,6 +74,11 @@ export const organizingCommittee = [
     imageSrc: '/organizing-team/souhail_elbakkare.jpeg',
     linkedinSrc: 'https://www.linkedin.com/in/souhail-elbakkar-9aab2a284/',
   },
+  {
+    name: 'Kawtar TAÏK',
+    imageSrc: '/organizing-team/kawtar_taik.jpeg',
+    linkedinSrc: 'https://www.linkedin.com/in/kawtar-ta%C3%AFk-7544a11b9/',
+  },
 ];
 
 export const staff = [
