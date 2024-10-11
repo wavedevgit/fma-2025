@@ -6,6 +6,7 @@ import {
   um6p,
 } from './data';
 import Link from 'next/link';
+import { shuffle } from '@/lib/utils';
 
 const Card = ({
   key,
@@ -39,6 +40,8 @@ const Card = ({
 }
 
 export default function OrganizingTeamPage() {
+  const shuffledOrganizingCommitte = shuffle(organizingCommittee)
+
   return (
     <div className="w-full max-w-sm md:max-w-[85rem] px-5 xl:px-0 mt-10">
       <div className="space-y-6">
@@ -61,7 +64,7 @@ export default function OrganizingTeamPage() {
           className="flex justify-around flex-wrap gap-6 bg-gray-200 shadow-lg p-8 rounded-lg animate-fade-up opacity-0"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
-          {organizingCommittee.map(person =>
+          {shuffledOrganizingCommitte.map(person =>
             <Card
               key={person.name.toLowerCase().replace(' ', '_')}
               name={person.name}
@@ -71,7 +74,7 @@ export default function OrganizingTeamPage() {
           )}
         </div>
 
-        {/* <h1
+        <h1
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
@@ -91,9 +94,9 @@ export default function OrganizingTeamPage() {
               linkedinSrc={person.linkedinSrc}
             />
           )}
-        </div> */}
+        </div>
 
-        {/* <h1
+        <h1
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
@@ -113,7 +116,7 @@ export default function OrganizingTeamPage() {
               linkedinSrc={person.linkedinSrc}
             />
           )}
-        </div> */}
+        </div>
 
         {/* <h1
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"

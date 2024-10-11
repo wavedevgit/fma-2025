@@ -101,3 +101,10 @@ export const camelCaseToText = (camel: string) => {
   const result = camel.replace(/([A-Z])/g, " $1");
   return result.charAt(0).toUpperCase() + result.slice(1);
 }
+
+export const shuffle = (unshuffled: any[]) => {
+  return unshuffled
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value)
+}
