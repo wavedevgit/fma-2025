@@ -7,7 +7,20 @@ import { useAuthModal } from '../layout/auth-modal';
 import { useRecoilValue } from 'recoil';
 import { userState } from '@/store/userState';
 import { DottedLine1, DottedLine2, DottedLine3 } from '../shared/icons/dotted-lines';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/shared/dialog"
+import { Button } from '../shared';
+import { MeteorCard } from './meteor-card';
 import useMediaQuery from '@/lib/hooks/use-media-query';
+import Link from 'next/link';
+import { Separator } from '@radix-ui/react-separator';
 
 const CtaButton = () => {
   const router = useRouter();
@@ -52,6 +65,37 @@ const CtaButton = () => {
     >
       <AuthModal />
 
+      <MeteorCard className="w-full flex flex-col space-y-4 items-center bg-transparent border-gray-400 py-4">
+        <div className='flex flex-col space-y-4 justify-center sm:flex-row sm:items-center sm:space-y-0 '>
+          <button 
+            className="p-[3px] relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-sky-600 to-[#2C2C62] rounded-lg" />
+            <div className="px-8 py-2 bg-white rounded-[6px] relative group transition duration-200 text-black hover:bg-transparent hover:text-white">
+              Accèder aux problèmes
+            </div>
+          </button>
+        </div>
+
+        <div className="w-full flex flex-col space-y-4 md:flex-row md:justify-center md:space-y-0 md:space-x-6">
+          <Link href='organizing-team' target='_blank'>
+            <Button
+              className='border border-white text-white w-[11rem] bg-[#2C2C62]'
+            >
+              Équipe organisatrice
+            </Button>
+          </Link>
+
+          <Link href='https://drive.google.com/file/d/1Ah068enVUm9NnPcvPxtsUq4Db5KeNL2X/view'>
+            <Button
+              className='border border-white text-white w-[11rem] bg-[#2C2C62]'
+            >
+              Programme
+            </Button>
+          </Link>
+        </div>
+      </MeteorCard>
+
       {/* <div className='flex flex-col space-y-4 sm:flex-row sm:items-center sm:space-y-0 '>
         {!isMobile && <DottedLine1 className='w-1/6'/>}
 
@@ -80,27 +124,11 @@ const CtaButton = () => {
         {!isMobile && <DottedLine3 className='w-1/6'/>}
       </div> */}
 
-      <div className='flex flex-col space-y-4 justify-center sm:flex-row sm:items-center sm:space-y-0 '>
-        <button 
-          className="p-[3px] relative"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-sky-500 to-[#272162] rounded-lg" />
-          <div className="px-8 py-2 bg-white rounded-[6px] relative group transition duration-200 text-black hover:bg-transparent hover:text-white">
-            L&apos;inscription est fermée!
-          </div>
-        </button>
-      </div>
-      
-      {/* <p>
-        <span className='text-sky-500'>Bonne nouvelle! La période d&apos;inscription est prolongée de <span className='font-bold'>4 jours</span></span> <br/>
-        <span className='font-semibold text-[#272162]'>Date limite pour candidater:</span> <span className='font-bold'>26 Septembre 2024 à 23h59</span>
-      </p> */}
-
       <p>
         Merci pour l&apos;intérêt que vous portez à <span className='font-semibold text-[#272162]'>MTYM</span>!
       </p>
       <p>
-        Pour suivre l&apos;avancement de votre candidature, {!userData
+        Pour consulter votre candidature et votre équipe, {!userData
           ? <> veuillez vous <span className='text-blue-600 hover:cursor-pointer hover:underline' onClick={() => setShowAuthModal(true)}>connectez</span> </>
           : <> veuillez accéder à votre <span className='text-blue-600 hover:cursor-pointer hover:underline' onClick={() => router.push('/profile/application')}>profil</span> </>
         }

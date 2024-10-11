@@ -19,9 +19,8 @@ const AboutSection = () => {
           <MeteorCard 
             title='Equipe organisatrice' 
             description='Faites la connaissance de nos bénévoles passionnés qui ont consacré d&apos;innombrables heures pour rendre ce projet possible.'
-            ctaLabel='Publié prochainement...'
+            ctaLabel="Voir l'équipe organisatrice"
             className='max-w-xs md:max-w-xl'
-            buttonDisabled={true}
             onClick={() => router.push('/organizing-team')}
           />
         </div>
