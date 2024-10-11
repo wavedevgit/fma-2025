@@ -66,7 +66,7 @@ export default function OrganizingTeamPage() {
         </h1>
 
         <div 
-          className="flex justify-around flex-wrap gap-6 bg-gray-200 shadow-lg p-8 rounded-lg animate-fade-up opacity-0"
+          className="flex justify-around flex-wrap gap-6 shadow-md p-8 rounded-lg animate-fade-up opacity-0"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
           {shuffledOrganizingCommitte.map(person =>
@@ -79,71 +79,80 @@ export default function OrganizingTeamPage() {
           )}
         </div>
 
-        <h1
-          className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"
-          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
-        >
-          <span className='bg-gradient-to-br from-sky-800 to-[#272162] inline-block text-transparent bg-clip-text'>Math&Maroc</span> <span className='font-extralight'>{" | "}</span>
-          <span className='bg-gradient-to-br from-black to-stone-500 inline-block text-transparent bg-clip-text'>Staff</span>
-        </h1>
-        
-        <div 
-          className="flex justify-around flex-wrap gap-6 bg-gray-200 shadow-lg p-8 rounded-lg animate-fade-up opacity-0"
-          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
-        >
-          {staff.map(person =>
-            <Card
-              key={person.name.toLowerCase().replace(' ', '_')}
-              name={person.name}
-              imageSrc={person.imageSrc} 
-              linkedinSrc={person.linkedinSrc}
-            />
-          )}
-        </div>
+        <div className='flex flex-col justify-around space-y-6 flex-wrap gap-y-6 md:flex-row md:space-y-0'>
+          <div className='w-full md:w-1/2 space-y-4'>
+            <h1
+              className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"
+              style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+            >
+              <span className='bg-gradient-to-br from-sky-800 to-[#272162] inline-block text-transparent bg-clip-text'>Math&Maroc</span> <span className='font-extralight'>{" | "}</span>
+              <span className='bg-gradient-to-br from-black to-stone-500 inline-block text-transparent bg-clip-text'>Staff</span>
+            </h1>
+            
+            <div 
+              className="flex justify-around flex-wrap gap-6 shadow-md p-8 rounded-lg animate-fade-up opacity-0 mr-6"
+              style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+            >
+              {staff.map(person =>
+                <Card
+                  key={person.name.toLowerCase().replace(' ', '_')}
+                  name={person.name}
+                  imageSrc={person.imageSrc} 
+                  linkedinSrc={person.linkedinSrc}
+                />
+              )}
+            </div>
+          </div>
 
-        <h1
-          className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"
-          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
-        >
-          <span className='bg-gradient-to-br from-sky-800 to-[#272162] inline-block text-transparent bg-clip-text'>Math&Maroc</span> <span className='font-extralight'>{" | "}</span>
-          <span className='bg-gradient-to-br from-black to-stone-500 inline-block text-transparent bg-clip-text'>Brand Design</span>
-        </h1>
+          <div className='w-full md:w-1/2 space-y-4'>
+            <h1
+              className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"
+              style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+            >
+              <span className='bg-gradient-to-br from-sky-800 to-[#272162] inline-block text-transparent bg-clip-text'>Math&Maroc</span> <span className='font-extralight'>{" | "}</span>
+              <span className='bg-gradient-to-br from-black to-stone-500 inline-block text-transparent bg-clip-text'>Website Development</span>
+            </h1>
 
-        <div 
-          className="flex justify-around flex-wrap gap-6 bg-gray-200 shadow-lg p-8 rounded-lg animate-fade-up opacity-0"
-          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
-        >
-          {brandDesign.map(person =>
-            <Card
-              key={person.name.toLowerCase().replace(' ', '_')}
-              name={person.name}
-              imageSrc={person.imageSrc} 
-              linkedinSrc={person.linkedinSrc}
-              portfolioSrc={person.portfolioSrc}
-            />
-          )}
-        </div>
+            <div 
+              className="flex justify-around flex-wrap gap-6 shadow-md  p-8 rounded-lg animate-fade-up opacity-0 ml-6"
+              style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+            >
+              {webDevelopment.map(person =>
+                <Card
+                  key={person.name.toLowerCase().replace(' ', '_')}
+                  name={person.name}
+                  imageSrc={person.imageSrc} 
+                  linkedinSrc={person.linkedinSrc}
+                />
+              )}
+              
+            </div>
+          </div>
 
-        <h1
-          className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"
-          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
-        >
-          <span className='bg-gradient-to-br from-sky-800 to-[#272162] inline-block text-transparent bg-clip-text'>Math&Maroc</span> <span className='font-extralight'>{" | "}</span>
-          <span className='bg-gradient-to-br from-black to-stone-500 inline-block text-transparent bg-clip-text'>Website Development</span> 
-        </h1>
+          <div className='w-full md:w-1/2 space-y-4'>
+            <h1
+              className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-4xl md:leading-[4rem]"
+              style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+            >
+              <span className='bg-gradient-to-br from-sky-800 to-[#272162] inline-block text-transparent bg-clip-text'>Math&Maroc</span> <span className='font-extralight'>{" | "}</span>
+              <span className='bg-gradient-to-br from-black to-stone-500 inline-block text-transparent bg-clip-text'>Brand Design</span> 
+            </h1>
 
-        <div 
-          className="flex justify-around flex-wrap gap-6 bg-gray-200 shadow-lg p-8 rounded-lg animate-fade-up opacity-0"
-          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
-        >
-          {webDevelopment.map(person =>
-            <Card
-              key={person.name.toLowerCase().replace(' ', '_')}
-              name={person.name}
-              imageSrc={person.imageSrc} 
-              linkedinSrc={person.linkedinSrc}
-            />
-          )}
+            <div 
+              className="flex justify-around flex-wrap gap-6 shadow-md p-8 rounded-lg animate-fade-up opacity-0 mx-6"
+              style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+            >
+              {brandDesign.map(person =>
+                <Card
+                  key={person.name.toLowerCase().replace(' ', '_')}
+                  name={person.name}
+                  imageSrc={person.imageSrc} 
+                  linkedinSrc={person.linkedinSrc}
+                  portfolioSrc={person.portfolioSrc}
+                />
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>
