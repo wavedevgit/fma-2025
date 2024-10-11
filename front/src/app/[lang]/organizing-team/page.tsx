@@ -135,7 +135,7 @@ export default function OrganizingTeamPage() {
               style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
             >
               <span className='bg-gradient-to-br from-sky-800 to-[#272162] inline-block text-transparent bg-clip-text'>Math&Maroc</span> <span className='font-extralight'>{" | "}</span>
-              <span className='bg-gradient-to-br from-black to-stone-500 inline-block text-transparent bg-clip-text'>Brand Design</span> 
+              <span className='bg-gradient-to-br from-black to-stone-500 inline-block text-transparent bg-clip-text'>Branding & Design</span> 
             </h1>
 
             <div 
