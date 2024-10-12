@@ -35,11 +35,6 @@ export const organizingCommittee = [
     linkedinSrc: 'http://linkedin.com/in/mohamed-reda-el-messaoudi-bb21b2332',
   },
   {
-    name: 'Yasser ALGHOUASS',
-    imageSrc: '/organizing-team/unknown.jpg',
-    linkedinSrc: 'https://www.linkedin.com/in/yasser-alghouass-a78223167/?originalSubdomain=ma',
-  },
-  {
     name: 'Amine HBAR',
     imageSrc: '/organizing-team/amine_hbar.jpeg',
     linkedinSrc: 'https://www.linkedin.com/in/amine-hbar-0748a2246/?originalSubdomain=fr',
