@@ -19,11 +19,11 @@ export const organizingCommittee = [
     imageSrc: '/organizing-team/mohammed_younes_gueddari.jpeg',
     linkedinSrc: 'https://linkedin.com/in/mohammed-younes-gueddari-4299b6147',
   },
-  {
-    name: 'Younes ABBOUBI',
-    imageSrc: '/organizing-team/youness_abboubi.jpeg',
-    linkedinSrc: 'https://linkedin.com/in/youness-abboubi',
-  },
+  // {
+  //   name: 'Younes ABBOUBI',
+  //   imageSrc: '/organizing-team/youness_abboubi.jpeg',
+  //   linkedinSrc: 'https://linkedin.com/in/youness-abboubi',
+  // },
   {
     name: 'Manal SAOUI',
     imageSrc: '/organizing-team/manal_saoui.jpeg',
