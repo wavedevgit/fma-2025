@@ -66,7 +66,7 @@ const CtaButton = () => {
       <AuthModal />
 
       <MeteorCard className="w-full flex flex-col space-y-4 items-center bg-transparent border-gray-400 py-4">
-        <Link href='https://drive.google.com/file/d/1HdPmsoEKGysaETmBqjt9XUF3-kgQQ_vM/view?usp=sharing' target='_blank'>
+        <Link href='https://drive.google.com/file/d/1F0dLjXRlgp9_LkneO1-KNfiCmLixMQ4v/view' target='_blank'>
           <div className='flex flex-col space-y-4 justify-center sm:flex-row sm:items-center sm:space-y-0 '>
             <button 
               className="p-[3px] relative"
