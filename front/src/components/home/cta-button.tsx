@@ -66,20 +66,27 @@ const CtaButton = () => {
       <AuthModal />
 
       <MeteorCard className="w-full flex flex-col space-y-4 items-center bg-transparent border-gray-400 py-4">
-        <Link href='https://drive.google.com/file/d/1F0dLjXRlgp9_LkneO1-KNfiCmLixMQ4v/view' target='_blank'>
+        <Link href='event' target='_blank'>
           <div className='flex flex-col space-y-4 justify-center sm:flex-row sm:items-center sm:space-y-0 '>
             <button 
               className="p-[3px] relative"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-sky-600 to-[#2C2C62] rounded-lg" />
               <div className="px-8 py-2 bg-white rounded-[6px] relative group transition duration-200 text-black hover:bg-transparent hover:text-white">
-                Accèder aux problèmes
+                Regarder la cérémonie
               </div>
             </button>
           </div>
         </Link>
 
         <div className="w-full flex flex-col space-y-4 md:flex-row md:justify-center md:space-y-0 md:space-x-6">
+          <Link href='https://drive.google.com/file/d/1F0dLjXRlgp9_LkneO1-KNfiCmLixMQ4v/view' target='_blank'>
+            <Button
+              className='border border-white text-white w-[11rem] bg-[#2C2C62]'
+            >
+              Accèder aux problèmes
+            </Button>
+          </Link>
           <Link href='organizing-team' target='_blank'>
             <Button
               className='border border-white text-white w-[11rem] bg-[#2C2C62]'
@@ -87,7 +94,6 @@ const CtaButton = () => {
               Équipe organisatrice
             </Button>
           </Link>
-
           <Link href='partners'>
             <Button
               className='border border-white text-white w-[11rem] bg-[#2C2C62]'
