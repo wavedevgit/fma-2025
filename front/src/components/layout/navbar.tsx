@@ -19,12 +19,17 @@ const links = [
   //   href: '/schedule',
   // },
   {
-    key: 'problems',
+    key: 'results',
+    label: 'Résultats',
+    href: '/results',
+  },
+  {
+    key: 'last-edition',
     label: 'Dernière Édition',
     href: '/last-edition',
   },
   {
-    key: 'problems',
+    key: 'selection',
     label: 'Test de sélection',
     href: '/selection',
   },
@@ -38,11 +43,6 @@ const links = [
     label: 'Partenaires',
     href: '/partners',
   },
-  // {
-  //   key: 'past-edition',
-  //   label: 'Past Edition',
-  //   href: '/past-edition',
-  // },
   // {
   //   key: 'past-edition',
   //   label: 'Past Edition',
