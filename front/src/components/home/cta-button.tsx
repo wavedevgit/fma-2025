@@ -66,14 +66,14 @@ const CtaButton = () => {
       <AuthModal />
 
       <MeteorCard className="w-full flex flex-col space-y-4 items-center bg-transparent border-gray-400 py-4">
-        <Link href='event' target='_blank'>
+        <Link href='results' target='_self'>
           <div className='flex flex-col space-y-4 justify-center sm:flex-row sm:items-center sm:space-y-0 '>
             <button 
               className="p-[3px] relative"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-sky-600 to-[#2C2C62] rounded-lg" />
               <div className="px-8 py-2 bg-white rounded-[6px] relative group transition duration-200 text-black hover:bg-transparent hover:text-white">
-                Regarder la cérémonie
+                Voir les résultats
               </div>
             </button>
           </div>
