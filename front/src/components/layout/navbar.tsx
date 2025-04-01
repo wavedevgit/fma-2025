@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import useScroll from "@/lib/hooks/use-scroll";
-import { UserNav } from "./user-nav";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useRecoilValue } from "recoil";
