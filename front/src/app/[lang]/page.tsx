@@ -9,24 +9,24 @@ import { useTranslation } from "../i18n";
 import AboutSection from "@/components/home/about-section";
 import TutorialSection from "@/components/home/tutorial-section";
 
-export default async function Home({
-  params
-}:{
-  params: { lang: string },
-}) {
+export default async function Home({ params }: { params: { lang: string } }) {
   // console.log('home lang', params?.lang)
-  const { t } = await useTranslation(params?.lang, 'home')
+  const { t } = await useTranslation(params?.lang, "home");
   // console.log('home t', t)
   // console.log('home t(hero-title)', t('hero-title'))
   return (
     <>
       <div className="w-full max-w-4xl px-5 xl:px-0 space-y-8">
-        <HeroSection heroTitle={t('hero-title')} heroSubtitle={t('hero-subtitle')} heroTitleResults={t('hero-title-results')}/>
+        <HeroSection
+          heroTitle={t("hero-title")}
+          heroSubtitle={t("hero-subtitle")}
+          heroTitleResults={t("hero-title-results")}
+        />
         <TimeAndLocation />
         <CtaButton />
       </div>
 
-      <div 
+      <div
         className="h-[26rem] relative animate-fade-up opacity-0 overflow-hidden flex flex-col justify-center"
         style={{ animationDelay: "0.45s", animationFillMode: "forwards" }}
       >
@@ -36,7 +36,7 @@ export default async function Home({
           speed="slow"
         />
       </div>
-      
+
       <div className="w-full max-w-sm md:max-w-7xl px-5 xl:px-0 space-y-20">
         {/* Informations */}
         <div className="space-y-6">
@@ -44,7 +44,7 @@ export default async function Home({
             className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-5xl md:leading-[4rem]"
             style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
           >
-            C&apos;est quoi, MTYM ?
+            C&apos;est quoi, FMA ?
           </h1>
 
           <Informations />

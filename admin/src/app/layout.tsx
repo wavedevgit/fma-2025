@@ -1,13 +1,13 @@
-import type { Metadata } from 'next';
-import { sfPro, inter } from '@/fonts';
+import type { Metadata } from "next";
+import { sfPro, inter } from "@/fonts";
 import "./globals.css";
 import cx from "classnames";
-import RecoilContextProvider from './recoilContextProvider';
-import { DataLoader } from '@/components/layout/data-loader';
-import { Toaster } from '@/components/shared/toaster';
+import RecoilContextProvider from "./recoilContextProvider";
+import { DataLoader } from "@/components/layout/data-loader";
+import { Toaster } from "@/components/shared/toaster";
 
 export const metadata: Metadata = {
-  title: "MTYM 2024 Admin",
+  title: "FMA 2024 Admin",
 };
 
 export default function RootLayout({
