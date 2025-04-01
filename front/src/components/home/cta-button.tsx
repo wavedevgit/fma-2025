@@ -67,7 +67,10 @@ const CtaButton = () => {
 
         {!isMobile && <DottedLine2 className="w-1/6" />}
 
-        <button className="p-[3px] relative" onClick={() => {}}>
+        <button
+          className="p-[3px] relative"
+          onClick={() => router.push("/selection")}
+        >
           <div className="absolute inset-0 bg-[#272162] rounded-lg" />
           <div className="px-8 py-2 bg-white rounded-[6px] relative group transition duration-200 text-gray-900 hover:bg-transparent hover:text-white">
             Consulter le test et les critères de sélection{" "}
