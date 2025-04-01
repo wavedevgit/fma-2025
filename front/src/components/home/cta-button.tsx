@@ -1,9 +1,7 @@
 "use client";
 
-import { getToken } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import React, { SyntheticEvent, useEffect, useState } from "react";
-import { useAuthModal } from "../layout/auth-modal";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/store/userState";
 import {
@@ -11,15 +9,7 @@ import {
   DottedLine2,
   DottedLine3,
 } from "../shared/icons/dotted-lines";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/shared/dialog";
+
 import { Button } from "../shared";
 import { MeteorCard } from "./meteor-card";
 import useMediaQuery from "@/lib/hooks/use-media-query";
@@ -28,58 +18,25 @@ import { Separator } from "@radix-ui/react-separator";
 
 const CtaButton = () => {
   const router = useRouter();
-  const { AuthModal, setShowAuthModal } = useAuthModal();
   const { isMobile } = useMediaQuery();
   const userData = useRecoilValue(userState);
-
-  const onSubmitApplication = (e: SyntheticEvent) => {
-    e.preventDefault();
-    const token = getToken();
-
-    if (token) {
-      if (userData?.application) {
-        router.push("/profile/application");
-      } else {
-        router.push("/application");
-      }
-    } else {
-      setShowAuthModal(true);
-    }
-  };
-
-  const onJoinTeam = (e: SyntheticEvent) => {
-    e.preventDefault();
-    const token = getToken();
-
-    if (token) {
-      if (userData?.team) {
-        router.push("/profile/team");
-      } else {
-        router.push("/team");
-      }
-    } else {
-      setShowAuthModal(true);
-    }
-  };
 
   return (
     <div
       className="text-center animate-fade-up opacity-0 space-y-4 space-x-8"
       style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
     >
-      <AuthModal />
-
       <MeteorCard className="w-full flex flex-col space-y-4 items-center bg-transparent border-gray-400 py-4">
-        <Link href="results" target="_self">
+        {/**<Link href="results" target="_self">
           <div className="flex flex-col space-y-4 justify-center sm:flex-row sm:items-center sm:space-y-0 ">
             <button className="p-[3px] relative">
               <div className="absolute inset-0 bg-gradient-to-r from-sky-600 to-[#2C2C62] rounded-lg" />
               <div className="px-8 py-2 bg-white rounded-[6px] relative group transition duration-200 text-black hover:bg-transparent hover:text-white">
-                Apply
+                Candidater
               </div>
             </button>
           </div>
-        </Link>
+        </Link> */}
 
         <div className="w-full flex flex-col space-y-4 md:flex-row md:justify-center md:space-y-0 md:space-x-6">
           <Link href="organizing-team" target="_blank">
@@ -95,12 +52,12 @@ const CtaButton = () => {
         </div>
       </MeteorCard>
 
-      {/* <div className='flex flex-col space-y-4 sm:flex-row sm:items-center sm:space-y-0 '>
-        {!isMobile && <DottedLine1 className='w-1/6'/>}
+      <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:space-y-0 ">
+        {!isMobile && <DottedLine1 className="w-1/6" />}
 
-        <button 
+        <button
           className="p-[3px] relative"
-          onClick={onSubmitApplication}
+          onClick={() => window.open("https://forms.gle/45fD4WycTpyYAdSN7")}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-sky-500 to-[#272162] rounded-lg" />
           <div className="px-8 py-2 bg-white rounded-[6px] relative group transition duration-200 text-black hover:bg-transparent hover:text-white">
@@ -108,50 +65,21 @@ const CtaButton = () => {
           </div>
         </button>
 
-        {!isMobile && <DottedLine2 className='w-1/6'/>}
+        {!isMobile && <DottedLine2 className="w-1/6" />}
 
-        <button 
-          className="p-[3px] relative"
-          onClick={onJoinTeam}
-        >
+        <button className="p-[3px] relative" onClick={() => {}}>
           <div className="absolute inset-0 bg-[#272162] rounded-lg" />
           <div className="px-8 py-2 bg-white rounded-[6px] relative group transition duration-200 text-gray-900 hover:bg-transparent hover:text-white">
-            Rejoindre une équipe
+            Consulter le test et les critères de sélection{" "}
           </div>
         </button>
 
-        {!isMobile && <DottedLine3 className='w-1/6'/>}
-      </div> */}
+        {!isMobile && <DottedLine3 className="w-1/6" />}
+      </div>
 
       <p>
         Merci pour l&apos;intérêt que vous portez à{" "}
         <span className="font-semibold text-[#272162]">FMA</span>!
-      </p>
-      <p>
-        Pour consulter votre candidature et votre équipe,{" "}
-        {!userData ? (
-          <>
-            {" "}
-            veuillez vous{" "}
-            <span
-              className="text-blue-600 hover:cursor-pointer hover:underline"
-              onClick={() => setShowAuthModal(true)}
-            >
-              connectez
-            </span>{" "}
-          </>
-        ) : (
-          <>
-            {" "}
-            veuillez accéder à votre{" "}
-            <span
-              className="text-blue-600 hover:cursor-pointer hover:underline"
-              onClick={() => router.push("/profile/application")}
-            >
-              profil
-            </span>{" "}
-          </>
-        )}
       </p>
     </div>
   );

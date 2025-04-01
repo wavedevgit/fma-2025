@@ -6,7 +6,6 @@ import NavBar from "@/components/layout/navbar";
 import { Toaster } from "@/components/shared/toaster";
 import Footer from "@/components/layout/footer";
 import RecoilContextProvider from "./recoilContextProvider";
-import { DataLoader } from "@/components/layout/data-loader";
 import { dir } from "i18next";
 import { languages } from "../i18n/settings";
 
@@ -31,7 +30,6 @@ export default async function RootLayout({
       <body className={cx(sfPro.variable, inter.variable)}>
         <RecoilContextProvider>
           <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" />
-          <DataLoader lang={params?.lang} />
           <Suspense fallback="...">
             <NavBar lang={params?.lang} />
           </Suspense>

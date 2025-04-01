@@ -64,10 +64,10 @@ const Informations = () => {
         <div className="w-full">
           <MeteorCard
             title="Dernière Édition"
-            description="Découvrez comment s'est déroulé la dernière édition de FMA."
-            ctaLabel="Voir la dernière édition"
+            description="Découvrir comment se sont déroulés les derniers événements de Math&Maroc."
+            ctaLabel="Découvrir d'autres événements"
             className="h-full"
-            onClick={() => router.push("/last-edition")}
+            onClick={() => window.open("http://mathmaroc.org/")}
           />
         </div>
 

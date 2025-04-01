@@ -33,8 +33,7 @@ export default function SelectionPage() {
               FMA
             </span>{" "}
             se fait principalement sur la base d&apos;un test de sélection en
-            ligne qui aura lieu le{" "}
-            <span className="font-bold">06 octobre 2024</span>.{" "}
+            ligne qui aura lieu le <span className="font-bold">15 avril</span>.{" "}
             <span className="font-bold">
               Bloquer bien ce jour dans votre calendrier.
             </span>
@@ -44,13 +43,6 @@ export default function SelectionPage() {
             Le <span className="font-bold">syllabus</span> vous permettra de
             connaître les sujets couverts lors du test.
           </p>
-
-          <p className="mt-6">
-            Les <span className="font-bold">questions types</span> du test de
-            sélection vous donneront une idée sur les questions auxquelles il
-            faut s&apos;attendre et sont mises à votre disposition pour vous
-            aider à vous y préparer.
-          </p>
         </div>
 
         <div
@@ -59,7 +51,7 @@ export default function SelectionPage() {
         >
           <div className="space-y-4 flex flex-col md:flex-row md:space-x-8 md:space-y-0">
             <Link
-              href="https://drive.google.com/file/d/1jw5CnHPFfalatYdoPDCz9cKt7yYp6bdL/view?usp=drive_link"
+              href="https://drive.google.com/drive/folders/1pGco8IvZCwchj4r12JQuhojZ9MRnbO90?usp=sharing"
               target="_blank"
             >
               <div className="h-[8rem] w-[9rem] bg-white border-b-4 border-b-red-500 border-2 shadow-md flex justify-center items-center rounded-md py-2 hover:cursor-pointer">
@@ -70,7 +62,7 @@ export default function SelectionPage() {
               </div>
             </Link>
 
-            <Link
+            {/**<Link
               href="https://drive.google.com/file/d/1LoMTILi7YbOp11FdCioLDpyR5smT7m7i/view?usp=sharing"
               target="_blank"
             >
@@ -80,7 +72,7 @@ export default function SelectionPage() {
                   <Exam />
                 </div>
               </div>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
